@@ -2,6 +2,19 @@ body {
   background: #FAFAFA;
 }
 
-h1 {
-  color: 
+.form {
+  border: 1px solid black;
+}
+
+.btn, .btn-primary, .btn-lg {
+  background: #30ee88;
+}
+
+.btn:hover, .btn-primary:hover, .btn-lg:hover {
+  background: #30ee88;
+  border: 3px solid black;
+}
+
+.btn:active, .btn-primary:active, .btn-lg:active {
+  background: #00d563;
 }
