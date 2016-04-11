@@ -29,7 +29,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
-app.use(passport.session());
 app.use(cookieSession({
   name: 'user',
   secret: process.env.GITHUB_CLIENT_SECRET
@@ -78,18 +77,19 @@ passport.deserializeUser(function(user, done) {
   done(null, user)
 });
 
-// app.use(function (req, res, next) {
-//   console.log('got here');
-//   console.log("req.session.passport.user: ", req.session.passport.user, "~~~~~~~~~~");
-//   req.user = req.session.passport.user
-//   res.locals.user = req.session.passport.user
-//   next()
-// })
+app.use(function (req, res, next) {
+  console.log('got here');
+  req.user = req.session.passport.user;
+  console.log('got here2');
+  res.locals.user = req.session.passport.user;
+  console.log('got here3');
+  next();
+})
 
+app.use('/auth', auth);
 app.use('/', routes);
 app.use('/users', users);
 app.use('/posts', posts);
-app.use('/auth', auth);
 
 // app.get('/logout', function(req, res){
 //   req.session.passport.user = null;
