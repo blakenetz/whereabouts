@@ -1,5 +1,32 @@
 <h1>{{title}}</h1>
 <p><a href='/'>Home</a></p>
+<p><a href='/users'>Users Main</a> </p>
 <p>Edit info for User {{id}}</p>
 <p>This page should only be accessible by User {{id}}</p>
-<p><a href='/users'>Users Main</a> </p>
+
+<div class="row">
+  <div class="col-xs-6 col-md-4">
+
+    <form method="POST" action="/users/{{id}}/edit">
+      <fieldset class="form-group">
+        <label for="name">Edit Your Username</label>
+        <input type="text" class="form-control" name='name' id="name" placeholder="Username">
+      </fieldset>
+      <input type="submit" name="submit" class="btn btn-primary btn-lg" value="Submit">
+    </form>
+
+  </div>
+</div>
+<br><br>
+<div class="row">
+  <div class="col-xs-6 col-md-4">
+
+    <form method="POST" action='/users/{{id}}/delete'>
+      <fieldset class='form-group'>
+      <label for='delete-account'>Delete This Account!</label>
+    </fieldset>
+      <input type="submit" name="delete" class="btn btn-danger btn-lg" value="Click Here To Permanently Delete This Account">
+    </form>
+
+  </div>
+</div>
