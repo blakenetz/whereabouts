@@ -1,10 +1,15 @@
 var express = require('express');
 var router = express.Router();
+var knex = require('knex')(require('../knexfile')['development']);
 var unirest = require('unirest');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Group Map Project!' });
+  knex('posts')
+  .then( function (posts) {
+    res.render('index', { posts: posts });
+  })
 });
 
 module.exports = router;
