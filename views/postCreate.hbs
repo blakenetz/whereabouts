@@ -1,3 +1,27 @@
 <h1>{{title}}</h1>
 <p><a href='/'>Home</a></p>
 <p>This page should only be accessible by the author of the post</p>
+
+
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+
+    <form method="POST" action="/posts/add">
+      <fieldset class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" name='title' id="title" placeholder="Title">
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="img_link">Image Link</label>
+        <input type="text" class="form-control" name='img_link' id="img_link" placeholder="Paste Image URL">
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="description">Post</label>
+        <textarea class="form-control" name='description' id="description" placeholder="Type Your Post Here"></textarea>
+      </fieldset>
+      <input type="submit" name="submit" class="btn btn-primary btn-lg" value="Post">
+    </form>
+
+  </div>
+
+</div>

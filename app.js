@@ -51,19 +51,19 @@ passport.use(new GitHubStrategy({
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
     callbackURL: process.env.HOST + '/auth/github/callback',
     // state: true
-  }, function(accessToken, refreshToken, profile, done) {
-    // asynchronous verification, for effect...
-    process.nextTick(function () {
+  },
+  function(accessToken, refreshToken, profile, done) {
+     // asynchronous verification, for effect...
+     process.nextTick(function () {
 
-      // To keep the example simple, the user's GitHub profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the GitHub account with a user record in your database,
-      // and return that user instead.
-      return done(null, profile);
-    });
-  }
-));
-
+       // To keep the example simple, the user's GitHub profile is returned to
+       // represent the logged-in user.  In a typical application, you would want
+       // to associate the GitHub account with a user record in your database,
+       // and return that user instead.
+       return done(null, profile);
+     });
+   }
+ ));
 
 passport.serializeUser(function(user, done) {
   console.log('sU~~~~~~~~~~~');
@@ -75,18 +75,24 @@ passport.deserializeUser(function(user, done) {
   done(null, user)
 });
 
-app.use(function (req, res, next) {
-  console.log('got here');
-  console.log('71: ', req.session.passport.user);
-  req.user = req.session.passport.user
-  res.locals.user = req.session.passport.user
-  next()
-})
+// app.use(function (req, res, next) {
+//   console.log('got here');
+//   console.log('66: ', req.session.passport.user);
+//   req.user = req.session.passport.user
+//   res.locals.user = req.session.passport.user
+//   next()
+// })
 
 app.use('/', routes);
 app.use('/users', users);
 app.use('/posts', posts);
 app.use('/auth', auth);
+
+// app.get('/logout', function(req, res){
+//   req.session.passport.user = null;
+//   req.logout();
+//   res.redirect('/');
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
