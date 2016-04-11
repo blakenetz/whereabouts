@@ -7,4 +7,9 @@ router.get('/login', function(req, res, next) {
   res.render('login');
 });
 
+router.get('/logout', function(req, res, next) {
+  req.session.destroy();
+  res.render('index');
+});
+
 module.exports = router;
