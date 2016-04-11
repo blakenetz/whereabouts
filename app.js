@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(cookieSession({
   name: 'user',
-  secret: process.env.GITHUB_CLIENT_SECRET,
+  secret: process.env.GITHUB_CLIENT_SECRET
 }));
 
 app.get('/auth/github', passport.authenticate('github'), function(req, res){
@@ -70,12 +70,13 @@ passport.deserializeUser(function(user, done) {
   done(null, user)
 });
 
-// app.use(function (req, res, next) {
-//   console.log('got here');
-//   req.user = req.session.passport.user
-//   res.locals.user = req.session.passport.user
-//   next()
-// })
+app.use(function (req, res, next) {
+  console.log('got here');
+  console.log(req.user, "~~~~~~~~~~");
+  res.locals.user = req.user
+  next()
+  next()
+})
 
 app.use('/', routes);
 app.use('/users', users);
