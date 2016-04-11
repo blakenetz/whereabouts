@@ -56,17 +56,14 @@ passport.use(new GitHubStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
 
-    process.nextTick(function () {
+    // process.nextTick(function () {
       console.log('~~~~~~~~~~~~~~~~~~~~~');
       console.log(profile);
-      console.log('~~~~~~~~~~~~~~~~~~~~~');
+      console.log('***************************');
+      console.log(profile.username);
 
-          // To keep the example simple, the user's Tumblr profile is returned to
-          // represent the logged-in user.  In a typical application, you would want
-          // to associate the Tumblr account with a user record in your database,
-          // and return that user instead.
-          return done(null, profile.name);
-        });
+      done(null, {id: profile.id, username: profile.username, token: accessToken});
+        // });
       }
     ));
 
@@ -83,7 +80,7 @@ passport.deserializeUser(function(user, done) {
 
 app.use(function (req, res, next) {
   console.log('got here');
-  console.log(req.session.passport.user, "~~~~~~~~~~");
+  console.log("req.session.passport.user: ", req.session.passport.user, "~~~~~~~~~~");
   req.user = req.session.passport.user
   res.locals.user = req.session.passport.user
   next()
