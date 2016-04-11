@@ -46,14 +46,12 @@ app.get('/auth/github/callback', passport.authenticate('github', {
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: process.env.HOST + "/auth/github/callback"
+    callbackURL: process.env.HOST + "/auth/github/callback",
+    state: true
   },
   function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate({ githubId: profile.id }, function (err, user) {
-      return done(err, user);
-    });
-  }
-));
+  done(null, {id: profile.id, displayName: profile.displayName, token: accessToken})
+}));
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -63,10 +61,11 @@ passport.deserializeUser(function(user, done) {
   done(null, user)
 });
 
-// app.use(function (req, res, next) {
-  // req.user = req.session.passport.user
-  // res.locals.user = req.session.passport.user
-  // next()
+app.use(function (req, res, next) {
+  req.user = req.session.passport.user;
+  res.locals.user = req.session.passport.user;
+  next();
+})
 
 app.use('/', routes);
 app.use('/users', users);
