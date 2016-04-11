@@ -13,7 +13,8 @@ exports.up = function(knex, Promise) {
     table.string('description', 2500);
     table.integer('rating');
     table.integer('user_id').unsigned().references('users.id');
-    table.integer('location');
+    table.float('lat', 20, 20);
+    table.float('lng', 20, 20);
     table.string('imgLink', 500);
     table.timestamp('created_at').notNullable().defaultTo(knex.raw('now()'));
   })
