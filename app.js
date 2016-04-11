@@ -4,6 +4,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 
 var GitHubStrategy = require('passport-github2').Strategy;
@@ -26,6 +27,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
+app.use(cookieSession({
+  name: 'user',
+  secret: process.env.GITHUB_CLIENT_SECRET
+}));
 
 app.get('/auth/github', passport.authenticate('github'), function(req, res){
   // The request will be redirected to LinkedIn for authentication, so this
@@ -49,9 +55,28 @@ passport.use(new GitHubStrategy({
   }
 ));
 
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user)
+});
+
+// app.use(function (req, res, next) {
+  // req.user = req.session.passport.user
+  // res.locals.user = req.session.passport.user
+  // next()
+
 app.use('/', routes);
 app.use('/users', users);
-app.use('/posts', posts)
+app.use('/posts', posts);
+
+// app.get('/logout', function(req, res){
+//   req.session.passport.user = null;
+//   req.logout();
+//   res.redirect('/');
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
