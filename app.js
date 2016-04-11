@@ -70,12 +70,12 @@ passport.deserializeUser(function(user, done) {
   done(null, user)
 });
 
-app.use(function (req, res, next) {
-  console.log('got here');
-  req.user = req.session.passport.user
-  res.locals.user = req.session.passport.user
-  next()
-})
+// app.use(function (req, res, next) {
+//   console.log('got here');
+//   req.user = req.session.passport.user
+//   res.locals.user = req.session.passport.user
+//   next()
+// })
 
 app.use('/', routes);
 app.use('/users', users);
