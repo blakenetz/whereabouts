@@ -34,12 +34,12 @@ app.use(cookieSession({
   secret: process.env.GITHUB_CLIENT_SECRET,
 }));
 
-app.get('/auth/github', passport.authenticate('github'), function(req, res){
+app.get('/auth/github', passport.authenticate('github', { scope: [ 'user:email' ] }), function(req, res){
   // The request will be redirected to LinkedIn for authentication, so this
   // function will not be called.
 });
 
-app.get('/auth/github/callback', 
+app.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
@@ -53,11 +53,17 @@ passport.use(new GitHubStrategy({
     // state: true
   },
   function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate({ githubId: profile.id }, function (err, user) {
-      return done(err, user);
-    });
-  }
-));
+     // asynchronous verification, for effect...
+     process.nextTick(function () {
+
+       // To keep the example simple, the user's GitHub profile is returned to
+       // represent the logged-in user.  In a typical application, you would want
+       // to associate the GitHub account with a user record in your database,
+       // and return that user instead.
+       return done(null, profile);
+     });
+   }
+ ));
 
 passport.serializeUser(function(user, done) {
   console.log('sU~~~~~~~~~~~');
