@@ -53,9 +53,9 @@ passport.use(new GitHubStrategy({
     // state: true
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log(~~~~~~~~~~~~~~~~~~~~~);
+    console.log('~~~~~~~~~~~~~~~~~~~~~');
     console.log(profile);
-    console.log(~~~~~~~~~~~~~~~~~~~~~);
+    console.log('~~~~~~~~~~~~~~~~~~~~~');
     done(null, {id: profile.id, displayName: profile.displayName, token: accessToken})
   }));
 
