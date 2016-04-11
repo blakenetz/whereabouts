@@ -3,18 +3,19 @@ body {
 }
 
 .form {
-  border: 1px solid black;
+  padding: 15px;
+  border-radius: 10px;
+  background: white;
 }
 
-.btn, .btn-primary, .btn-lg {
+.form .btn, .form .btn-primary, .form .btn-lg {
   background: #30ee88;
 }
 
-.btn:hover, .btn-primary:hover, .btn-lg:hover {
-  background: #30ee88;
-  border: 3px solid black;
+.form .btn:hover, .form .btn-primary:hover, .form .btn-lg:hover {
+  background: #00d563;
 }
 
-.btn:active, .btn-primary:active, .btn-lg:active {
+.form .btn:active, .form .btn-primary:active, .form .btn-lg:active {
   background: #00d563;
 }

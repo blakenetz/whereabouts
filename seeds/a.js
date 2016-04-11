@@ -14,7 +14,7 @@ exports.seed = function(knex, Promise) {
             lng: -105.2705,
             img_link: null,
           },{
-            title: 'testing1',
+            title: 'testing2',
             description: 'this is a test 2',
             rating: 400,
             user_id: userId[0],
@@ -22,7 +22,7 @@ exports.seed = function(knex, Promise) {
             lng: -105.2715,
             img_link: null,
           },{
-            title: 'testing2',
+            title: 'testing3',
             description: 'this is a test 3',
             rating: 300,
             user_id: userId[0],
