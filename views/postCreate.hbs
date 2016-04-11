@@ -1,35 +1,50 @@
-<h1>{{title}}</h1>
-<p><a href='/'>Home</a></p>
-<p>This page should only be accessible by the author of the post</p>
-
+<div class="row">
+  <div class="col-xs-1 col-md-2"></div>
+  <div class="col-xs-10 col-md-8">
+    <h1>Contribute</h1>
+  </div>
+  <div class="col-xs-1 col-md-2"></div>
+</div>
 
 <div class="row">
-  <div class="col-xs-12 col-md-8">
+  <div class="col-xs-1 col-md-2"></div>
+  <div class="col-xs-10 col-md-8">
+    <p><a href='/'>Home</a></p>
+    <p>This page should only be accessible by the author of the post</p>
+  </div>
+  <div class="col-xs-1 col-md-2"></div>
+</div>
+
+<div class="row">
+
+  <div class="col-xs-1 col-md-2"></div>
+  <div class="col-xs-10 col-md-8 form">
 
     <form method="POST" action="/posts/add">
       <fieldset class="form-group">
         <label for="title">Title</label>
-        <input type="text" class="form-control" name='title' id="title" placeholder="Title">
+        <input type="text" class="form-control" name='title' id="title" autofocus="true">
       </fieldset>
       <fieldset class="form-group">
         <label for="lat">Location Latitude</label>
-        <input type="text" class="form-control" name='lat' id="lat" placeholder="Latitude">
+        <input type="text" class="form-control" name='lat' id="lat">
       </fieldset>
       <fieldset class="form-group">
         <label for="lng">Location Longitude</label>
-        <input type="text" class="form-control" name='lng' id="lng" placeholder="Longitude">
+        <input type="text" class="form-control" name='lng' id="lng">
       </fieldset>
       <fieldset class="form-group">
         <label for="img_link">Image Link</label>
-        <input type="text" class="form-control" name='img_link' id="img_link" placeholder="Paste Image URL">
+        <input type="text" class="form-control" name='img_link' id="img_link">
       </fieldset>
       <fieldset class="form-group">
         <label for="description">Post</label>
-        <textarea class="form-control" name='description' id="description" placeholder="Type Your Post Here"></textarea>
+        <textarea class="form-control" name='description' id="description"></textarea>
       </fieldset>
-      <input type="submit" class="btn btn-primary btn-lg" value="Post">
+      <input type="submit" class="btn btn-primary btn-lg" value="Submit Post">
     </form>
 
   </div>
+  <div class="col-xs-1 col-md-2"></div>
 
 </div>
