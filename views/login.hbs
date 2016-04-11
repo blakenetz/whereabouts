@@ -1,0 +1,11 @@
+{{#if user}}
+  <p>
+    Hello {{user.displayName}}
+    |
+    <!-- <a href="/auth/logout">Logout</a> -->
+  </p>
+{{else}}
+  <p>
+    <a href="/auth/github">Login</a>
+  </p>
+{{/if}}
