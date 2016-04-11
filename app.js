@@ -50,6 +50,7 @@ passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
     callbackURL: process.env.HOST + '/auth/github/callback',
+    // scope: ['r_emailaddress', 'r_basicprofile'],
     // state: true
   },
   function(accessToken, refreshToken, profile, done) {
