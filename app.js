@@ -88,12 +88,6 @@ app.use('/users', users);
 app.use('/posts', posts);
 app.use('/auth', auth);
 
-app.get('/logout', function(req, res){
-  req.session.passport.user = null;
-  req.logout();
-  res.redirect('/');
-});
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
