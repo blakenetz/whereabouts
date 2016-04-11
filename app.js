@@ -1,13 +1,19 @@
+require('dotenv').load();
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 
+var GitHubStrategy = require('passport-github2').Strategy;
+var passport = require('passport');
+
+var auth = require('./routes/auth');
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var posts = require('./routes/posts')
+var posts = require('./routes/posts');
 
 var app = express();
 
@@ -22,10 +28,65 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
+app.use(cookieSession({
+  name: 'user',
+  secret: process.env.GITHUB_CLIENT_SECRET,
+}));
+
+app.get('/auth/github', passport.authenticate('github'), function(req, res){
+  // The request will be redirected to LinkedIn for authentication, so this
+  // function will not be called.
+});
+
+app.get('/auth/github/callback',
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
+passport.use(new GitHubStrategy({
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    callbackURL: process.env.HOST + '/auth/github/callback',
+    // scope: ['r_emailaddress', 'r_basicprofile'],
+    // state: true
+  },
+  function(accessToken, refreshToken, profile, done) {
+    console.log('~~~~~~~~~~~~~~~~~~~~~');
+    console.log(profile);
+    console.log('~~~~~~~~~~~~~~~~~~~~~');
+    done(null, {id: profile.id, displayName: profile.displayName, token: accessToken})
+  }));
+
+passport.serializeUser(function(user, done) {
+  console.log('sU~~~~~~~~~~~');
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  console.log('dU~~~~~~~~~~~');
+  done(null, user)
+});
+
+// app.use(function (req, res, next) {
+//   console.log('got here');
+//   req.user = req.session.passport.user
+//   res.locals.user = req.session.passport.user
+//   next()
+// })
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/posts', posts)
+app.use('/posts', posts);
+app.use('/auth', auth);
+
+// app.get('/logout', function(req, res){
+//   req.session.passport.user = null;
+//   req.logout();
+//   res.redirect('/');
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
