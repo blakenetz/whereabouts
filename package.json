@@ -16,6 +16,7 @@
     "morgan": "~1.6.1",
     "passport": "^0.3.2",
     "passport-github2": "^0.1.10",
+    "pg": "^4.5.3",
     "serve-favicon": "~2.3.0"
   }
 }
