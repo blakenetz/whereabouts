@@ -29,6 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
+app.use(passport.session());
 app.use(cookieSession({
   name: 'user',
   secret: process.env.GITHUB_CLIENT_SECRET
@@ -54,11 +55,21 @@ passport.use(new GitHubStrategy({
     // state: true
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log('~~~~~~~~~~~~~~~~~~~~~');
-    console.log(profile);
-    console.log('~~~~~~~~~~~~~~~~~~~~~');
-    done(null, {id: profile.id, displayName: profile.displayName, token: accessToken})
-  }));
+
+    process.nextTick(function () {
+      console.log('~~~~~~~~~~~~~~~~~~~~~');
+      console.log(profile);
+      console.log('~~~~~~~~~~~~~~~~~~~~~');
+
+          // To keep the example simple, the user's Tumblr profile is returned to
+          // represent the logged-in user.  In a typical application, you would want
+          // to associate the Tumblr account with a user record in your database,
+          // and return that user instead.
+          return done(null, profile.username);
+        });
+      }
+    ));
+
 
 passport.serializeUser(function(user, done) {
   console.log('sU~~~~~~~~~~~');
@@ -70,13 +81,13 @@ passport.deserializeUser(function(user, done) {
   done(null, user)
 });
 
-app.use(function (req, res, next) {
-  console.log('got here');
-  console.log(req.user, "~~~~~~~~~~");
-  res.locals.user = req.user
-  next()
-  next()
-})
+// app.use(function (req, res, next) {
+//   console.log('got here');
+//   console.log(req.user, "~~~~~~~~~~");
+//   res.locals.user = req.user
+//   next()
+//   next()
+// })
 
 app.use('/', routes);
 app.use('/users', users);
