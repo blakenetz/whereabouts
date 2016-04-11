@@ -12,7 +12,7 @@ module.exports = {
     seeds: {
       directory: './seeds/'
     }
-  }
+  },
 
   production: {
   client: 'postgresql',
