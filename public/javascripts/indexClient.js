@@ -60,7 +60,7 @@ function initAutocomplete() {
           }
         });
         map.fitBounds(bounds);
-        // distanceFromCenter(miles)
+        distanceFromCenter(miles)
       });
 
   function distanceFromCenter (miles) {
@@ -94,7 +94,7 @@ function initAutocomplete() {
           strokeColor: 'red',
         },
       });
-      // distanceFromCenter(miles)
+      distanceFromCenter(miles)
       markeEventHandler(marker, 'you!')
 
     }, function() {
@@ -116,24 +116,30 @@ function initAutocomplete() {
     map.setCenter(pos);
     distanceFromCenter(miles)
   }
-  var llArray = [];
-  var llat = $('.post').attr('lat')
-  var llng = $('.post').attr('lng')
-  console.log(llat);
-  console.log(llng);
-  for (var i = 0; i < 5; i++) {
+  var lats = [];
+  var lngs = [];
+  var titles = [];
+  var ids = [];
+  for (var i = 0; i < $('.data').length; i++) {
+    lats.push($('.data').eq(i).attr('lat'));
+    lngs.push($('.data').eq(i).attr('lng'));
+    titles.push($('.data').eq(i).attr('title'));
+    ids.push($('.data').eq(i).attr('id'));
+  }
+
+  for (var i = 0; i < lats.length; i++) {
     var t = i.toString();
       var marker = new google.maps.Marker({
-        position: boulder[i],
+        position: {lat: +lats[i], lng: +lngs[i]},
         map: map,
         class: i.toString(),
     });
-    markeEventHandler(marker, 'cool place #' + i);
+    markeEventHandler(marker, titles[i], ids[i]);
   }
 
-  function markeEventHandler(marker, message) {
+  function markeEventHandler(marker, message, ids) {
     var infowindow = new google.maps.InfoWindow({
-      class: i,
+      class: ids,
       content: message
     });
     marker.addListener('click', function() {

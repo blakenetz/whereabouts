@@ -1,6 +1,6 @@
 <div class="posts col-lg-7">
   {{#posts}}
-    <div class="media post" lat='{{this.lat}}' lng='{{this.lng}}'>
+    <div class="media data" id='{{this.id}}' lat='{{this.lat}}' lng='{{this.lng}}' title='{{this.title}}'>
       <div class="media-left">
         <a href="/books/{{this.book_id}}">
           <img class="media-object" src="http://fillmurray.com/150/150" alt="..." style='with: 150px; height: 150px;'>
@@ -64,4 +64,6 @@
     </form>
   </div>
 </div> -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCY6IF5KZuqMBt61jyVNQshduxTFUArNZY&libraries=places&callback=initAutocomplete"
+async defer></script>
 <script type="text/javascript" src='javascripts/indexClient.js'></script>
