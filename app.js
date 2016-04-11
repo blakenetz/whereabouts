@@ -65,7 +65,7 @@ passport.use(new GitHubStrategy({
           // represent the logged-in user.  In a typical application, you would want
           // to associate the Tumblr account with a user record in your database,
           // and return that user instead.
-          return done(null, profile.username);
+          return done(null, profile.name);
         });
       }
     ));
@@ -81,13 +81,13 @@ passport.deserializeUser(function(user, done) {
   done(null, user)
 });
 
-// app.use(function (req, res, next) {
-//   console.log('got here');
-//   console.log(req.session.passport.user, "~~~~~~~~~~");
-//   req.user = req.session.passport.user
-//   res.locals.user = req.session.passport.user
-//   next()
-// })
+app.use(function (req, res, next) {
+  console.log('got here');
+  console.log(req.session.passport.user, "~~~~~~~~~~");
+  req.user = req.session.passport.user
+  res.locals.user = req.session.passport.user
+  next()
+})
 
 app.use('/', routes);
 app.use('/users', users);
