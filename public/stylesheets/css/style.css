@@ -30,7 +30,9 @@
 body {
   padding-top: 70px;
   background: #FAFAFA;
-  font-family: roboto; }
+  font-family: roboto;
+  padding-right: 30px;
+  padding-left: 30px; }
 
 .globeicon {
   height: 30px;
@@ -44,7 +46,8 @@ body {
   padding: 15px;
   border-radius: 10px;
   background: white;
-  height: 100px; }
+  height: 100px;
+  margin: 0px; }
 
 .posts img {
   height: 70px;
@@ -60,15 +63,18 @@ body {
   margin-bottom: 15px; }
 
 .votearrow {
-  width: 20px;
-  height: 20px; }
+  width: 15px;
+  height: 15px; }
 
 .nextarrow {
-  width: 40px;
-  height: 60px; }
+  width: 15px;
+  height: auto;
+  padding: 0px;
+  margin: 0px; }
 
 .col-arrow {
   display: flex;
   flex-direction: column;
   height: 75vh;
-  justify-content: space-around; }
+  justify-content: space-around;
+  align-items: center; }
