@@ -52,3 +52,8 @@ body {
 .posts h4 {
   font-weight: 900;
   color: #5db485; }
+
+.index .posts, .index .map {
+  height: 75vh;
+  overflow: scroll;
+  margin-bottom: 15px; }
