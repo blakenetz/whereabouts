@@ -1,22 +1,21 @@
+<div class="col-md-6 col-xs-12">
+</div>
+{{#posts}}
 <h1>{{title}}</h1>
-<p><a href='/'>Home</a></p>
-<p>Details for Post {{id}}</p>
-<p><a href='/posts/{{id}}/edit'>Edit This Post</a></p>
+<img src="{{img_link}}" width="200" alt="" />
 
-<h1>{{post.title}}</h1>
-<img src="{{post.img_link}}" width="200" alt="" />
+<h3>Rating: {{rating}}</h3>
 
-<h3>Rating: {{post.rating}}</h3>
-
-<h4>{{post.lat}}</h4>
-<h4>{{post.lng}}</h4>
-<p>{{post.description}}</p>
+<h4>{{lat}}</h4>
+<h4>{{lng}}</h4>
+<p>{{description}}</p>
+{{/posts}}
 <form method="POST" action="/posts/{{id}}/upvote">
-<input type="submit" class="btn btn-success" value="Upvote!">
+  <input type="submit" class="btn btn-success" value="Upvote!">
 </form>
 <br>
 <form method="POST" action="{{id}}/downvote">
-<input type="submit" class="btn btn-danger" value="Downvote!">
+  <input type="submit" class="btn btn-danger" value="Downvote!">
 </form>
 
 
