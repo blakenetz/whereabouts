@@ -70,15 +70,5 @@
 </div> -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCY6IF5KZuqMBt61jyVNQshduxTFUArNZY&libraries=places&callback=initAutocomplete"
 async defer></script>
-<script type="text/javascript" src='javascripts/indexClient.js'></script>
-
 <script src="/socket.io/socket.io.js"></script>
-<script type="text/javascript">
-var socket = io();
-
-socket.on('messageFeed', function (data) {
-  alert(data.test);
-});
-
-// socket.emit()
-</script>
+<script type="text/javascript" src='javascripts/indexClient.js'></script>

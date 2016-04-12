@@ -7,6 +7,13 @@ function initAutocomplete() {
     center: boulder[0],
     zoom: 1
   });
+  var socket = io();
+
+  socket.on('messageFeed', function (data) {
+    console.log((data.test));
+  });
+
+  // socket.emit()
   // Create the search box and link it to the UI element.
   // Create the search box and link it to the UI element.
       var input = document.getElementById('pac-input');
