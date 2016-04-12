@@ -1,19 +1,62 @@
-body {
-  background: #FAFAFA; }
-
-.form {
+.postform {
   padding: 15px;
   border-radius: 10px;
   background: white; }
 
-.form .btn, .form .btn-primary, .form .btn-lg {
-  background: #30ee88; }
+.postform .btn {
+  background: #5db485; }
 
-.form .btn:hover, .form .btn-primary:hover, .form .btn-lg:hover {
-  background: #00d563; }
+.postform .btn:hover {
+  background: #20844e; }
 
+.postform .btn:active {
+  background: #FF9F83; }
+
+.media.data {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #6e6e6e; }
+
+.userform, .userdelete {
+  padding: 15px;
+  border-radius: 10px;
+  background: white; }
+
+.userform .btn {
+  background: #5db485; }
+
+.userform .btn:hover {
+  background: #20844e; }
+
+body {
+  padding-top: 70px;
+  background: #FAFAFA;
+  font-family: roboto; }
+
+.globeicon {
+  height: 30px;
+  width: auto;
+  margin-top: -5px; }
+
+.navbar {
+  background: white; }
+
+.posts {
+  padding: 15px;
+  border-radius: 10px;
+  background: white; }
+
+.posts img {
+  width: 150px;
+  height: auto; }
+
+<<<<<<< HEAD
 .form .btn:active, .form .btn-primary:active, .form .btn-lg:active {
   background: #00d563; }
 .thumbnail{
   height: 600px;
 }
+=======
+.posts h4 {
+  font-weight: 900;
+  color: #5db485; }
+>>>>>>> 306134c4cc5e23f774e851dd49f98dd8596fd8b8

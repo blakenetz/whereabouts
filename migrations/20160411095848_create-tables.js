@@ -12,7 +12,6 @@ exports.up = function(knex, Promise) {
   .createTable('posts', function ( table ){
     table.increments();
     table.string('title');
-
     table.text('description');
     table.integer('rating');
     table.integer('user_id').references('users.id');
