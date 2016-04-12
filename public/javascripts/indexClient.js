@@ -4,13 +4,19 @@ $(function () {
   var miles = $('#radius').val();
   var pos;
   var located = false;
+  var markersA = [];
 
   function initAutocomplete() {
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 40.315, lng: -105.270},
       zoom: 1
     });
-
+    function clearMarker () {
+      markersA.forEach(function(marker) {
+        marker.setMap(null);
+      });
+      markersA.length = 0;
+    }
     // Create the search box and link it to the UI element.
     var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);
@@ -20,7 +26,7 @@ $(function () {
     map.addListener('bounds_changed', function() {
       searchBox.setBounds(map.getBounds());
     });
-    var markers = [];
+
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
     searchBox.addListener('places_changed', function() {
@@ -31,10 +37,7 @@ $(function () {
       }
 
       // Clear out the old markers.
-      markers.forEach(function(marker) {
-        marker.setMap(null);
-      });
-      markers = [];
+      clearMarker();
 
       // For each place, get the icon, name and location.
       var bounds = new google.maps.LatLngBounds();
@@ -48,12 +51,17 @@ $(function () {
         };
         pos = place.geometry.location;
         // Create a marker for each place.
-        markers.push(new google.maps.Marker({
+        var marker = new google.maps.Marker({
+          position: pos,
           map: map,
-          icon: icon,
-          title: place.name,
-          position: place.geometry.location
-        }));
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 5,
+            strokeColor: 'red',
+          },
+        });
+
+        markersA.push(marker)
 
         if (place.geometry.viewport) {
           // Only geocodes have viewport.
@@ -89,6 +97,7 @@ $(function () {
           };
 
           map.setCenter(pos);
+          clearMarker()
           var marker = new google.maps.Marker({
             position: pos,
             map: map,
@@ -98,6 +107,7 @@ $(function () {
               strokeColor: 'red',
             },
           });
+          markersA.push(marker)
           distanceFromCenter(miles)
           markeEventHandler(marker, 'you!')
         }, function() {
