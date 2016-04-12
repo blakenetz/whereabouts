@@ -19,6 +19,7 @@
   <div class="col-xs-1 col-md-2"></div>
   <div class="col-xs-10 col-md-8">
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <input id="geo" class="controls" type="button" value='Locate Me'>
     <div  id="map" style='height: 400px; width: 100%;'></div>
   </div>
 
@@ -57,3 +58,5 @@
   <div class="col-xs-1 col-md-2"></div>
 
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCY6IF5KZuqMBt61jyVNQshduxTFUArNZY&libraries=places&callback=initAutocomplete" async defer></script>
+<script type="text/javascript" src='/javascripts/postMap.js'></script>

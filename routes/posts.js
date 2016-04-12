@@ -4,7 +4,7 @@ var knex = require('knex')(require('../knexfile')[process.env.DB_ENV]);
 
 /* GET home page. */
 router.get('/add', function(req, res, next){
-  res.render('postCreate.hbs', {title: 'Post Create!'})
+  res.render('postCreate.hbs')
 })
 
 router.post('/add', function(req, res, next){
