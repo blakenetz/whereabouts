@@ -9,7 +9,7 @@ const authorizedUser = require("../userAuth.js").authorizedUser;
 /* GET users listing. */
 // router.get('/', function(req, res, next) {
 //     let user_id = req.session.id;
-//     // let admin = req.signedCookies.admin;
+//     let admin = req.signedCookies.admin;
 //     if (isAdmin === true) {
 //         knex('users').then(function(users){
 //             res.status(200).render('users', {
