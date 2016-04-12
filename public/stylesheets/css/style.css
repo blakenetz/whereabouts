@@ -14,3 +14,14 @@ body {
 
 .form .btn:active, .form .btn-primary:active, .form .btn-lg:active {
   background: #00d563; }
+
+body {
+  padding-top: 70px; }
+
+.globeicon {
+  height: 30px;
+  width: auto;
+  margin-top: -5px; }
+
+.navbar {
+  background: white; }

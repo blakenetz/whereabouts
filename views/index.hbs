@@ -1,7 +1,7 @@
 <div class="row index" >
 
-  <div class="col-md-1 col-xs-1"></div>
-  <div class="posts col-md-5 col-xs-10">
+  <div class="col-md-1"></div>
+  <div class="posts col-md-5 col-xs-12">
     {{#posts}}
     <div class="media data" id='{{this.id}}' lat='{{this.lat}}' lng='{{this.lng}}' title='{{this.title}}'>
       <div class="media-left">
@@ -22,7 +22,7 @@
     {{/posts}}
   </div>
 
-  <div class="col-md-5 col-xs-10">
+  <div class="col-md-5 col-xs-12">
     <div class="thumbnail">
       <input id="pac-input" class="controls" type="text" placeholder="Search Box">
       <div  id="map" style='height: 400px; width: 100%;'></div>
@@ -56,7 +56,7 @@
       </div>
 
     </div>
-    <div class="col-md-1 col-xs-1"></div>
+    <div class="col-md-1"></div>
 
     <!-- end row -->
   </div>
