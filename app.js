@@ -6,8 +6,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
+var knex = require('knex')(require('./knexfile')[process.env.DB_ENV]);
 
 var GitHubStrategy = require('passport-github2').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var passport = require('passport');
 
 var auth = require('./routes/auth');
@@ -40,6 +42,11 @@ app.get('/auth/github', passport.authenticate('github'), function(req, res){
   // function will not be called.
 });
 
+app.get('/auth/local', passport.authenticate('local'), function(req, res){
+  // The request will be redirected to LinkedIn for authentication, so this
+  // function will not be called.
+});
+
 app.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
@@ -47,25 +54,54 @@ app.get('/auth/github/callback',
     res.redirect('/');
   });
 
+app.post('/auth/login',
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  function(req, res) {
+      // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
+passport.use(new LocalStrategy(
+  function(username, password, cb) {
+  knex('users').where({ username: username }).first()
+  .then(function (user) {
+    console.log(user);
+    if (!user) { return cb(null, false); }
+    if (user.password != password) { return cb(null, false); }
+    return cb(null, user);
+  });
+}
+))
+
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
     callbackURL: process.env.HOST + '/auth/github/callback',
-    // scope: ['r_emailaddress', 'r_basicprofile'],
     // state: true
   },
-  function(accessToken, refreshToken, profile, done) {
 
-    // process.nextTick(function () {
-      console.log('~~~~~~~~~~~~~~~~~~~~~');
-      console.log(profile);
-      console.log('***************************');
-      console.log(profile.username);
-
-      done(null, {id: profile.id, username: profile.username, token: accessToken});
-        // });
+    function(accessToken, refreshToken, profile, cb) {
+    knex('users').where({auth_strategy: "github", auth_id: profile.id}).first()
+    .then(function(user){
+      if (user) {
+        return cb(null, {username: profile.username});
       }
-    ));
+
+      if (!user) {
+        knex('users').insert({auth_id: profile.id,
+                              auth_strategy: 'github',
+                              username: profile.username,
+                              email: profile._json.email,
+                              avatar: profile._json.avatar_url
+                            })
+                              .returning('*')
+          .then(function(user){
+            return cb(null, {username: profile.username});
+          })
+        }
+      })
+}));
+
 
 
 passport.serializeUser(function(user, done) {
