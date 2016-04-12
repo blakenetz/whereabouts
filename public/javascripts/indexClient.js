@@ -1,5 +1,5 @@
 var map;
-var miles = 5;
+var miles = $('#radius').val();
 var pos;
 function initAutocomplete() {
   var boulder = [{lat: 40.315, lng: -105.270}, {lat: 40.225, lng: -105.270}, {lat: 40.005, lng: -105.270}, {lat: 40.215, lng: -105.296}, {lat: 40.215, lng: -105.250}]
@@ -65,14 +65,18 @@ function initAutocomplete() {
 
   function distanceFromCenter (miles) {
     var radius = new google.maps.Circle({
-      strokeColor: '#FF0000',
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
+      strokeColor: 'none',
+      strokeOpacity: 0.0,
       fillOpacity: .0,
       map: map,
       center: pos,
       radius: 1609.344 * miles
     });
+    // $('#radius').val(miles);
+    $('#nwr').val(  radius.getBounds().R.R);
+    $('#nwj').val( radius.getBounds().j.R);
+    $('#ser').val( radius.getBounds().R.j);
+    $('#sej').val( radius.getBounds().j.j);
     map.fitBounds(radius.getBounds());
   }
 
@@ -125,14 +129,10 @@ function initAutocomplete() {
     lngs.push($('.data').eq(i).attr('lng'));
     titles.push($('.data').eq(i).attr('title'));
     ids.push($('.data').eq(i).attr('id'));
-  }
 
-  for (var i = 0; i < lats.length; i++) {
-    var t = i.toString();
-      var marker = new google.maps.Marker({
-        position: {lat: +lats[i], lng: +lngs[i]},
-        map: map,
-        class: i.toString(),
+    var marker = new google.maps.Marker({
+      position: {lat: +lats[i], lng: +lngs[i]},
+      map: map,
     });
     markeEventHandler(marker, titles[i], ids[i]);
   }
