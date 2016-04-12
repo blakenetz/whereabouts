@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var knex = require('knex')(require('../knexfile')['development']);
+var knex = require('knex')(require('../knexfile')[process.env.DB_ENV]);
 
 router.post('/add/:post_id', function(req, res, next){
-  
+
   knex('comments')
   .insert({comment: req.body.comment,
            post_id: req.params.post_id})

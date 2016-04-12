@@ -12,7 +12,7 @@ router.post('/add', function(req, res, next){
                         lat: req.body.lat,
                         lng: req.body.lng,
                         imgLink: req.body.img_link,
-                        description: req.body.description
+                        description: req.body.description,
                         })
 .then(function(){
   res.redirect('/')
@@ -28,7 +28,8 @@ router.get('/:id', function(req, res, next) {
       res.render('postDetails', { title: 'Post Details!',
                                   id: req.params.id,
                                   post: post,
-                                  comments: comments});
+                                  comments: comments,
+                                });
     })
   })
 });
