@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(cookieSession({
   name: 'user',
-  secret: process.env.GITHUB_CLIENT_SECRET,
+  secret: process.env.GITHUB_CLIENT_SECRET
 }));
 
 app.get('/auth/github', passport.authenticate('github'), function(req, res){
@@ -55,11 +55,18 @@ passport.use(new GitHubStrategy({
     // state: true
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log('~~~~~~~~~~~~~~~~~~~~~');
-    console.log(profile);
-    console.log('~~~~~~~~~~~~~~~~~~~~~');
-    done(null, {id: profile.id, displayName: profile.displayName, token: accessToken})
-  }));
+
+    // process.nextTick(function () {
+      console.log('~~~~~~~~~~~~~~~~~~~~~');
+      console.log(profile);
+      console.log('***************************');
+      console.log(profile.username);
+
+      done(null, {id: profile.id, username: profile.username, token: accessToken});
+        // });
+      }
+    ));
+
 
 passport.serializeUser(function(user, done) {
   console.log('sU~~~~~~~~~~~');
@@ -71,18 +78,21 @@ passport.deserializeUser(function(user, done) {
   done(null, user)
 });
 
-// app.use(function (req, res, next) {
-//   console.log('got here');
-//   req.user = req.session.passport.user
-//   res.locals.user = req.session.passport.user
-//   next()
-// })
+app.use(function (req, res, next) {
+  console.log('got here');
+  req.user = req.session.passport.user;
+  console.log('got here2');
+  res.locals.user = req.session.passport.user;
+  console.log('got here3');
+  next();
+})
 
+app.use('/auth', auth);
 app.use('/', routes);
 app.use('/users', users);
 app.use('/posts', posts);
 app.use('/comments', comments);
-app.use('/auth', auth);
+
 
 // app.get('/logout', function(req, res){
 //   req.session.passport.user = null;

@@ -1,5 +1,73 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="posts col-lg-7">
+  {{#posts}}
+    <div class="media data" id='{{this.id}}' lat='{{this.lat}}' lng='{{this.lng}}' title='{{this.title}}'>
+      <div class="media-left">
+        <a href="/books/{{this.book_id}}">
+          <img class="media-object" src="http://fillmurray.com/150/150" alt="..." style='with: 150px; height: 150px;'>
+        </a>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">{{this.title}}</h4>
+        <p class="list-group-item-text"><td>{{this.description}}</td></p>
+        <h5 class="list-group-item-text">Author: <a href='/authors/{{this.author_id}}'>{{this.username}}</a></h5>
+        <br>
+      </div>
+      <div class="media-right">
+        <input type="button" class="btn btn-default"  value="{{this.rating}}">
+      </div>
+    </div>
+  {{/posts}}
+</div>
 
-<p><a href='/users'>Users</a></p>
-<p><a href='/posts/add'>Create a post</a></p>
+</div>
+<div class="row" >
+  <div class="col-lg-5">
+    <div class="thumbnail">
+      <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+      <div  id="map" style='height: 400px; width: 100%;'></div>
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <form class="form-horizontal" action='/' method='post'>
+          <fieldset>
+            <div class="form-group">
+              <label class="col-lg-1 control-label">lat: </label>
+              <div class="col-lg-2">
+                <input type="text" class="form-control" id='x' name="lat" placeholder="lat">
+              </div>
+              <label class="col-lg-1 control-label">lng: </label>
+              <div class="col-lg-2">
+                <input type="text" class="form-control" id='y' name="lng" placeholder="long">
+              </div>
+              <label class="col-lg-3 control-label">Mile radius: </label>
+              <div class="col-lg-3">
+                <input type="number" class="form-control" id='radius' name="dis" value='{{this.dis}}' >
+                <input type="text" class="form-control" id='nwr'  name="nwr" style='display: none'>
+                <input type="text" class="form-control" id='nwj'  name="nwj" style='display: none'>
+                <input type="text" class="form-control" id='ser'  name="ser" style='display: none'>
+                <input type="text" class="form-control" id='sej'  name="sej" style='display: none'>
+              </div>
+            </div>
+          </fieldset>
+          <p><input type="submit" class="btn btn-default" name="name" value="submit">
+        </form>
+          <a href="#" class="btn btn-default" id='sup' role="button">sup</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="col-md-6 ">
+  <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+  <div  id="map" style='height: 500px; width: 500px;'></div>
+  <div class="col-md-7">
+    <input type="number" name="radius" id='radius' value="5">
+    <form class="" action="/post" method="post">
+      <input type="text" id='x' name="lat" value="lat">
+      <input type="text" id='y' name="lng" value="lng">
+      <input type="submit" name="name" value="">
+      <input type="button" name="sup" id='sup' value="sup">
+    </form>
+  </div>
+</div> -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCY6IF5KZuqMBt61jyVNQshduxTFUArNZY&libraries=places&callback=initAutocomplete"
+async defer></script>
+<script type="text/javascript" src='javascripts/indexClient.js'></script>
