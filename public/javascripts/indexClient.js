@@ -138,18 +138,14 @@ $('#geo').on('click', function () {
         $('.posts')
         .append("<div class='media data' id='"+info.id+"' title='"+info.title+"'></div>");
         $('#'+ info.id )
-        .append("<div class='media-left'><a href='/posts/"+info.id+"'><img class='media-object' src='"
-          +info.img_link+"' alt='NO IMG' style='with: 150px; height: 150px;'></a></div>")
-        .append("<div class='media-body'><h4 class='media-heading'>"
-          +info.title+"</h4><p class='list-group-item-text'><td>"
-          +info.description+"</td></p><h5 class='list-group-item-text'><a href='/users/"+info.user_id+"'>Author:"
-          +info.username+"</a></h5><br></div>")
-        .append("<div class='media-right'><input type='button' class='btn btn-default' value='"
-          +info.rating+"'><input type='button' class='btn btn-default' value='"
-          +info.rating+"'><input type='button' class='btn btn-default' value='"
-          +info.rating+"'></div>");
+        .append("<div class='media-left'><a href='/posts/"+info.id+"'><img class='media-object' src='"+info.img_link+"'></a></div>")
+        .append("<div class='media-body'><h4 class='media-heading'>"+info.title+"</h4>"
+        +"<h5 class='list-group-item-text'><a href='/users/"+info.user_id+"'>Author:"+info.username+"</a></h5><br></div>")
+        .append("<div class='media-right'>"
+        +"<input class='votearrow' type='image' src='/images/uparrow.png'>"
+        +"<h5>"+info.rating+"</h5>"
+        +"<input class='votearrow' type='image' src='/images/downarrow.png'></div>");
       }
-
     });
 
     function markeEventHandler(marker, message, id) {

@@ -14,12 +14,36 @@ exports.seed = function(knex, Promise) {
           lng: -105.2705,
           img_link: "https://www.mintpressnews.com/wp-content/uploads/2015/07/Zimbabwe-Lion-Killed_Muha.jpg"
         },{
-          title: 'testing2',
+          title: 'a very very very very very very very very very very very very very very very long title',
           description: 'this is a test 2',
           rating: 400,
           user_id: userId[0],
           lat: 40.0250,
           lng: -105.2715,
+          img_link: "http://www.defenders.org/sites/default/files/styles/large/public/tiger-dirk-freder-isp.jpg"
+        },{
+          title: 'awesome',
+          description: 'a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long description',
+          rating: 100,
+          user_id: userId[0],
+          lat: 40.0251,
+          lng: -105.2716,
+          img_link: "http://www.defenders.org/sites/default/files/styles/large/public/tiger-dirk-freder-isp.jpg"
+        },{
+          title: 'radical',
+          description: 'description goes here',
+          rating: 1,
+          user_id: userId[0],
+          lat: 40.0252,
+          lng: -105.2717,
+          img_link: "http://www.defenders.org/sites/default/files/styles/large/public/tiger-dirk-freder-isp.jpg"
+        },{
+          title: 'kewl',
+          description: 'testing',
+          rating: 900,
+          user_id: userId[0],
+          lat: 40.0254,
+          lng: -105.2716,
           img_link: "http://www.defenders.org/sites/default/files/styles/large/public/tiger-dirk-freder-isp.jpg"
         },{
           title: 'testing3',
