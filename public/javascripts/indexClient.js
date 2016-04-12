@@ -188,7 +188,14 @@ socket.on('self', function (data) {
     });
     k++;
   }
-
+  var count = 0;
+  $('.offset').on('click', function () {
+    if ($(this).val() == 'next') {
+      socket.emit('self', {offset: 1})
+    } else {
+      socket.emit('self',  {offset: -1})
+    }
+  })
   $('#radius').on('change', function () {
     if (located) {
       distanceFromCenter(miles)
