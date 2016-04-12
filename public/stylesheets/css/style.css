@@ -43,12 +43,32 @@ body {
 .posts {
   padding: 15px;
   border-radius: 10px;
-  background: white; }
+  background: white;
+  height: 100px; }
 
 .posts img {
-  width: 150px;
-  height: auto; }
+  height: 70px;
+  width: 70px; }
 
 .posts h4 {
   font-weight: 900;
   color: #5db485; }
+
+.index .posts, .index .map {
+  height: 75vh;
+  overflow: scroll;
+  margin-bottom: 15px; }
+
+.votearrow {
+  width: 20px;
+  height: 20px; }
+
+.nextarrow {
+  width: 40px;
+  height: 60px; }
+
+.col-arrow {
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+  justify-content: space-around; }
