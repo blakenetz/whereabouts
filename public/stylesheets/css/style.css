@@ -1,22 +1,32 @@
-body {
-  background: #FAFAFA; }
-
-.form {
+.postform {
   padding: 15px;
   border-radius: 10px;
   background: white; }
 
-.form .btn, .form .btn-primary, .form .btn-lg {
-  background: #30ee88; }
+.postform .btn {
+  background: #5db485; }
 
-.form .btn:hover, .form .btn-primary:hover, .form .btn-lg:hover {
-  background: #00d563; }
+.postform .btn:hover {
+  background: #20844e; }
 
-.form .btn:active, .form .btn-primary:active, .form .btn-lg:active {
-  background: #00d563; }
+.postform .btn:active {
+  background: #FF9F83; }
+
+.userform, .userdelete {
+  padding: 15px;
+  border-radius: 10px;
+  background: white; }
+
+.userform .btn {
+  background: #5db485; }
+
+.userform .btn:hover {
+  background: #20844e; }
 
 body {
-  padding-top: 70px; }
+  padding-top: 70px;
+  background: #FAFAFA;
+  font-family: roboto; }
 
 .globeicon {
   height: 30px;

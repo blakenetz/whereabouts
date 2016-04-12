@@ -1,17 +1,17 @@
-.form {
+.postform {
   padding: 15px;
   border-radius: 10px;
   background: white;
 }
 
-.form .btn, .form .btn-primary, .form .btn-lg {
-  background: #30ee88;
+.postform .btn {
+  background: #5db485
 }
 
-.form .btn:hover, .form .btn-primary:hover, .form .btn-lg:hover {
-  background: #00d563;
+.postform .btn:hover {
+  background: #20844e;
 }
 
-.form .btn:active, .form .btn-primary:active, .form .btn-lg:active {
-  background: #00d563;
+.postform .btn:active {
+  background: #FF9F83;
 }
