@@ -7,7 +7,7 @@
     Or: <a href="/auth/github">Login With GitHub</a>
   </p>
 
-  <form method="POST" action="/auth/login">
+  <form method="POST" action="/auth/signup">
     <fieldset class="form-group">
       <label for="username">Username</label>
       <input type="text" class="form-control" name='username' id="username" autofocus="true">
@@ -18,11 +18,15 @@
     </fieldset>
     <fieldset class="form-group">
       <label for="password">Password</label>
-      <input type="text" class="form-control" name='password' id="password">
+      <input type="password" class="form-control" name='password' id="password">
     </fieldset>
     <fieldset class="form-group">
       <label for="avatar">Avatar URL</label>
       <input type="text" class="form-control" name='avatar' id="avatar">
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="admin">Admin Account?</label>
+      <input type="checkbox" class="form-control" name='admin' id="admin">
     </fieldset>
 
     <input type="submit" class="btn btn-primary btn-lg" value="Sign Up">
