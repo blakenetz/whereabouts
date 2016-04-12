@@ -1,4 +1,4 @@
-exports.seed = function(knex, Promise) {
+nodexports.seed = function(knex, Promise) {
 
     return knex('posts').del().then(function(){
       return knex('users').del().then(function(){
