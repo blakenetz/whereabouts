@@ -2,6 +2,7 @@ var socket = io();
 var map;
 var miles = $('#radius').val();
 var pos;
+
 function initAutocomplete() {
   var boulder = [{lat: 40.315, lng: -105.270}, {lat: 40.225, lng: -105.270}, {lat: 40.005, lng: -105.270}, {lat: 40.215, lng: -105.296}, {lat: 40.215, lng: -105.250}]
   map = new google.maps.Map(document.getElementById('map'), {

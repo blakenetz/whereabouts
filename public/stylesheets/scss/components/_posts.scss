@@ -5,7 +5,7 @@
 }
 
 .postform .btn {
-  background: #5db485
+  background: #5db485;
 }
 
 .postform .btn:hover {
@@ -14,4 +14,9 @@
 
 .postform .btn:active {
   background: #FF9F83;
+}
+
+.media.data {
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgb(110, 110, 110);
 }
