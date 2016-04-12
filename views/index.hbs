@@ -1,5 +1,8 @@
-<div class="posts col-lg-7">
-  {{#posts}}
+<div class="row index" >
+
+  <div class="col-md-1 col-xs-1"></div>
+  <div class="posts col-md-5 col-xs-10">
+    {{#posts}}
     <div class="media data" id='{{this.id}}' lat='{{this.lat}}' lng='{{this.lng}}' title='{{this.title}}'>
       <div class="media-left">
         <a href="/books/{{this.book_id}}">
@@ -16,12 +19,10 @@
         <input type="button" class="btn btn-default"  value="{{this.rating}}">
       </div>
     </div>
-  {{/posts}}
-</div>
+    {{/posts}}
+  </div>
 
-</div>
-<div class="row" >
-  <div class="col-lg-5">
+  <div class="col-md-5 col-xs-10">
     <div class="thumbnail">
       <input id="pac-input" class="controls" type="text" placeholder="Search Box">
       <div  id="map" style='height: 400px; width: 100%;'></div>
@@ -45,24 +46,31 @@
             </div>
           </fieldset>
         </form>
-        <p><input type="submit" class="btn btn-default" name="name" value="submit">
-          <a href="#" class="btn btn-default" id='sup' role="button">sup</a></p>
+        <p>
+          <input type="submit" class="btn btn-default" name="name" value="submit">
+          <a href="#" class="btn btn-default" id='sup' role="button">sup</a>
+        </p>
       </div>
     </div>
+
   </div>
+  <div class="col-md-1 col-xs-1"></div>
+
+<!-- end row -->
 </div>
+
 <!-- <div class="col-md-6 ">
-  <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-  <div  id="map" style='height: 500px; width: 500px;'></div>
-  <div class="col-md-7">
-    <input type="number" name="radius" id='radius' value="5">
-    <form class="" action="/post" method="post">
-      <input type="text" id='x' name="lat" value="lat">
-      <input type="text" id='y' name="lng" value="lng">
-      <input type="submit" name="name" value="">
-      <input type="button" name="sup" id='sup' value="sup">
-    </form>
-  </div>
+<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+<div  id="map" style='height: 500px; width: 500px;'></div>
+<div class="col-md-7">
+<input type="number" name="radius" id='radius' value="5">
+<form class="" action="/post" method="post">
+<input type="text" id='x' name="lat" value="lat">
+<input type="text" id='y' name="lng" value="lng">
+<input type="submit" name="name" value="">
+<input type="button" name="sup" id='sup' value="sup">
+</form>
+</div>
 </div> -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCY6IF5KZuqMBt61jyVNQshduxTFUArNZY&libraries=places&callback=initAutocomplete"
 async defer></script>
