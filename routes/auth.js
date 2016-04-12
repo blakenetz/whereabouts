@@ -3,7 +3,7 @@ var router = express.Router();
 var knex = require('knex')(require('../knexfile')[process.env.DB_ENV]);
 
 /* GET home page. */
-router.get('/login', function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.render('login');
 });
 

@@ -1,8 +1,10 @@
+'use strict';
+
 var express = require('express');
 var router = express.Router();
 var knex = require('knex')(require('../knexfile')[process.env.DB_ENV]);
-const isAdmin = require("../users.js").isAdmin;
-const authorizedUser = require("../users.js").authorizedUser;
+const isAdmin = require("../userAuth.js").isAdmin;
+const authorizedUser = require("../userAuth.js").authorizedUser;
 
 /* GET users listing. */
 // router.get('/', function(req, res, next) {
