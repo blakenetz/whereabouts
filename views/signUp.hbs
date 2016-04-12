@@ -1,0 +1,29 @@
+
+<h1>Sign Up</h1>
+
+  <p>
+    Have an account?<a href="/auth/login">Click Here to Sign In!</a>
+  <p>
+    Or: <a href="/auth/github">Login With GitHub</a>
+  </p>
+
+  <form method="POST" action="/auth/login">
+    <fieldset class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" name='username' id="username" autofocus="true">
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" name='email' id="email">
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="password">Password</label>
+      <input type="text" class="form-control" name='password' id="password">
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="avatar">Avatar URL</label>
+      <input type="text" class="form-control" name='avatar' id="avatar">
+    </fieldset>
+
+    <input type="submit" class="btn btn-primary btn-lg" value="Sign Up">
+  </form>

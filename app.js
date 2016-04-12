@@ -69,12 +69,10 @@ passport.use(new GitHubStrategy({
 
 
 passport.serializeUser(function(user, done) {
-  console.log('sU~~~~~~~~~~~');
   done(null, user);
 });
 
 passport.deserializeUser(function(user, done) {
-  console.log('dU~~~~~~~~~~~');
   done(null, user)
 });
 

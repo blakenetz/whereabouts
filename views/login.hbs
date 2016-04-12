@@ -1,3 +1,5 @@
+<h1>Login</h1>
+
 {{#if user}}
   <p>
     Hello {{user.username}}
@@ -6,6 +8,19 @@
   </p>
 {{else}}
   <p>
-    <a href="/auth/github">Login</a>
+    <a href="/auth/github">Login With GitHub</a>
   </p>
+
+  <form method="POST" action="/auth/login">
+    <fieldset class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" name='username' id="username" autofocus="true">
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="password">Password</label>
+      <input type="text" class="form-control" name='password' id="password">
+    </fieldset>
+
+    <input type="submit" class="btn btn-primary btn-lg" value="Login">
+  </form>
 {{/if}}
