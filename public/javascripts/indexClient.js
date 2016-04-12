@@ -120,6 +120,7 @@ function initAutocomplete() {
   }
 var markers = [];
 socket.on('self', function (data) {
+  console.log(data);
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
   }
@@ -134,7 +135,7 @@ socket.on('self', function (data) {
     markers.push(marker);
     markeEventHandler(marker, info.title, info.id);
     $('.posts').append("<div class='media data' id='"+info.id+"' title='"+info.title+"'></div>");
-    $('#'+info.id).append("<div class='media-left'><a href='#'><img class='media-object' src='"+info.img_link+"' alt='...' style='with: 150px; height: 150px;'></a></div>")
+    $('#'+ info.id ).append("<div class='media-left'><a href='#'><img class='media-object' src='"+info.img_link+"' alt='...' style='with: 150px; height: 150px;'></a></div>")
     .append("<div class='media-body'><h4 class='media-heading'>"+info.title+"</h4><p class='list-group-item-text'><td>"+info.description+"</td></p><h5 class='list-group-item-text'>Author:"+info.username+"<a href='#'></a></h5><br></div>")
     .append("<div class='media-right'><input type='button' class='btn btn-default'  value='"+info.rating+"'></div>");
   }
