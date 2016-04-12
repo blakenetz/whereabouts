@@ -1,3 +1,4 @@
+var socket = io();
 var map;
 var miles = $('#radius').val();
 var pos;
@@ -7,6 +8,7 @@ function initAutocomplete() {
     center: boulder[0],
     zoom: 1
   });
+
   // Create the search box and link it to the UI element.
   // Create the search box and link it to the UI element.
       var input = document.getElementById('pac-input');
@@ -72,11 +74,7 @@ function initAutocomplete() {
       center: pos,
       radius: 1609.344 * miles
     });
-    // $('#radius').val(miles);
-    $('#nwr').val(  radius.getBounds().R.R);
-    $('#nwj').val( radius.getBounds().j.R);
-    $('#ser').val( radius.getBounds().R.j);
-    $('#sej').val( radius.getBounds().j.j);
+    socket.emit('self', radius.getBounds())
     map.fitBounds(radius.getBounds());
   }
 
@@ -120,33 +118,39 @@ function initAutocomplete() {
     map.setCenter(pos);
     distanceFromCenter(miles)
   }
-  var lats = [];
-  var lngs = [];
-  var titles = [];
-  var ids = [];
-  for (var i = 0; i < $('.data').length; i++) {
-    lats.push($('.data').eq(i).attr('lat'));
-    lngs.push($('.data').eq(i).attr('lng'));
-    titles.push($('.data').eq(i).attr('title'));
-    ids.push($('.data').eq(i).attr('id'));
-
+var markers = [];
+socket.on('self', function (data) {
+  console.log(data);
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+  }
+  $('.posts').empty();
+  markers.length = 0;
+  for (var i = 0; i < data.length; i++) {
+    var info = data[i];
     var marker = new google.maps.Marker({
-      position: {lat: +lats[i], lng: +lngs[i]},
+      position: {lat: +info.lat, lng: +info.lng},
       map: map,
     });
-    markeEventHandler(marker, titles[i], ids[i]);
+    markers.push(marker);
+    markeEventHandler(marker, info.title, info.id);
+    $('.posts').append("<div class='media data' id='"+info.id+"' title='"+info.title+"'></div>");
+    $('#'+ info.id ).append("<div class='media-left'><a href='#'><img class='media-object' src='"+info.img_link+"' alt='...' style='with: 150px; height: 150px;'></a></div>")
+    .append("<div class='media-body'><h4 class='media-heading'>"+info.title+"</h4><p class='list-group-item-text'><td>"+info.description+"</td></p><h5 class='list-group-item-text'>Author:"+info.username+"<a href='#'></a></h5><br></div>")
+    .append("<div class='media-right'><input type='button' class='btn btn-default'  value='"+info.rating+"'></div>");
   }
 
-  function markeEventHandler(marker, message, ids) {
+});
+
+  function markeEventHandler(marker, message, id) {
     var infowindow = new google.maps.InfoWindow({
-      class: ids,
+      class: id,
       content: message
     });
     marker.addListener('click', function() {
       window.location = "/" + infowindow.class;
     })
     marker.addListener('mouseover', function() {
-      console.log(marker.class);
       $('#' + infowindow.class).css('color', 'rgb(224, 123, 40)')
       infowindow.open(marker.get('map'), marker);
     });
@@ -154,11 +158,11 @@ function initAutocomplete() {
       $('#' + infowindow.class).css('color', 'black')
       infowindow.close()
     })
-    $('#' + infowindow.class).hover(
-      function () {
-        $('#' + infowindow.class).css('color', 'rgb(224, 123, 40)')
-        infowindow.open(marker.get('map'), marker);
-    },function () {
+    $(document).on('mouseover', '#' + infowindow.class, function () {
+      $('#' + infowindow.class).css('color', 'rgb(224, 123, 40)')
+      infowindow.open(marker.get('map'), marker);
+    })
+    $(document).on('mouseout', '#' + infowindow.class, function () {
       $('#' + infowindow.class).css('color', 'black')
       infowindow.close()
     })

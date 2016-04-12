@@ -8,12 +8,11 @@ router.get('/add', function(req, res, next){
 })
 
 router.post('/add', function(req, res, next){
-  console.log(req.body);
   knex('posts').insert({title: req.body.title,
                         lat: req.body.lat,
                         lng: req.body.lng,
                         imgLink: req.body.img_link,
-                        description: req.body.description
+                        description: req.body.description,
                         })
 .then(function(){
   res.redirect('/')
@@ -23,11 +22,16 @@ router.post('/add', function(req, res, next){
 router.get('/:id', function(req, res, next) {
   knex('posts').where({id: req.params.id}).first()
   .then(function(post){
-    console.log(post);
-    res.render('postDetails', { title: 'Post Details!',
-                                id: req.params.id,
-                                post: post});
+    knex('comments').where({post_id: req.params.id})
+    .then(function(comments){
+      console.log(comments);
+      res.render('postDetails', { title: 'Post Details!',
+                                  id: req.params.id,
+                                  post: post,
+                                  comments: comments,
+                                });
     })
+  })
 });
 
 router.get('/:id/edit', function(req, res, next){
@@ -54,6 +58,23 @@ router.post('/:id/edit', function(req, res, next){
           })
 })
 
+router.post('/:id/upvote', function(req, res, next){
+  knex('posts').where({id: req.params.id})
+  .increment('rating', 10)
+  .returning('id')
+  .then(function(id){
+    res.redirect('/posts/'+id)
+  })
+})
 
+router.post('/:id/downvote', function(req, res, next){
+
+  knex('posts').where({id: req.params.id})
+  .decrement('rating', 10)
+  .returning('id')
+  .then(function(id){
+    res.redirect('/posts/'+id)
+  })
+})
 
 module.exports = router;

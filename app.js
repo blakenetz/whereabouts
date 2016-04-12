@@ -14,6 +14,7 @@ var auth = require('./routes/auth');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var posts = require('./routes/posts');
+var comments = require('./routes/comments');
 
 var app = express();
 
@@ -90,6 +91,8 @@ app.use('/auth', auth);
 app.use('/', routes);
 app.use('/users', users);
 app.use('/posts', posts);
+app.use('/comments', comments);
+
 
 // app.get('/logout', function(req, res){
 //   req.session.passport.user = null;
