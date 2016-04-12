@@ -40,6 +40,11 @@ body {
 .navbar {
   background: white; }
 
+.posts {
+  padding: 15px;
+  border-radius: 10px;
+  background: white; }
+
 .posts img {
   width: 150px;
   height: auto; }
