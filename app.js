@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
+var knex = require('knex')(require('./knexfile')[process.env.DB_ENV]);
 
 var GitHubStrategy = require('passport-github2').Strategy;
 var passport = require('passport');
@@ -54,18 +55,46 @@ passport.use(new GitHubStrategy({
     // scope: ['r_emailaddress', 'r_basicprofile'],
     // state: true
   },
-  function(accessToken, refreshToken, profile, done) {
+  // function(accessToken, refreshToken, profile, done) {
+  //
+  //   // process.nextTick(function () {
+  //     console.log('~~~~~~~~~~~~~~~~~~~~~');
+  //     console.log(profile);
+  //     console.log('***************************');
+  //     console.log(profile.username);
+  //
+  //     done(null, {auth_id: profile.id,
+  //                 auth_strategy: 'github',
+  //                 username: profile.username,
+  //                 email: profile._json.email,
+  //                 avatar: profile._json.avatar_url,
+  //                 token: accessToken});
+  //       // });
+  //     }
 
-    // process.nextTick(function () {
-      console.log('~~~~~~~~~~~~~~~~~~~~~');
-      console.log(profile);
-      console.log('***************************');
-      console.log(profile.username);
-
-      done(null, {id: profile.id, username: profile.username, token: accessToken});
-        // });
+    function(accessToken, refreshToken, profile, cb) {
+    knex('users').where({auth_strategy: "github", auth_id: profile.id}).first()
+    .then(function(user){
+      if (user) {
+        return cb(null, {username: profile.username});
       }
-    ));
+
+      if (!user) {
+        knex('users').insert({auth_id: profile.id,
+                              auth_strategy: 'github',
+                              username: profile.username,
+                              email: profile._json.email,
+                              avatar: profile._json.avatar_url
+                            })
+                              .returning('*')
+          .then(function(user){
+            return cb(null, {username: profile.username});
+          })
+        }
+      })
+    }
+   ));
+
 
 
 passport.serializeUser(function(user, done) {
