@@ -6,8 +6,30 @@
 <h1>{{post.title}}</h1>
 <img src="{{post.imgLink}}" width="200" alt="" />
 
-<h3>{{post.lat}}</h3>
-<h3>{{post.lng}}</h3>
+<h3>Rating: {{post.rating}}</h3>
 
-
+<h4>{{post.lat}}</h4>
+<h4>{{post.lng}}</h4>
 <p>{{post.description}}</p>
+<form method="POST" action="/posts/{{id}}/upvote">
+<input type="submit" class="btn btn-success" value="Upvote!">
+</form>
+<br>
+<form method="POST" action="{{id}}/downvote">
+<input type="submit" class="btn btn-danger" value="Downvote!">
+</form>
+
+
+<h2>Comments!</h2>
+{{#comments}}
+<p>At {{created_at}}, SOMEONE said: "{{comment}}"</p>
+{{/comments}}
+
+<h2>Leave a Comment!</h2>
+<form method="POST" action="/comments/add/{{id}}">
+  <fieldset class="form-group">
+    <label for="comment">Comment</label>
+    <textarea class="form-control" name='comment' id="comment" placeholder="Type Your Comment Here!"></textarea>
+  </fieldset>
+  <input type="submit" class="btn btn-primary btn-lg" value="Comment">
+</form>
