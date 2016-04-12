@@ -14,3 +14,6 @@ body {
 
 .form .btn:active, .form .btn-primary:active, .form .btn-lg:active {
   background: #00d563; }
+.thumbnail{
+  height: 600px;
+}

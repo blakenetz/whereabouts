@@ -2,6 +2,7 @@ var socket = io();
 var map;
 var miles = $('#radius').val();
 var pos;
+var located = false;
 function initAutocomplete() {
   var boulder = [{lat: 40.315, lng: -105.270}, {lat: 40.225, lng: -105.270}, {lat: 40.005, lng: -105.270}, {lat: 40.215, lng: -105.296}, {lat: 40.215, lng: -105.250}]
   map = new google.maps.Map(document.getElementById('map'), {
@@ -78,8 +79,9 @@ function initAutocomplete() {
     map.fitBounds(radius.getBounds());
   }
 
-  // Try HTML5 geolocation.
+$('#geo').on('click', function () {
   if (navigator.geolocation) {
+    located = true;
     navigator.geolocation.getCurrentPosition(function(position) {
       pos = {
         lat: position.coords.latitude,
@@ -98,7 +100,6 @@ function initAutocomplete() {
       });
       distanceFromCenter(miles)
       markeEventHandler(marker, 'you!')
-
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
     });
@@ -112,15 +113,10 @@ function initAutocomplete() {
                           'Error: The Geolocation service failed.' :
                           'Error: Your browser doesn\'t support geolocation.');
   }
-  $('#sup').on('click', enterNewMapCenter)
-  function enterNewMapCenter () {
-    pos = {lat: +$('#x').val(), lng: +$('#y').val()};
-    map.setCenter(pos);
-    distanceFromCenter(miles)
-  }
+})
+
 var markers = [];
 socket.on('self', function (data) {
-  console.log(data);
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
   }
@@ -134,10 +130,10 @@ socket.on('self', function (data) {
     });
     markers.push(marker);
     markeEventHandler(marker, info.title, info.id);
-    $('.posts').append("<div class='media data' id='"+info.id+"' title='"+info.title+"'></div>");
-    $('#'+ info.id ).append("<div class='media-left'><a href='#'><img class='media-object' src='"+info.img_link+"' alt='...' style='with: 150px; height: 150px;'></a></div>")
-    .append("<div class='media-body'><h4 class='media-heading'>"+info.title+"</h4><p class='list-group-item-text'><td>"+info.description+"</td></p><h5 class='list-group-item-text'>Author:"+info.username+"<a href='#'></a></h5><br></div>")
-    .append("<div class='media-right'><input type='button' class='btn btn-default'  value='"+info.rating+"'></div>");
+    $('.posts').append("<div class='media data' id='"+info.id+"'></div>");
+    $('#'+ info.id ).append("<div class='media-left'><a href='/posts/"+info.id+"'><img class='media-object' src='"+info.img_link+"' alt='No IMG' style='with: 50px; height: 50px;'></a></div>")
+    .append("<div class='media-body'><h4 class='media-heading'>"+info.title+"</h4><p class='list-group-item-text'><td>"+info.description+"</td></p><a href='/users/"+info.user_id+"'><h5 class='list-group-item-text'>Author:"+info.username+"</a></h5><br></div>")
+    .append("<div class='media-right'><input type='button' class='btn btn-default' style='color:green;' value='+ "+info.rating+"'><input type='button' class='btn btn-default' style='color:red;' value='- "+info.rating+"'></div>");
   }
 
 });
@@ -148,7 +144,7 @@ socket.on('self', function (data) {
       content: message
     });
     marker.addListener('click', function() {
-      window.location = "/" + infowindow.class;
+      window.location = "/posts/" + infowindow.class;
     })
     marker.addListener('mouseover', function() {
       $('#' + infowindow.class).css('color', 'rgb(224, 123, 40)')
@@ -194,8 +190,10 @@ socket.on('self', function (data) {
   }
 
   $('#radius').on('change', function () {
+    if (located) {
+      distanceFromCenter(miles)
+    }
     miles = +$('#radius').val();
-    distanceFromCenter(miles)
   })
 
 }
