@@ -49,6 +49,12 @@ body {
   width: 150px;
   height: auto; }
 
+.form .btn:active, .form .btn-primary:active, .form .btn-lg:active {
+  background: #00d563; }
+.thumbnail{
+  height: 600px;
+}
+
 .posts h4 {
   font-weight: 900;
   color: #5db485; }

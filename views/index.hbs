@@ -1,6 +1,6 @@
 <div class="index row">
 
-  <div class="col-md-1 col-sx-2"></div>
+  <div class="col-md-1 col-xs-2"></div>
   <div class="map col-md-5 col-xs-10">
     <div class="thumbnail">
       <input id="pac-input" class="controls" type="text" placeholder="Search Box">
@@ -21,10 +21,6 @@
               <label class="col-lg-3 control-label">Mile radius: </label>
               <div class="col-lg-3">
                 <input type="number" class="form-control" id='radius' name="dis" value='{{this.dis}}' >
-                <input type="text" class="form-control" id='nwr'  name="nwr" style='display: none'>
-                <input type="text" class="form-control" id='nwj'  name="nwj" style='display: none'>
-                <input type="text" class="form-control" id='ser'  name="ser" style='display: none'>
-                <input type="text" class="form-control" id='sej'  name="sej" style='display: none'>
               </div>
             </div>
           </fieldset>
@@ -33,7 +29,9 @@
             <a href="#" class="btn btn-default" id='sup' role="button">sup</a>
           </p>
         </form>
+        <input type="button" class="btn btn-default" id='geo' value="Locate you">
       </div>
+
     </div>
 
   </div>
@@ -48,21 +46,9 @@
       <img src="" alt="" />
     </a>
   </div>
+
 </div>
 
-<!-- <div class="col-md-6 ">
-<input id="pac-input" class="controls" type="text" placeholder="Search Box">
-<div  id="map" style='height: 500px; width: 500px;'></div>
-<div class="col-md-7">
-<input type="number" name="radius" id='radius' value="5">
-<form class="" action="/post" method="post">
-<input type="text" id='x' name="lat" value="lat">
-<input type="text" id='y' name="lng" value="lng">
-<input type="submit" name="name" value="">
-<input type="button" name="sup" id='sup' value="sup">
-</form>
-</div>
-</div> -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCY6IF5KZuqMBt61jyVNQshduxTFUArNZY&libraries=places&callback=initAutocomplete"
 async defer></script>
 <script src="/socket.io/socket.io.js"></script>

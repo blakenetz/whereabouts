@@ -2,6 +2,7 @@ var socket = io();
 var map;
 var miles = $('#radius').val();
 var pos;
+var located = false;
 
 function initAutocomplete() {
   var boulder = [{lat: 40.315, lng: -105.270}, {lat: 40.225, lng: -105.270}, {lat: 40.005, lng: -105.270}, {lat: 40.215, lng: -105.296}, {lat: 40.215, lng: -105.250}]
@@ -78,8 +79,9 @@ function initAutocomplete() {
     map.fitBounds(radius.getBounds());
   }
 
-  // Try HTML5 geolocation.
+$('#geo').on('click', function () {
   if (navigator.geolocation) {
+    located = true;
     navigator.geolocation.getCurrentPosition(function(position) {
       pos = {
         lat: position.coords.latitude,
@@ -98,7 +100,6 @@ function initAutocomplete() {
       });
       distanceFromCenter(miles)
       markeEventHandler(marker, 'you!')
-
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
     });
@@ -111,7 +112,8 @@ function initAutocomplete() {
     infoWindow.setContent(browserHasGeolocation ?
       'Error: The Geolocation service failed.' :
       'Error: Your browser doesn\'t support geolocation.');
-    }
+  }
+})
     $('#sup').on('click', enterNewMapCenter)
     function enterNewMapCenter () {
       pos = {lat: +$('#x').val(), lng: +$('#y').val()};
@@ -120,7 +122,6 @@ function initAutocomplete() {
     }
     var markers = [];
     socket.on('self', function (data) {
-      console.log(data);
       for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(null);
       }
@@ -137,12 +138,12 @@ function initAutocomplete() {
         $('.posts')
         .append("<div class='media data' id='"+info.id+"' title='"+info.title+"'></div>");
         $('#'+ info.id )
-        .append("<div class='media-left'><a href='#'><img class='media-object' src='"
-          +info.img_link+"' alt='...' style='with: 150px; height: 150px;'></a></div>")
+        .append("<div class='media-left'><a href='/posts/"+info.id+"'><img class='media-object' src='"
+          +info.img_link+"' alt='NO IMG' style='with: 150px; height: 150px;'></a></div>")
         .append("<div class='media-body'><h4 class='media-heading'>"
           +info.title+"</h4><p class='list-group-item-text'><td>"
-          +info.description+"</td></p><h5 class='list-group-item-text'>Author:"
-          +info.username+"<a href='#'></a></h5><br></div>")
+          +info.description+"</td></p><h5 class='list-group-item-text'><a href='/users/"+info.user_id+"'>Author:"
+          +info.username+"</a></h5><br></div>")
         .append("<div class='media-right'><input type='button' class='btn btn-default' value='"
           +info.rating+"'><input type='button' class='btn btn-default' value='"
           +info.rating+"'><input type='button' class='btn btn-default' value='"
@@ -193,8 +194,6 @@ function initAutocomplete() {
         title: k.toString(),
         map: map
       });
-      $('#x').val(marker.position.lat())
-      $('#y').val(marker.position.lng())
       marker.addListener('click', function() {
         $('#x').val(marker.position.lat())
         $('#y').val(marker.position.lng())
@@ -202,11 +201,10 @@ function initAutocomplete() {
       k++;
     }
 
-    $('#radius').on('change', function () {
-      miles = +$('#radius').val();
+  $('#radius').on('change', function () {
+    if (located) {
       distanceFromCenter(miles)
-    })
-
-
-
-  }
+    };
+    miles = +$('#radius').val();
+  });
+};
