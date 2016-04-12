@@ -27,25 +27,29 @@
       <div  id="map" style='height: 400px; width: 100%;'></div>
       <div class="caption">
         <h3>Thumbnail label</h3>
-        <form class="form-horizontal">
+        <form class="form-horizontal" action='/' method='post'>
           <fieldset>
             <div class="form-group">
               <label class="col-lg-1 control-label">lat: </label>
               <div class="col-lg-2">
-                <input type="text" class="form-control" name="lat" placeholder="lat">
+                <input type="text" class="form-control" id='x' name="lat" placeholder="lat">
               </div>
               <label class="col-lg-1 control-label">lng: </label>
               <div class="col-lg-2">
-                <input type="text" class="form-control" name="lng" placeholder="long">
+                <input type="text" class="form-control" id='y' name="lng" placeholder="long">
               </div>
               <label class="col-lg-3 control-label">Mile radius: </label>
-              <div class="col-lg-2">
-                <input type="number" class="form-control" name="dis" value='5'>
+              <div class="col-lg-3">
+                <input type="number" class="form-control" id='radius' name="dis" value='{{this.dis}}' >
+                <input type="text" class="form-control" id='nwr'  name="nwr" style='display: none'>
+                <input type="text" class="form-control" id='nwj'  name="nwj" style='display: none'>
+                <input type="text" class="form-control" id='ser'  name="ser" style='display: none'>
+                <input type="text" class="form-control" id='sej'  name="sej" style='display: none'>
               </div>
             </div>
           </fieldset>
+          <p><input type="submit" class="btn btn-default" name="name" value="submit">
         </form>
-        <p><input type="submit" class="btn btn-default" name="name" value="submit">
           <a href="#" class="btn btn-default" id='sup' role="button">sup</a></p>
       </div>
     </div>
