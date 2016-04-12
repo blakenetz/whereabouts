@@ -1,22 +1,4 @@
 <div class="posts col-lg-7">
-  {{#posts}}
-    <div class="media data" id='{{this.id}}' lat='{{this.lat}}' lng='{{this.lng}}' title='{{this.title}}'>
-      <div class="media-left">
-        <a href="/books/{{this.book_id}}">
-          <img class="media-object" src="http://fillmurray.com/150/150" alt="..." style='with: 150px; height: 150px;'>
-        </a>
-      </div>
-      <div class="media-body">
-        <h4 class="media-heading">{{this.title}}</h4>
-        <p class="list-group-item-text"><td>{{this.description}}</td></p>
-        <h5 class="list-group-item-text">Author: <a href='/authors/{{this.author_id}}'>{{this.username}}</a></h5>
-        <br>
-      </div>
-      <div class="media-right">
-        <input type="button" class="btn btn-default"  value="{{this.rating}}">
-      </div>
-    </div>
-  {{/posts}}
 </div>
 
 </div>
