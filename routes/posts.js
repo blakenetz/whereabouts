@@ -11,7 +11,7 @@ router.post('/add', function(req, res, next){
   knex('posts').insert({title: req.body.title,
                         lat: req.body.lat,
                         lng: req.body.lng,
-                        imgLink: req.body.img_link,
+                        img_link: req.body.img_link,
                         description: req.body.description,
                         })
 .then(function(){
