@@ -99,3 +99,26 @@
   margin: 0px;
   font-weight: bold;
 }
+
+.location-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.location-container input {
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  height: 34px;
+  padding: 6px;
+}
+
+.location-container #pac-input {
+  width: 100%;
+}
+
+.location-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
