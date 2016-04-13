@@ -6,8 +6,7 @@
        <th>User ID</th>
        <th>Email</th>
        <th>Username</th>
-       <th>Admin</th>
-       <th>Change Admin Status</th>
+       <th>Admin Status</th>
        <th>Delete</th>
      </tr>
    </thead>
@@ -17,7 +16,6 @@
         <td>{{id}}</td>
         <td>{{email}}</td>
         <td>{{username}}</td>
-        <td>{{admin}}</td>
         {{#if admin}}
         <td><input type="checkbox" class="userEdit" data-user-id="{{id}}" value="{{id}}" checked="checked"></td>
         {{else}}
@@ -32,7 +30,6 @@
  <script type="text/javascript">
 $('.userDelete').on('click', function(){
   var user_id = $(this).data('user-id');
-  console.log('usersAll: ', user_id);
   var t_row = $(this).parent();
 
   $.ajax({
@@ -41,12 +38,12 @@ $('.userDelete').on('click', function(){
     success: function(result) {
       $(t_row).slideUp();
     }
-  });
+  })
 });
 
 $('.userEdit').on('click', function(e){
-var user_id = ($(this).data('user-id'));
-var checked = ($(this).is(':checked');
+  var user_id = ($(this).data('user-id'));
+  var checked = ($(this).is(':checked'));
 
   $.ajax({
     url: '/admin/' + user_id + "/" + checked,
@@ -54,6 +51,6 @@ var checked = ($(this).is(':checked');
     success: function(result) {
 
     }
-  });
+  })
 });
 </script>
