@@ -1,7 +1,10 @@
 <div class="post-details col-md-8 col-md-offset-2 col-xs-12">
   {{#post}}
   <div class="post-title">
-    <h1>{{title}}</h1>
+    <div class="post-title-container">
+      <h1>{{title}}</h1>
+      <button type="button" class="btn btn-default" name="edit" href="/posts/{{id}}/edit">EDIT</button>
+    </div>
     <div class="post-rating-container">
       <h3 class="rating">{{rating}}</h3>
       <form method="POST" action="/posts/{{id}}/upvote">
@@ -27,7 +30,7 @@
   <div class="comment-box">
     <p class='comment-text'>{{comment}}</p>
     <div class="comment-footer">
-      <p>COMMENTER NAME</p>
+      <p class="comment-name">COMMENTER NAME</p>
       <p>{{created_at}}</p>
     </div>
   </div>

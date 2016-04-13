@@ -53,7 +53,7 @@ router.post('/:id/edit', function(req, res, next){
   .update({title: req.body.title,
     lat: req.body.lat,
     lng: req.body.lng,
-    imgLink: req.body.img_link,
+    img_link: req.body.img_link,
     description: req.body.description
   })
   .returning('id')

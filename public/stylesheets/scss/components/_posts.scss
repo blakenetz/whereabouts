@@ -28,6 +28,13 @@
   align-items: baseline;
 }
 
+.post-title-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .post-rating-container {
   display: flex;
   flex-direction: row-reverse;
@@ -81,4 +88,8 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+}
+
+.comment-name {
+  margin-right: 15px;
 }

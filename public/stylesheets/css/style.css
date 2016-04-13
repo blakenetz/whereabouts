@@ -22,6 +22,12 @@
   justify-content: space-between;
   align-items: baseline; }
 
+.post-title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; }
+
 .post-rating-container {
   display: flex;
   flex-direction: row-reverse;
@@ -67,6 +73,9 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end; }
+
+.comment-name {
+  margin-right: 15px; }
 
 .userform, .userdelete {
   padding: 15px;
@@ -145,3 +154,11 @@ body {
   padding: 15px;
   border-radius: 10px;
   background: white; }
+
+.radius-form {
+  width: 100px; }
+
+.map-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; }
