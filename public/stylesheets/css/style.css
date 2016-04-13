@@ -140,3 +140,8 @@ body {
   height: 75vh;
   justify-content: space-around;
   align-items: flex-start; }
+
+.login-container {
+  padding: 15px;
+  border-radius: 10px;
+  background: white; }
