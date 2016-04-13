@@ -78,4 +78,7 @@
 
 .comment-footer {
   font-size: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
