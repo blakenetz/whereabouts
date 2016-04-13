@@ -1,4 +1,4 @@
-.postform {
+.postform, .post-details {
   padding: 15px;
   border-radius: 10px;
   background: white; }
@@ -16,6 +16,55 @@
   padding-bottom: 15px;
   border-bottom: 1px solid #6e6e6e; }
 
+.post-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline; }
+
+.post-rating-container {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center; }
+
+.post-rating-container input {
+  max-height: 30px;
+  width: auto; }
+
+.rating {
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 8px; }
+
+.post-map-image {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; }
+
+.post-map {
+  background: purple;
+  width: 45%;
+  max-height: 200px; }
+
+.post-map-image img {
+  width: 45%;
+  max-height: 200px; }
+
+.post-vote {
+  display: flex;
+  flex-direction: row; }
+
+.post-description {
+  padding-top: 15px;
+  text-align: justify;
+  width: 100%; }
+
+.comment-footer {
+  font-size: 10px; }
+
 .userform, .userdelete {
   padding: 15px;
   border-radius: 10px;
@@ -29,8 +78,10 @@
 
 body {
   padding-top: 70px;
-  background: #FAFAFA;
-  font-family: roboto; }
+  background: #f1f1f0;
+  font-family: roboto;
+  padding-right: 30px;
+  padding-left: 30px; }
 
 .globeicon {
   height: 30px;
@@ -44,7 +95,8 @@ body {
   padding: 15px;
   border-radius: 10px;
   background: white;
-  height: 100px; }
+  height: 100px;
+  margin: 0px; }
 
 .posts img {
   height: 70px;
@@ -54,21 +106,34 @@ body {
   font-weight: 900;
   color: #5db485; }
 
+.posts a {
+  text-decoration: none; }
+
 .index .posts, .index .map {
   height: 75vh;
   overflow: scroll;
   margin-bottom: 15px; }
 
 .votearrow {
-  width: 20px;
-  height: 20px; }
+  width: 15px;
+  height: 15px; }
 
 .nextarrow {
-  width: 40px;
-  height: 60px; }
+  width: 15px;
+  height: auto;
+  padding: 0px;
+  margin: 0px; }
 
-.col-arrow {
+.col-arrow-left {
   display: flex;
   flex-direction: column;
   height: 75vh;
-  justify-content: space-around; }
+  justify-content: space-around;
+  align-items: flex-end; }
+
+.col-arrow-right {
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+  justify-content: space-around;
+  align-items: flex-start; }
