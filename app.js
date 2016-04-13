@@ -58,7 +58,7 @@ app.get('/auth/github/callback',
   });
 
 app.post('/auth/login',
-  passport.authenticate('local', { failureRedirect: '/login' }),
+  passport.authenticate('local', { failureRedirect: '/login/error' }),
   function(req, res) {
       // Successful authentication, redirect home.
     res.redirect('/');
@@ -68,8 +68,7 @@ passport.use(new LocalStrategy(
   function(username, password, cb) {
   knex('users').where({ username: username }).first()
   .then(function (user) {
-    console.log(user);
-    if (!user) { return cb(null, false); }
+    if (!user) { return cb(null, false, { message: "Invalid username"}); }
     else if ( user && bcrypt.compareSync(password + user.salt, user.password) ) {
       return cb(null, {user_id: user.id, admin: user.admin});
     } else {

@@ -1,0 +1,24 @@
+<div class="login-container col-md-6 col-md-offset-3 col-xs-12">
+
+  <p class="login-message">Invalid username and password</p>
+
+  <h1>Login</h1>
+
+  <p>
+    <a href="/auth/github">Login With GitHub</a>
+  </p>
+
+  <form method="POST" action="/auth/login">
+    <fieldset class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" name='username' id="username" autofocus="true">
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name='password' id="password">
+    </fieldset>
+
+    <input type="submit" class="btn btn-primary btn-lg" value="Login">
+  </form>
+
+</div>
