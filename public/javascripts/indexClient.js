@@ -150,7 +150,7 @@ $(function () {
           .append("<div class='media data' id='"+info.id+"' title='"+info.title+"'></div>");
           $('#'+ info.id )
           .append("<div class='media-left'><a href='/posts/"+info.id+"'><img class='media-object' src='"+info.img_link+"'></a></div>")
-          .append("<div class='media-body'><h4 class='media-heading'>"+info.title+"</h4>"
+          .append("<div class='media-body'><a href='/posts/"+info.id+"'><h4 class='media-heading'>"+info.title+"</h4></a>"
           +"<h5 class='list-group-item-text'><a href='/users/"+info.user_id+"'>Author:"+info.username+"</a></h5><br></div>")
           .append("<div class='media-right'>"
           +"<input class='votearrow' type='image' src='/images/uparrow.png'>"
@@ -168,19 +168,19 @@ $(function () {
           window.location = "/posts/" + infowindow.class;
         })
         marker.addListener('mouseover', function() {
-          $('#' + infowindow.class).css('color', 'rgb(224, 123, 40)')
+          $('#' + infowindow.class).css('background', 'rgba(111, 106, 102, 0.31)')
           infowindow.open(marker.get('map'), marker);
         });
         marker.addListener('mouseout', function(){
-          $('#' + infowindow.class).css('color', 'black')
+          $('#' + infowindow.class).css('background', 'none')
           infowindow.close()
         })
         $(document).on('mouseover', '#' + infowindow.class, function () {
-          $('#' + infowindow.class).css('color', 'rgb(224, 123, 40)')
+          $('#' + infowindow.class).css('background', 'rgba(111, 106, 102, 0.31)')
           infowindow.open(marker.get('map'), marker);
         })
         $(document).on('mouseout', '#' + infowindow.class, function () {
-          $('#' + infowindow.class).css('color', 'black')
+          $('#' + infowindow.class).css('background', 'none')
           infowindow.close()
         })
       }
