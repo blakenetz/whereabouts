@@ -13,6 +13,10 @@ router.get('/login', function(req, res, next) {
   res.render('login');
 });
 
+router.get('/login/error', function(req, res, next) {
+  res.render('login-error');
+});
+
 router.get('/signup', function (req, res, next){
   res.render('signup');
 })

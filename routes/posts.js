@@ -87,7 +87,6 @@ router.post('/comments/add/:post_id', function(req, res, next){
       res.redirect('/posts/'+req.params.post_id)
     })
   }
-
 })
 
 router.post('/:id/upvote', function(req, res, next){

@@ -1,0 +1,55 @@
+<h1>{{title}}</h1>
+<p><a href='/'>Home</a></p>
+<p>Edit post {{id}}</p>
+<p>This page should only be accessible by the author of the post</p>
+
+
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+
+    <form method="POST" action="/posts/{{id}}/edit">
+      <fieldset class="form-group">
+        <label for="title">Title</label>
+        {{#if erra}}
+        <p class="error">{{erra}}</p>
+        <input type="text" style="border: 1px solid red" class="form-control" name='title' id="title" placeholder="Title" value='{{post.title}}'>
+        {{else}}
+        <input type="text" class="form-control" name='title' id="title" placeholder="Title" value='{{post.title}}'>
+        {{/if}}
+      </fieldset>
+
+      <fieldset class="form-group">
+        <label for="lat">Location Latitude</label>
+        <input type="text" class="form-control" name='lat' id="lat" placeholder="Latitude" value='{{post.lat}}'>
+      </fieldset>
+
+      <fieldset class="form-group">
+        <label for="lng">Location Longitude</label>
+        <input type="text" class="form-control" name='lng' id="lng" placeholder="Longitude" value='{{post.lng}}'>
+      </fieldset>
+
+      <fieldset class="form-group">
+        <label for="img_link">Image Link</label>
+        {{#if errb}}
+        <p class="error">{{errb}}</p>
+        <input type="text" style="border: 1px solid red" class="form-control" name='img_link' id="img_link" placeholder="Paste Image URL" value='{{post.img_link}}'>
+        {{else}}
+        <input type="text" class="form-control" name='img_link' id="img_link" value='{{post.img_link}}'>
+        {{/if}}
+      </fieldset>
+
+      <fieldset class="form-group">
+        <label for="description">Description</label>
+        {{#if errc}}
+        <p class="error">{{errc}}</p>
+        <textarea class="form-control" style="border: 1px solid red" name='description' id="description" placeholder="Type Your Post Here">{{post.description}}</textarea>
+        {{else}}
+        <textarea class="form-control" name='description' id="description" placeholder="Type Your Post Here">{{post.description}}</textarea>
+        {{/if}}
+      </fieldset>
+      <input type="submit" name="submit" class="btn btn-primary btn-lg" value="Post">
+    </form>
+
+  </div>
+
+</div>
