@@ -8,6 +8,7 @@ var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 var knex = require('knex')(require('./knexfile')[process.env.DB_ENV]);
 
+var bcrypt = require('bcrypt');
 var GitHubStrategy = require('passport-github2').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 var passport = require('passport');
@@ -32,6 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
+app.use(passport.session());
 app.use(cookieSession({
   name: 'user',
   secret: process.env.GITHUB_CLIENT_SECRET
@@ -68,7 +70,7 @@ passport.use(new LocalStrategy(
     console.log(user);
     if (!user) { return cb(null, false); }
     if (user.password != password) { return cb(null, false); }
-    return cb(null, user);
+    return cb(null, {user_id: user.id, admin: user.admin});
   });
 }
 ))
@@ -84,7 +86,7 @@ passport.use(new GitHubStrategy({
     knex('users').where({auth_strategy: "github", auth_id: profile.id}).first()
     .then(function(user){
       if (user) {
-        return cb(null, {username: profile.username});
+        return cb(null, {user_id: user.id, admin: user.admin});
       }
 
       if (!user) {
@@ -96,7 +98,7 @@ passport.use(new GitHubStrategy({
                             })
                               .returning('*')
           .then(function(user){
-            return cb(null, {username: profile.username});
+            return cb(null, {user_id: user.id, admin: user.admin});
           })
         }
       })
@@ -105,6 +107,7 @@ passport.use(new GitHubStrategy({
 
 
 passport.serializeUser(function(user, done) {
+
   done(null, user);
 });
 

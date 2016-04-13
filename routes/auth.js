@@ -17,7 +17,8 @@ router.post('/signup', function(req, res, next){
                         username: req.body.username,
                         password: req.body.password,
                         avatar: req.body.avatar,
-                        admin: req.body.admin
+                        admin: req.body.admin,
+                        auth_strategy: 'local'
   }).then(function(){
     res.redirect('/');
   })
