@@ -29,7 +29,7 @@ router.get('/:id', function(req, res, next) {
                                   id: req.params.id,
                                   post: post,
                                   comments: comments,
-                                }):
+                                })
     })
   })
 });

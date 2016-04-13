@@ -1,34 +1,42 @@
-<div class="col-md-6 col-xs-12">
+<div class="post-details col-md-8 col-md-offset-2 col-xs-12">
+
+  <div class="post-title">
+    <h1>{{post.title}}</h1>
+    <div class="post-rating-container">
+      <h3 class="rating">{{post.rating}}</h3>
+      <form method="POST" action="/posts/{{id}}/upvote">
+        <input type="image" src="/images/uparrow-green.png">
+      </form>
+      <form method="POST" action="/posts/{{id}}/downvote">
+        <input type="image" src="/images/downarrow-red.png">
+      </form>
+    </div>
+  </div>
+
+  <div class="post-map-image">
+    <img src="{{post.img_link}}" alt="" />
+    <div class="post-map" id="map"></div>
+  </div>
+
+  <p class="post-description">{{post.description}}</p>
+
+  <h2>Comments</h2>
+  <hr>
+  {{#comments}}
+  <div class="comment-box">
+    <p class='comment-text'>{{comment}}</p>
+    <p class='comment-date'>{{created_at}}</p>
+  </div>
+  <hr>
+  {{/comments}}
+
+  <h2>Leave a Comment!</h2>
+  <form method="POST" action="/comments/add/{{id}}">
+    <fieldset class="form-group">
+      <label for="comment">Comment</label>
+      <textarea class="form-control" name='comment' id="comment" placeholder="Type Your Comment Here!"></textarea>
+    </fieldset>
+    <input type="submit" class="btn btn-primary btn-lg" value="Comment">
+  </form>
+
 </div>
-{{#posts}}
-<h1>{{title}}</h1>
-<img src="{{img_link}}" width="200" alt="" />
-
-<h3>Rating: {{rating}}</h3>
-
-<h4>{{lat}}</h4>
-<h4>{{lng}}</h4>
-<p>{{description}}</p>
-{{/posts}}
-<form method="POST" action="/posts/{{id}}/upvote">
-  <input type="submit" class="btn btn-success" value="Upvote!">
-</form>
-<br>
-<form method="POST" action="{{id}}/downvote">
-  <input type="submit" class="btn btn-danger" value="Downvote!">
-</form>
-
-
-<h2>Comments!</h2>
-{{#comments}}
-<p>At {{created_at}}, SOMEONE said: "{{comment}}"</p>
-{{/comments}}
-
-<h2>Leave a Comment!</h2>
-<form method="POST" action="/comments/add/{{id}}">
-  <fieldset class="form-group">
-    <label for="comment">Comment</label>
-    <textarea class="form-control" name='comment' id="comment" placeholder="Type Your Comment Here!"></textarea>
-  </fieldset>
-  <input type="submit" class="btn btn-primary btn-lg" value="Comment">
-</form>
