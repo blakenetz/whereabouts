@@ -5,7 +5,7 @@ var unirest = require('unirest');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('index', { dis : 10});
+    res.render('index');
 });
 
 

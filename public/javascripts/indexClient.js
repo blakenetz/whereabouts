@@ -4,7 +4,7 @@ $(function () {
   var miles = $('#radius').val();
   var pos;
   var located = false;
-  var markersA = [];
+  var markerLocal = [];
 
   function initAutocomplete() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -12,10 +12,10 @@ $(function () {
       zoom: 1
     });
     function clearMarker () {
-      markersA.forEach(function(marker) {
+      markerLocal.forEach(function(marker) {
         marker.setMap(null);
       });
-      markersA.length = 0;
+      markerLocal.length = 0;
     }
     // Create the search box and link it to the UI element.
     var input = document.getElementById('pac-input');
@@ -31,6 +31,7 @@ $(function () {
     // more details for that place.
     searchBox.addListener('places_changed', function() {
       var places = searchBox.getPlaces();
+      located = true;
 
       if (places.length == 0) {
         return;
@@ -61,7 +62,7 @@ $(function () {
           },
         });
 
-        markersA.push(marker)
+        markerLocal.push(marker)
 
         if (place.geometry.viewport) {
           // Only geocodes have viewport.
@@ -107,7 +108,7 @@ $(function () {
               strokeColor: 'red',
             },
           });
-          markersA.push(marker)
+          markerLocal.push(marker)
           distanceFromCenter(miles)
           markeEventHandler(marker, 'you!')
         }, function() {
@@ -164,7 +165,7 @@ $(function () {
           content: message
         });
         marker.addListener('click', function() {
-          window.location = "/" + infowindow.class;
+          window.location = "/posts/" + infowindow.class;
         })
         marker.addListener('mouseover', function() {
           $('#' + infowindow.class).css('color', 'rgb(224, 123, 40)')
@@ -185,10 +186,10 @@ $(function () {
       }
 
       $('#radius').on('change', function () {
+        miles = +$('#radius').val();
         if (located) {
           distanceFromCenter(miles)
         };
-        miles = +$('#radius').val();
       });
     };
 
