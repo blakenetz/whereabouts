@@ -40,6 +40,7 @@ app.use(cookieSession({
   secret: process.env.GITHUB_CLIENT_SECRET
 }));
 
+
 app.get('/auth/github', passport.authenticate('github'), function(req, res){
   // The request will be redirected to LinkedIn for authentication, so this
   // function will not be called.
@@ -58,7 +59,7 @@ app.get('/auth/github/callback',
   });
 
 app.post('/auth/login',
-  passport.authenticate('local', { failureRedirect: '/login' }),
+  passport.authenticate('local', { failureRedirect: '/login/error' }),
   function(req, res) {
       // Successful authentication, redirect home.
     res.redirect('/');
@@ -68,10 +69,9 @@ passport.use(new LocalStrategy(
   function(username, password, cb) {
   knex('users').where({ username: username }).first()
   .then(function (user) {
-    console.log(user);
-    if (!user) { return cb(null, false); }
+    if (!user) { return cb( null, false ); }
     else if ( user && bcrypt.compareSync(password + user.salt, user.password) ) {
-      return cb(null, {user_id: user.id, admin: user.admin});
+      return cb(null, {user_id: user.user_id, admin: user.admin});
     } else {
       return cb(null, false);
     }
@@ -89,7 +89,7 @@ passport.use(new GitHubStrategy({
     knex('users').where({auth_strategy: "github", auth_id: profile.id}).first()
     .then(function(user){
       if (user) {
-        return cb(null, {user_id: user.id, admin: user.admin});
+        return cb(null, {user_id: user.user_id, admin: user.admin});
       }
       if (!user) {
         knex('users').insert({
@@ -100,7 +100,7 @@ passport.use(new GitHubStrategy({
           avatar: profile._json.avatar_url
         }).returning('*')
           .then(function(user){
-            return cb(null, {user_id: user.id, admin: user.admin});
+            return cb(null, {user_id: user.user_id, admin: user.admin});
           })
         }
       })
@@ -117,25 +117,27 @@ passport.deserializeUser(function(user, done) {
   done(null, user)
 });
 
-
+app.use(function (req, res, next) {
+  if (!req.session.passport) {
+    req.session.user_id  = false;
+    req.session.username  = false;
+    req.session.admin  = false;
+  } else {
+  req.session.user_id = req.session.passport.user.user_id
+  req.session.username = req.session.passport.user.username
+  req.session.admin = req.session.passport.user.admin
+}
+  next();
+})
 
 function isAdmin (req, res, next) {
-  console.log(req.session.length);
-    if (req.session.passport.user.admin) {
+  console.log(req.session);
+    if (req.session.admin) {
       next()
     } else {
     res.redirect('/')
   }
 }
-
-// app.use(function (req, res, next) {
-//   console.log('got here');
-//   req.user = req.session.passport.user;
-//   console.log('got here2');
-//   res.locals.user = req.session.passport.user;
-//   console.log('got here3');
-//   next();
-// })
 
 app.use('/admin', isAdmin, admin);
 app.use('/auth', auth);

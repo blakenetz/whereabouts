@@ -1,33 +1,61 @@
 <div class="login-container col-md-6 col-md-offset-3 col-xs-12">
 
-<h1>Sign Up</h1>
+  <h1>Sign Up</h1>
 
   <p>
-    Have an account?<a href="/login">Click Here to Sign In!</a>
+    Have an account? <a href="/login">Click Here to Sign In!</a>
+  </p>
   <p>
-    Or: <a href="/auth/github">Login With GitHub</a>
+    Or: <a href="/auth/github">Signup With GitHub</a>
   </p>
 
   <form method="POST" action="/auth/signup">
     <fieldset class="form-group">
       <label for="username">Username</label>
-      <input type="text" class="form-control" name='username' id="username" autofocus="true">
-    </fieldset>
-    <fieldset class="form-group">
-      <label for="email">Email</label>
-      <input type="text" class="form-control" name='email' id="email">
-    </fieldset>
-    <fieldset class="form-group">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" name='password' id="password">
-    </fieldset>
-    <fieldset class="form-group">
-      <label for="avatar">Avatar URL</label>
-      <input type="text" class="form-control" name='avatar' id="avatar">
+
+      {{#if erre}}
+      <p class="error">{{erre}}</p>
+      {{/if}}
+      
+      {{#if erra}}
+      <p class="error">{{erra}}</p>
+      <input type="text" style="border: 1px solid red" class="form-control" name='username' id="username" autofocus="true">
+      {{else}}
+      <input type="text" class="form-control" name='username' id="username" autofocus="true" value="{{body.username}}">
+      {{/if}}
     </fieldset>
 
+    <fieldset class="form-group">
+      <label for="email">Email</label>
+      {{#if errb}}
+      <p class="error">{{errb}}</p>
+      <input type="text" style="border: 1px solid red" class="form-control" name='email' id="email">
+      {{else}}
+      <input type="text" class="form-control" name='email' id="email" value="{{body.email}}">
+      {{/if}}
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label for="password">Password</label>
+      {{#if errc}}
+      <p class="error">{{errc}}</p>
+      <input type="password" style="border: 1px solid red" class="form-control" name='password' id="password">
+      {{else}}
+      <input type="password" class="form-control" name='password' id="password" value="{{body.password}}">
+      {{/if}}
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label for="avatar">Avatar URL</label>
+      {{#if errd}}
+      <p class="error">{{errd}}</p>
+      <input type="text" style="border: 1px solid red" class="form-control" name='avatar' id="avatar">
+      {{else}}
+      <input type="text" class="form-control" name='avatar' id="avatar" value="{{body.avatar}}">
+      {{/if}}
+    </fieldset>
 
     <input type="submit" class="btn btn-primary btn-lg" value="Sign Up">
   </form>
-  
+
 </div>

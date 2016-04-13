@@ -1,18 +1,9 @@
 <div class="login-container col-md-6 col-md-offset-3 col-xs-12">
 
-  {{#message}}
-  <p class="login-message">{{this}}</p>
-  {{/message}}
+  <p class="login-message">Invalid username and password</p>
 
   <h1>Login</h1>
 
-  {{#if user}}
-  <p>
-    Hello {{user.username}}
-    |
-    <!-- <a href="/auth/logout">Logout</a> -->
-  </p>
-  {{else}}
   <p>
     <a href="/auth/github">Login With GitHub</a>
   </p>
@@ -29,6 +20,5 @@
 
     <input type="submit" class="btn btn-primary btn-lg" value="Login">
   </form>
-  {{/if}}
 
 </div>

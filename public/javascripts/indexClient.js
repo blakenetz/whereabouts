@@ -151,20 +151,20 @@ $(function () {
             map: map,
           });
           markers.push(marker);
-          markeEventHandler(marker, info.title, info.id);
+          markeEventHandler(marker, info.title, info.post_id);
           $('.posts')
-          .append("<div class='media data' id='"+info.id+"' title='"+info.title+"'></div>");
-          $('#'+ info.id )
+          .append("<div class='media data' id='"+info.post_id+"' title='"+info.title+"'></div>");
+          $('#'+ info.post_id )
           .append("<div class='media-left'>"
-            +"<a href='/posts/"+info.id+"'>"
+            +"<a href='/posts/"+info.post_id+"'>"
             +"<img class='media-object' src='"+info.img_link+"'></a></div>")
           .append("<div class='media-body'>"
-            +"<h4 class='media-heading'><a href='/posts/"+info.id+"'>"+info.title+"<a/></h4>"
-            +"<h5 class='list-group-item-text'><a href='/users/"+info.user_id+"'>Author:"+info.username+"</a></h5><br></div>")
+            +"<h4 class='media-heading'><a href='/posts/"+info.post_id+"'>"+info.title+"<a/></h4>"
+            +"<h5 class='list-group-item-text'><a href='/users/"+info.user_fk+"'>Author:"+info.username+"</a></h5><br></div>")
           .append("<div class='media-right'>"
-            +"<input class='votearrow up' value='"+info.id+"'type='image' src='/images/uparrow.png'>"
+            +"<input class='votearrow up' value='"+info.post_id+"'type='image' src='/images/uparrow.png'>"
             +"<h5>"+info.rating+"</h5>"
-            +"<input class='votearrow down' value='"+info.id+"'type='image' src='/images/downarrow.png'></div>");
+            +"<input class='votearrow down' value='"+info.post_id+"'type='image' src='/images/downarrow.png'></div>");
         }
       });
 
@@ -221,7 +221,7 @@ $(function () {
         if (located) {
           distanceFromCenter(miles, add, id)
         } else {
-          socket.emit('notRated', {add: add, id: id, parce: parce})
+          socket.emit('notlocated', {add: add, id: id, parce: parce})
         }
       })
     };
