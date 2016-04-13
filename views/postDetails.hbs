@@ -3,7 +3,9 @@
   <div class="post-title">
     <div class="post-title-container">
       <h1>{{title}}</h1>
-      <button type="button" class="btn btn-default" name="edit" href="/posts/{{id}}/edit">EDIT</button>
+      <a href="/posts/{{id}}/edit">
+        <button type="button" class="btn btn-default" name="edit">EDIT</button>
+      </a>
     </div>
     <div class="post-rating-container">
       <h3 class="rating">{{rating}}</h3>
