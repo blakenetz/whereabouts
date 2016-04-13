@@ -17,7 +17,7 @@ exports.up = function(knex, Promise) {
     table.string('title');
     table.text('description');
     table.integer('rating');
-    table.integer('user_id').references('users.id');
+    table.integer('user_id').references('users.id').onDelete('cascade').onUpdate('cascade');
     table.decimal('lat', 20, 10);
     table.decimal('lng', 20, 10);
     table.string('img_link');

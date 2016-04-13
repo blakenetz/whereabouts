@@ -84,7 +84,7 @@ $(function () {
         center: pos,
         radius: 1609.344 * miles
       });
-      socket.emit('located', {bounds: radius.getBounds(), parce: parce})
+      socket.emit('located', {bounds: radius.getBounds(), parce: parce * 2})
       map.fitBounds(radius.getBounds());
     }
 
@@ -207,7 +207,7 @@ $(function () {
         if (located) {
           distanceFromCenter(miles)
         }else{
-          socket.emit('world', parce);
+          socket.emit('world', parce * 2);
         }
       })
     };

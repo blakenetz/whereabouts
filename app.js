@@ -13,6 +13,7 @@ var GitHubStrategy = require('passport-github2').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 var passport = require('passport');
 
+var admin = require('./routes/admin');
 var auth = require('./routes/auth');
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -126,6 +127,7 @@ passport.deserializeUser(function(user, done) {
 //   next();
 // })
 
+app.use('/admin', admin);
 app.use('/auth', auth);
 app.use('/', routes);
 app.use('/users', users);
