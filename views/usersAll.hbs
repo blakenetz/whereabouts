@@ -1,0 +1,59 @@
+<h1>Admin Area</h1><br><br>
+
+  <table>
+    <thead>
+     <tr>
+       <th>User ID</th>
+       <th>Email</th>
+       <th>Username</th>
+       <th>Admin</th>
+       <th>Change Admin Status</th>
+       <th>Delete</th>
+     </tr>
+   </thead>
+   <tbody>
+    {{#users}}
+      <tr>
+        <td>{{id}}</td>
+        <td>{{email}}</td>
+        <td>{{username}}</td>
+        <td>{{admin}}</td>
+        {{#if admin}}
+        <td><input type="checkbox" class="userEdit" data-user-id="{{id}}" value="{{id}}" checked="checked"></td>
+        {{else}}
+        <td><input type="checkbox" class="userEdit" data-user-id="{{id}}" value="{{id}}"></td>
+        {{/if}}
+        <td class="userDelete" data-user-id="{{id}}"><button type="button" name="delete">Delete</button></td>
+      </tr>
+    {{/users}}
+    </tbody>
+  </table>
+
+ <script type="text/javascript">
+$('.userDelete').on('click', function(){
+  var user_id = $(this).data('user-id');
+  console.log('usersAll: ', user_id);
+  var t_row = $(this).parent();
+
+  $.ajax({
+    url: '/admin/' + user_id,
+    type: 'DELETE',
+    success: function(result) {
+      $(t_row).slideUp();
+    }
+  });
+});
+
+$('.userEdit').on('click', function(e){
+var user_id = ($(this).data('user-id'));
+var checked = ($(this).is(':checked');
+
+  $.ajax({
+    url: '/admin/' + user_id + "/" + checked,
+    type: 'patch',
+    success: function(result) {
+
+    }
+  });
+});
+</script>
