@@ -31,6 +31,3 @@ exports.seed = function(knex, Promise) {
                         })
   );
 };
-
-
-// test

@@ -72,9 +72,16 @@ body {
   padding: 0px;
   margin: 0px; }
 
-.col-arrow {
+.col-arrow-left {
   display: flex;
   flex-direction: column;
   height: 75vh;
   justify-content: space-around;
-  align-items: center; }
+  align-items: flex-end; }
+
+.col-arrow-right {
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+  justify-content: space-around;
+  align-items: flex-start; }
