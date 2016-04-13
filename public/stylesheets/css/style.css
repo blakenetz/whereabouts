@@ -82,6 +82,25 @@
   margin: 0px;
   font-weight: bold; }
 
+.location-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px; }
+
+.location-container input {
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  height: 34px;
+  padding: 6px; }
+
+.location-container #pac-input {
+  width: 100%; }
+
+.location-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+
 .userform, .userdelete {
   padding: 15px;
   border-radius: 10px;
@@ -92,6 +111,11 @@
 
 .userform .btn:hover {
   background: #20844e; }
+
+.login-message {
+  border: 1px solid red;
+  border-radius: 5px;
+  padding: 15px; }
 
 body {
   padding-top: 70px;
@@ -172,4 +196,11 @@ float: left
 .map-details {
   display: flex;
   flex-direction: row;
-  justify-content: space-around; }
+  justify-content: space-around;
+  height: 50px; }
+
+.media-right {
+  text-align: center; }
+
+.contribute-button {
+  width: 100%; }
