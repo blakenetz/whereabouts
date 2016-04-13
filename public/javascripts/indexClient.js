@@ -84,11 +84,12 @@ $(function () {
         center: pos,
         radius: 1609.344 * miles
       });
-      socket.emit('located', radius.getBounds())
+      socket.emit('located', {bounds: radius.getBounds(), parce: parce})
       map.fitBounds(radius.getBounds());
     }
 
     $('#geo').on('click', function () {
+      parce = 0;
       if (navigator.geolocation) {
         located = true;
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -191,7 +192,23 @@ $(function () {
           distanceFromCenter(miles)
         };
       });
+      var parce = 0;
+      $('.nextarrow').on('click', function () {
+
+        if ($(this).attr('id') === 'next') {
+          parce++
+        }else{
+          parce--
+          parce = parce < 0 ? 0 : parce;
+        }
+        if (located) {
+          distanceFromCenter(miles)
+        }else{
+          socket.emit('world', parce);
+        }
+      })
     };
+
 
     window.initAutocomplete = initAutocomplete;
   });
