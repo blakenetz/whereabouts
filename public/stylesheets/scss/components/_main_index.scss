@@ -34,6 +34,11 @@ body {
   color: #5db485;
 }
 
+.posts a {
+  text-decoration: none;
+
+}
+
 .index .posts, .index .map {
   height: 75vh;
   overflow: scroll;

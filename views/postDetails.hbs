@@ -1,9 +1,9 @@
 <div class="post-details col-md-8 col-md-offset-2 col-xs-12">
-
+  {{#post}}
   <div class="post-title">
-    <h1>{{post.title}}</h1>
+    <h1>{{title}}</h1>
     <div class="post-rating-container">
-      <h3 class="rating">{{post.rating}}</h3>
+      <h3 class="rating">{{rating}}</h3>
       <form method="POST" action="/posts/{{id}}/upvote">
         <input type="image" src="/images/uparrow-green.png">
       </form>
@@ -14,18 +14,22 @@
   </div>
 
   <div class="post-map-image">
-    <img src="{{post.img_link}}" alt="" />
+    <img src="{{img_link}}" alt="" />
     <div class="post-map" id="map"></div>
   </div>
 
-  <p class="post-description">{{post.description}}</p>
+  <p class="post-description">{{description}}</p>
+  {{/post}}
 
   <h2>Comments</h2>
   <hr>
   {{#comments}}
   <div class="comment-box">
     <p class='comment-text'>{{comment}}</p>
-    <p class='comment-date'>{{created_at}}</p>
+    <div class="comment-footer">
+      <p>{{created_at}}</p>
+      <p>{{username}}</p>
+    </div>
   </div>
   <hr>
   {{/comments}}
