@@ -7,8 +7,8 @@ var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 var knex = require('knex')(require('./knexfile')[process.env.DB_ENV]);
-
 var bcrypt = require('bcrypt');
+
 var GitHubStrategy = require('passport-github2').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 var passport = require('passport');
@@ -69,8 +69,11 @@ passport.use(new LocalStrategy(
   .then(function (user) {
     console.log(user);
     if (!user) { return cb(null, false); }
-    if (user.password != password) { return cb(null, false); }
-    return cb(null, {user_id: user.id, admin: user.admin});
+    else if ( user && bcrypt.compareSync(password + user.salt, user.password) ) {
+      return cb(null, {user_id: user.id, admin: user.admin});
+    } else {
+      return cb(null, false);
+    }
   });
 }
 ))
