@@ -1,3 +1,11 @@
+{{#if errors}}
+<ul>
+  {{#errors}}
+  <li class='error'>{{this}}</li>
+  {{/errors}}
+</ul>
+{{/if}}
+
 <div class="post-details col-md-8 col-md-offset-2 col-xs-12">
   {{#post}}
   <div class="post-title">
@@ -25,17 +33,17 @@
   <hr>
   {{#comments}}
   <div class="comment-box">
+    <p>{{username}} says:</p>
     <p class='comment-text'>{{comment}}</p>
     <div class="comment-footer">
       <p>{{created_at}}</p>
-      <p>COMMENTER NAME</p>
     </div>
   </div>
   <hr>
   {{/comments}}
 
   <h2>Leave a Comment!</h2>
-  <form method="POST" action="/comments/add/{{id}}">
+  <form method="POST" action="/posts/comments/add/{{id}}">
     <fieldset class="form-group">
       <label for="comment">Comment</label>
       <textarea class="form-control" name='comment' id="comment" placeholder="Type Your Comment Here!"></textarea>
