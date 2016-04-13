@@ -37,10 +37,10 @@
 
       <div class="collapse navbar-collapse" id="collapse">
         <ul class="nav navbar-nav">
-          {{#if user}}
+          {{#if user_id}}
           <li class="active"><a href="/posts/add">Post</a></li>
           <li class="active"><a href="/users/">My Profile</a></li>
-          <li class="active"><a href="/logout">Logout {{user.username}}</a></li>
+          <li class="active"><a href="/logout">Logout {{username}}</a></li>
           {{else}}
           <li class="active"><a href="/login">Post</a></li>
           <li class="active"><a href="/signup">Signup</a></li>
