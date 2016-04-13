@@ -29,17 +29,29 @@
         <span class="icon-bar"></span>
       </button>
         <a class='navbar-brand' href="/">
-          <img class="globeicon" src="/images/globeIcon.png" alt="globe logo" />
+          <img id="globeicon" src="/images/globeIcon.png" alt="globe logo" />
+          <h3 class='app-name'>WhereAbouts</h3>
         </a>
       </div>
 
+
       <div class="collapse navbar-collapse" id="collapse">
         <ul class="nav navbar-nav">
+          {{#if user}}
+          <li class="active"><a href="/posts/add">Post</a></li>
+          <li class="active"><a href="/users/">My Profile</a></li>
+          <li class="active"><a href="/logout">Logout</a></li>
+          {{else}}
+          <li class="active"><a href="/login">Post</a></li>
           <li class="active"><a href="/signup">Signup</a></li>
           <li class="active"><a href="/login">Login</a></li>
-          <li class="active"><a href="/logout">Logout</a></li>
-          <li class="active"><a href="/users">Users</a></li>
-          <li class="active"><a href="/posts/add">Post!</a></li>
+
+            {{#if this.admin}}
+              <li class="active"><a href="/users">Admin Panel</a></li>
+            {{else}}
+              <li class="active"><a href="/users">MONKEY</a></li>
+            {{/if}}
+          {{/if}}
         </ul>
       </div>
 
