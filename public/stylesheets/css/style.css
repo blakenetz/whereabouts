@@ -77,6 +77,11 @@
 .comment-name {
   margin-right: 15px; }
 
+.error {
+  color: red;
+  margin: 0px;
+  font-weight: bold; }
+
 .userform, .userdelete {
   padding: 15px;
   border-radius: 10px;

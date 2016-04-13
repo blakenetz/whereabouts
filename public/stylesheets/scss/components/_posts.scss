@@ -28,7 +28,7 @@
   align-items: baseline;
 }
 
-.post-title-container{
+.post-title-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -92,4 +92,10 @@
 
 .comment-name {
   margin-right: 15px;
+}
+
+.error {
+  color: red;
+  margin: 0px;
+  font-weight: bold;
 }

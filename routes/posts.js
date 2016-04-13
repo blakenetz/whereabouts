@@ -8,16 +8,33 @@ router.get('/add', function(req, res, next){
 })
 
 router.post('/add', function(req, res, next){
-  knex('posts').insert({
-    title: req.body.title,
-    lat: req.body.lat,
-    lng: req.body.lng,
-    imgLink: req.body.img_link,
-    description: req.body.description,
-  })
-  .then(function(){
-    res.redirect('/')
-  })
+  if ( req.body.title.length < 1 ){
+    res.render('postCreate', {
+      erra : "Title can't be blank",
+      body: req.body
+    })
+  } if ( req.body.img_link.length < 1 ){
+    res.render('postCreate', {
+      errb : "Please insert an image link",
+      body: req.body
+    })
+  } if ( req.body.description.length < 1 ){
+    res.render('postCreate', {
+      errc : "Description can't be blank",
+      body: req.body
+    })
+  } else {
+    knex('posts').insert({
+      title: req.body.title,
+      lat: req.body.lat,
+      lng: req.body.lng,
+      imgLink: req.body.img_link,
+      description: req.body.description,
+    })
+    .then(function(){
+      res.redirect('/')
+    })
+  }
 })
 
 router.get('/:id', function(req, res, next) {
