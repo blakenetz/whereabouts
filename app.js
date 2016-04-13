@@ -40,6 +40,7 @@ app.use(cookieSession({
   secret: process.env.GITHUB_CLIENT_SECRET
 }));
 
+
 app.get('/auth/github', passport.authenticate('github'), function(req, res){
   // The request will be redirected to LinkedIn for authentication, so this
   // function will not be called.
@@ -119,15 +120,18 @@ passport.deserializeUser(function(user, done) {
 });
 
 app.use(function (req, res, next) {
-  console.log(req.session.passport);
-  // console.log('got here');
-  // res.locals.user = req.session.passport.user.user_id;
-  // res.locals.username = req.session.passport.user.username;
-  // res.locals.admin = req.session.passport.user.admin;
-  // console.log('got here3');
-  // console.log(res.locals.user);
+  if (!req.session.passport) {
+    req.session.user_id  = false;
+    req.session.username  = false;
+    req.session.admin  = false;
+  } else {
+  req.session.user_id = req.session.passport.user.user_id
+  req.session.username = req.session.passport.user.username
+  req.session.admin = req.session.passport.user.admin
+}
   next();
 })
+
 
 app.use('/admin', admin);
 app.use('/auth', auth);

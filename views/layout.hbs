@@ -45,13 +45,13 @@
           <li class="active"><a href="/login">Post</a></li>
           <li class="active"><a href="/signup">Signup</a></li>
           <li class="active"><a href="/login">Login</a></li>
+          {{/if}}
 
-            {{#if this.admin}}
+            {{#if admin}}
               <li class="active"><a href="/users">Admin Panel</a></li>
             {{else}}
               <li class="active"><a href="/users">MONKEY</a></li>
             {{/if}}
-          {{/if}}
         </ul>
       </div>
 
