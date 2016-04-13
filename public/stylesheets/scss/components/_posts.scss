@@ -1,4 +1,4 @@
-.postform {
+.postform, .post-details {
   padding: 15px;
   border-radius: 10px;
   background: white;
@@ -19,4 +19,63 @@
 .media.data {
   padding-bottom: 15px;
   border-bottom: 1px solid rgb(110, 110, 110);
+}
+
+.post-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.post-rating-container {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.post-rating-container input {
+  max-height: 30px;
+  width: auto;
+}
+
+.rating {
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 8px;
+}
+
+.post-map-image {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.post-map {
+  background: purple;
+  width: 45%;
+  max-height: 200px;
+}
+
+.post-map-image img {
+  width: 45%;
+  max-height: 200px;
+}
+
+.post-vote {
+  display: flex;
+  flex-direction: row;
+}
+
+.post-description {
+  padding-top: 15px;
+  text-align: justify;
+  width: 100%;
+}
+
+.comment-footer {
+  font-size: 10px;
 }
