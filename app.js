@@ -120,7 +120,7 @@ passport.deserializeUser(function(user, done) {
 
 
 function isAdmin (req, res, next) {
-  console.log(req.session);
+  console.log(req.session.length);
     if (req.session.passport.user.admin) {
       next()
     } else {

@@ -5,6 +5,7 @@ $(function () {
   var pos;
   var located = false;
   var markerLocal = [];
+  var bounds;
 
   function initAutocomplete() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -75,7 +76,7 @@ $(function () {
       distanceFromCenter(miles)
     });
 
-    function distanceFromCenter (miles) {
+    function distanceFromCenter (miles, add, id) {
       var radius = new google.maps.Circle({
         strokeColor: 'none',
         strokeOpacity: 0.0,
@@ -84,7 +85,11 @@ $(function () {
         center: pos,
         radius: 1609.344 * miles
       });
-      socket.emit('located', {bounds: radius.getBounds(), parce: parce * 2})
+      if (add) {
+        socket.emit('rating', { bounds: radius.getBounds(), parce: parce * 2, add: add, id: id})
+      }else{
+        socket.emit('located', {bounds: radius.getBounds(), parce: parce * 2})
+      }
       map.fitBounds(radius.getBounds());
     }
 
@@ -157,9 +162,9 @@ $(function () {
             +"<h4 class='media-heading'><a href='/posts/"+info.id+"'>"+info.title+"<a/></h4>"
             +"<h5 class='list-group-item-text'><a href='/users/"+info.user_id+"'>Author:"+info.username+"</a></h5><br></div>")
           .append("<div class='media-right'>"
-            +"<input class='votearrow' type='image' src='/images/uparrow.png'>"
+            +"<input class='votearrow up' value='"+info.id+"'type='image' src='/images/uparrow.png'>"
             +"<h5>"+info.rating+"</h5>"
-            +"<input class='votearrow' type='image' src='/images/downarrow.png'></div>");
+            +"<input class='votearrow down' value='"+info.id+"'type='image' src='/images/downarrow.png'></div>");
         }
       });
 
@@ -208,6 +213,15 @@ $(function () {
           distanceFromCenter(miles)
         }else{
           socket.emit('world', parce * 2);
+        }
+      })
+      $(document).on('click', '.votearrow', function () {
+        var add = $(this).attr('class') == 'votearrow up' ? 10 : -10;
+        var id = +$(this).val()
+        if (located) {
+          distanceFromCenter(miles, add, id)
+        } else {
+          socket.emit('notRated', {add: add, id: id, parce: parce})
         }
       })
     };
