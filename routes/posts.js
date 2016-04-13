@@ -73,5 +73,3 @@ router.post('/:id/downvote', function(req, res, next){
 })
 
 module.exports = router;
-
-// test
