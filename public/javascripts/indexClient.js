@@ -4,13 +4,19 @@ $(function () {
   var miles = $('#radius').val();
   var pos;
   var located = false;
+  var markerLocal = [];
 
   function initAutocomplete() {
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 40.315, lng: -105.270},
       zoom: 1
     });
-
+    function clearMarker () {
+      markerLocal.forEach(function(marker) {
+        marker.setMap(null);
+      });
+      markerLocal.length = 0;
+    }
     // Create the search box and link it to the UI element.
     var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);
@@ -20,21 +26,19 @@ $(function () {
     map.addListener('bounds_changed', function() {
       searchBox.setBounds(map.getBounds());
     });
-    var markers = [];
+
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
     searchBox.addListener('places_changed', function() {
       var places = searchBox.getPlaces();
+      located = true;
 
       if (places.length == 0) {
         return;
       }
 
       // Clear out the old markers.
-      markers.forEach(function(marker) {
-        marker.setMap(null);
-      });
-      markers = [];
+      clearMarker();
 
       // For each place, get the icon, name and location.
       var bounds = new google.maps.LatLngBounds();
@@ -48,12 +52,17 @@ $(function () {
         };
         pos = place.geometry.location;
         // Create a marker for each place.
-        markers.push(new google.maps.Marker({
+        var marker = new google.maps.Marker({
+          position: pos,
           map: map,
-          icon: icon,
-          title: place.name,
-          position: place.geometry.location
-        }));
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 5,
+            strokeColor: 'red',
+          },
+        });
+
+        markerLocal.push(marker)
 
         if (place.geometry.viewport) {
           // Only geocodes have viewport.
@@ -75,11 +84,12 @@ $(function () {
         center: pos,
         radius: 1609.344 * miles
       });
-      socket.emit('self', radius.getBounds())
+      socket.emit('located', {bounds: radius.getBounds(), parce: parce})
       map.fitBounds(radius.getBounds());
     }
 
     $('#geo').on('click', function () {
+      parce = 0;
       if (navigator.geolocation) {
         located = true;
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -89,6 +99,7 @@ $(function () {
           };
 
           map.setCenter(pos);
+          clearMarker()
           var marker = new google.maps.Marker({
             position: pos,
             map: map,
@@ -98,6 +109,7 @@ $(function () {
               strokeColor: 'red',
             },
           });
+          markerLocal.push(marker)
           distanceFromCenter(miles)
           markeEventHandler(marker, 'you!')
         }, function() {
@@ -157,33 +169,49 @@ $(function () {
           content: message
         });
         marker.addListener('click', function() {
-          window.location = "/" + infowindow.class;
+          window.location = "/posts/" + infowindow.class;
         })
         marker.addListener('mouseover', function() {
-          $('#' + infowindow.class).css('color', 'rgb(224, 123, 40)')
+          $('#' + infowindow.class).css('background', 'rgba(111, 106, 102, 0.31)')
           infowindow.open(marker.get('map'), marker);
         });
         marker.addListener('mouseout', function(){
-          $('#' + infowindow.class).css('color', 'black')
+          $('#' + infowindow.class).css('background', 'none')
           infowindow.close()
         })
         $(document).on('mouseover', '#' + infowindow.class, function () {
-          $('#' + infowindow.class).css('color', 'rgb(224, 123, 40)')
+          $('#' + infowindow.class).css('background', 'rgba(111, 106, 102, 0.31)')
           infowindow.open(marker.get('map'), marker);
         })
         $(document).on('mouseout', '#' + infowindow.class, function () {
-          $('#' + infowindow.class).css('color', 'black')
+          $('#' + infowindow.class).css('background', 'none')
           infowindow.close()
         })
       }
 
       $('#radius').on('change', function () {
+        miles = +$('#radius').val();
         if (located) {
           distanceFromCenter(miles)
         };
-        miles = +$('#radius').val();
       });
+      var parce = 0;
+      $('.nextarrow').on('click', function () {
+
+        if ($(this).attr('id') === 'next') {
+          parce++
+        }else{
+          parce--
+          parce = parce < 0 ? 0 : parce;
+        }
+        if (located) {
+          distanceFromCenter(miles)
+        }else{
+          socket.emit('world', parce);
+        }
+      })
     };
+
 
     window.initAutocomplete = initAutocomplete;
   });
