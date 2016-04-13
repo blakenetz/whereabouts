@@ -42,6 +42,7 @@ router.get('/:id', function(req, res, next) {
   knex('posts')
   .where('posts.id', req.params.id).first()
   .innerJoin('users', 'posts.user_id', 'users.id')
+
   .then(function(post){
     knex('comments')
     .where('comments.post_id', req.params.id)
@@ -50,12 +51,23 @@ router.get('/:id', function(req, res, next) {
       res.render('postDetails', {
         title: 'Post Details!',
         errors: errorArray,
+        post_id: req.params.id,
         post: post,
         comments: comments,
-        post_id: req.params.id
       });
       errorArray = [];
     })
+  })
+});
+
+router.delete('/:post_id', function(req, res, next) {
+  console.log('got herez');
+  console.log(req.params.post_id);
+  knex('posts').where({'id': req.params.post_id}).del()
+  .then(function() {
+    console.log('here too');
+    // res.redirect('/');
+    res.status(200).json('success');
   })
 });
 
@@ -82,7 +94,6 @@ router.post('/comments/add/:post_id', function(req, res, next){
 router.get('/:id/edit', function(req, res, next){
   knex('posts').where({id: req.params.id}).first()
   .then(function(post){
-    console.log(post);
     res.render('postEdit', {title: 'Post Edit!',
     id: req.params.id,
     post: post});

@@ -24,7 +24,6 @@ const authorizedUser = require("../userAuth.js").authorizedUser;
 router.get('/:id', function(req, res, next){
   knex('users').where({id: req.params.id})
   .then( function (user) {
-    console.log(user);
     res.render('userDetails', {user: user})
   })
 })

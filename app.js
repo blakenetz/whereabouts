@@ -90,7 +90,6 @@ passport.use(new GitHubStrategy({
       if (user) {
         return cb(null, {user_id: user.id, admin: user.admin});
       }
-
       if (!user) {
         knex('users').insert({
           auth_id: profile.id,
@@ -117,6 +116,17 @@ passport.deserializeUser(function(user, done) {
   done(null, user)
 });
 
+
+
+function isAdmin (req, res, next) {
+  console.log(req.session);
+    if (req.session.passport.user.admin) {
+      next()
+    } else {
+    res.redirect('/')
+  }
+}
+
 // app.use(function (req, res, next) {
 //   console.log('got here');
 //   req.user = req.session.passport.user;
@@ -126,7 +136,7 @@ passport.deserializeUser(function(user, done) {
 //   next();
 // })
 
-app.use('/admin', admin);
+app.use('/admin', isAdmin, admin);
 app.use('/auth', auth);
 app.use('/', routes);
 app.use('/users', users);
