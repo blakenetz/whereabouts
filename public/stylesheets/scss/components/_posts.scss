@@ -28,6 +28,13 @@
   align-items: baseline;
 }
 
+.post-title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .post-rating-container {
   display: flex;
   flex-direction: row-reverse;
@@ -78,4 +85,17 @@
 
 .comment-footer {
   font-size: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.comment-name {
+  margin-right: 15px;
+}
+
+.error {
+  color: red;
+  margin: 0px;
+  font-weight: bold;
 }

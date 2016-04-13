@@ -72,3 +72,20 @@ body {
   justify-content: space-around;
   align-items: flex-start;
 }
+
+.login-container {
+  padding: 15px;
+  border-radius: 10px;
+  background: white;
+}
+
+.radius-form {
+  width: 100px;
+}
+
+.map-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}

@@ -22,6 +22,12 @@
   justify-content: space-between;
   align-items: baseline; }
 
+.post-title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; }
+
 .post-rating-container {
   display: flex;
   flex-direction: row-reverse;
@@ -63,7 +69,18 @@
   width: 100%; }
 
 .comment-footer {
-  font-size: 10px; }
+  font-size: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end; }
+
+.comment-name {
+  margin-right: 15px; }
+
+.error {
+  color: red;
+  margin: 0px;
+  font-weight: bold; }
 
 .userform, .userdelete {
   padding: 15px;
@@ -137,3 +154,16 @@ body {
   height: 75vh;
   justify-content: space-around;
   align-items: flex-start; }
+
+.login-container {
+  padding: 15px;
+  border-radius: 10px;
+  background: white; }
+
+.radius-form {
+  width: 100px; }
+
+.map-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; }

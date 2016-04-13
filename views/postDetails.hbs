@@ -1,7 +1,20 @@
+{{#if errors}}
+<ul>
+  {{#errors}}
+  <li class='error'>{{this}}</li>
+  {{/errors}}
+</ul>
+{{/if}}
+
 <div class="post-details col-md-8 col-md-offset-2 col-xs-12">
   {{#post}}
   <div class="post-title">
-    <h1>{{title}}</h1>
+    <div class="post-title-container">
+      <h1>{{title}}</h1>
+      <a href="/posts/{{id}}/edit">
+        <button type="button" class="btn btn-default" name="edit">EDIT</button>
+      </a>
+    </div>
     <div class="post-rating-container">
       <h3 class="rating">{{rating}}</h3>
       <form method="POST" action="/posts/{{id}}/upvote">
@@ -12,6 +25,7 @@
       </form>
     </div>
   </div>
+  <h4>Posted by: {{username}}</h4>
 
   <div class="post-map-image">
     <img src="{{img_link}}" alt="" />
@@ -27,15 +41,15 @@
   <div class="comment-box">
     <p class='comment-text'>{{comment}}</p>
     <div class="comment-footer">
+      <p class="comment-name">{{username}}</p>
       <p>{{created_at}}</p>
-      <p>COMMENTER NAME</p>
     </div>
   </div>
   <hr>
   {{/comments}}
 
   <h2>Leave a Comment!</h2>
-  <form method="POST" action="/comments/add/{{id}}">
+  <form method="POST" action="/posts/comments/add/{{id}}">
     <fieldset class="form-group">
       <label for="comment">Comment</label>
       <textarea class="form-control" name='comment' id="comment" placeholder="Type Your Comment Here!"></textarea>
