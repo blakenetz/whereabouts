@@ -68,7 +68,7 @@ passport.use(new LocalStrategy(
   function(username, password, cb) {
   knex('users').where({ username: username }).first()
   .then(function (user) {
-    if (!user) { return cb(null, false, { message: "Invalid username"}); }
+    if (!user) { return cb( null, false ); }
     else if ( user && bcrypt.compareSync(password + user.salt, user.password) ) {
       return cb(null, {user_id: user.id, admin: user.admin});
     } else {
