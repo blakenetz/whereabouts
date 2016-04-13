@@ -13,15 +13,15 @@
    <tbody>
     {{#users}}
       <tr>
-        <td>{{id}}</td>
+        <td>{{user_id}}</td>
         <td>{{email}}</td>
         <td>{{username}}</td>
         {{#if admin}}
-        <td><input type="checkbox" class="userEdit" data-user-id="{{id}}" value="{{id}}" checked="checked"></td>
+        <td><input type="checkbox" class="userEdit" data-user-id="{{user_id}}" value="{{id}}" checked="checked"></td>
         {{else}}
-        <td><input type="checkbox" class="userEdit" data-user-id="{{id}}" value="{{id}}"></td>
+        <td><input type="checkbox" class="userEdit" data-user-id="{{user_id}}" value="{{id}}"></td>
         {{/if}}
-        <td class="userDelete" data-user-id="{{id}}"><button type="button" name="delete">Delete</button></td>
+        <td class="userDelete" data-user-id="{{user_id}}"><button type="button" name="delete">Delete</button></td>
       </tr>
     {{/users}}
     </tbody>

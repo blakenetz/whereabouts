@@ -25,10 +25,10 @@ exports.up = function(knex, Promise) {
   })
   .createTable('comments', function ( table ){
     table.increments('comment_id');
-    table.integer('user_fk').references('users.user_id');
+    table.integer('user_fk').references('users.user_id').onDelete('cascade').onUpdate('cascade');
     table.timestamp('created_at').notNullable().defaultTo(knex.raw('now()'));
     table.text('comment');
-    table.integer('post_fk').references('posts.post_id');
+    table.integer('post_fk').references('posts.post_id').onDelete('cascade').onUpdate('cascade');
   })
 };
 
