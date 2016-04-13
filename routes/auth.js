@@ -10,17 +10,17 @@ router.post('/signup', function(req, res, next){
       erra : "Please enter a valid username",
       body : req.body
     })
-  } if (req.body.email.length < 1 ) {
+  } else if ( /^[^@]+@[^@]+\.[^@]+$/.test(req.body.email) === false ) {
     res.render('signup', {
       errb : "Please enter a valid email address",
       body : req.body
     })
-  } if (req.body.password.length < 5) {
+  } else if (req.body.password.length < 4) {
     res.render('signup', {
-      errc : "Passwords must contain 6 or more characters",
+      errc : "Passwords must contain 4 or more characters",
       body : req.body
     })
-  } if (req.body.avatar.length < 1) {
+  } else if (req.body.avatar.length < 1) {
     res.render('signup', {
       errd : "Please add a URL to your avatar",
       body : req.body
