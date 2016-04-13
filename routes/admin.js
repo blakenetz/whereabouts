@@ -17,7 +17,9 @@ router.delete('/:id', function(req, res, next) {
   });
 });
 
-// router.patch('')
+router.patch('/:id/:checked', function(req, res , next) {
+  
+})
 // router.post('/edit', function(req, res, next){
 //   knex('users').where({'id': req.params.id})
 //   .then(function(user){

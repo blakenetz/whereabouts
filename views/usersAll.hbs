@@ -45,8 +45,8 @@ $('.userDelete').on('click', function(){
 });
 
 $('.userEdit').on('click', function(e){
-var user_id = ($(this).data('user-id'));
-var checked = ($(this).is(':checked');
+  var user_id = ($(this).data('user-id'));
+  var checked = ($(this).is(':checked');
 
   $.ajax({
     url: '/admin/' + user_id + "/" + checked,
