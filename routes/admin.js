@@ -10,7 +10,6 @@ router.get('/', function (req, res, next){
 });
 
 router.delete('/:id', function(req, res, next) {
-  console.log('got here');
   knex('users').where({'id': req.params.id}).del()
   .then(function() {
     res.status(200).json({user: 'deleted'});
