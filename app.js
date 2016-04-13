@@ -72,7 +72,7 @@ passport.use(new LocalStrategy(
     console.log(user);
     if (!user) { return cb(null, false); }
     else if ( user && bcrypt.compareSync(password + user.salt, user.password) ) {
-      return cb(null, {user_id: user.id, username: username, admin: user.admin});
+      return cb(null, {user_id: user.user_id, admin: user.admin});
     } else {
       return cb(null, false);
     }
@@ -90,7 +90,7 @@ passport.use(new GitHubStrategy({
     knex('users').where({auth_strategy: "github", auth_id: profile.id}).first()
     .then(function(user){
       if (user) {
-        return cb(null, {user_id: user.id, username: user.username, admin: user.admin});
+        return cb(null, {user_id: user.user_id, admin: user.admin});
       }
       if (!user) {
         knex('users').insert({
@@ -101,7 +101,7 @@ passport.use(new GitHubStrategy({
           avatar: profile._json.avatar_url
         }).returning('*')
           .then(function(user){
-            return cb(null, {user_id: user.id, username: user.username, admin: user.admin});
+            return cb(null, {user_id: user.user_id, admin: user.admin});
           })
         }
       })

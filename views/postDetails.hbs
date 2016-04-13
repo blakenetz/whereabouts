@@ -37,6 +37,7 @@
   <hr>
   {{#comments}}
   <div class="comment-box">
+    <button class="commentDelete" data-comment-id="{{id}}" type="button" name="delete">Delete</button>
     <p class='comment-text'>{{comment}}</p>
     <div class="comment-footer">
       <p class="comment-name">{{username}}</p>
@@ -47,7 +48,7 @@
   {{/comments}}
 
   <h2>Leave a Comment!</h2>
-  <form method="POST" action="/posts/comments/add/{{id}}">
+  <form method="POST" action="/posts/comments/add/{{post_id}}">
     <fieldset class="form-group">
       <label for="comment">Comment</label>
       <textarea class="form-control" name='comment' id="comment" placeholder="Type Your Comment Here!"></textarea>
@@ -69,6 +70,21 @@ $('.postDelete').on('click', function(){
    success: function(result) {
      if (result) {
        window.location='/';
+     }
+   }
+ });
+
+});
+$('.commentDelete').on('click', function(){
+ var comment_id = $(this).data('comment-id');
+  var comment_box = $(this).parent();
+
+ $.ajax({
+   url: "/comments/" + comment_id,
+   type: 'DELETE',
+   success: function(result) {
+     if (result) {
+       $(comment_box).slideUp();
      }
    }
  });

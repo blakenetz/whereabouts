@@ -10,14 +10,14 @@ router.get('/', function (req, res, next){
 });
 
 router.delete('/:id', function(req, res, next) {
-  knex('users').where({'id': req.params.id}).del()
+  knex('users').where({'user_id': req.params.id}).del()
   .then(function() {
     res.status(200).json({user: 'deleted'});
   })
 });
 
 router.patch('/:id/:checked', function(req, res , next) {
-  knex('users').where({'id': req.params.id}).update({'admin': req.params.checked})
+  knex('users').where({'user_id': req.params.id}).update({'admin': req.params.checked})
   .then(function(){
     res.status(200).json({user: 'edited'});
   })
