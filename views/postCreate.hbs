@@ -33,23 +33,42 @@
     <form method="POST" action="/posts/add">
       <fieldset class="form-group">
         <label for="title">Title</label>
-        <input type="text" class="form-control" name='title' id="title" autofocus="true">
+        {{#if erra}}
+        <p class="error">{{error}}</p>
+        <input type="text" class="form-control"  style='border: 1px solid red' name='title' id="title" autofocus="true">
+        {{else}}
+        <input type="text" class="form-control" name='title' id="title" autofocus="true" value="{{body.title}}">
+        {{/if}}
       </fieldset>
+
       <fieldset class="form-group">
         <label for="lat">Location Latitude</label>
-        <input type="text" class="form-control" name='lat' id="lat">
+        <input type="text" class="form-control" name='lat' id="lat" value="{{body.lat}}">
       </fieldset>
+
       <fieldset class="form-group">
         <label for="lng">Location Longitude</label>
-        <input type="text" class="form-control" name='lng' id="lng">
+        <input type="text" class="form-control" name='lng' id="lng" value="{{body.lng}}">
       </fieldset>
+
       <fieldset class="form-group">
         <label for="img_link">Image Link</label>
-        <input type="text" class="form-control" name='img_link' id="img_link">
+        {{#if errb}}
+        <p class="error">{{error}}</p>
+        <input type="text" class="form-control" style='border: 1px solid red' name='img_link' id="img_link">
+        {{else}}
+        <input type="text" class="form-control" name='img_link' id="img_link" value="{{body.img_link}}">
+        {{/if}}
       </fieldset>
+
       <fieldset class="form-group">
-        <label for="description">Post</label>
-        <textarea class="form-control" name='description' id="description"></textarea>
+        <label for="description">Description</label>
+        {{#if errc}}
+        <p class="error">{{error}}</p>
+        <textarea class="form-control" name='description' style='border: 1px solid red' id="description"></textarea>
+        {{else}}
+        <textarea class="form-control" name='description' id="description">{{body.description}}</textarea>
+        {{/if}}
       </fieldset>
       <input type="submit" class="btn btn-primary btn-lg" value="Submit Post">
     </form>
