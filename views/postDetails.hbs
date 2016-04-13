@@ -25,6 +25,7 @@
       </form>
     </div>
   </div>
+  <h4>Posted by: {{username}}</h4>
 
   <div class="post-map-image">
     <img src="{{img_link}}" alt="" />
@@ -38,10 +39,9 @@
   <hr>
   {{#comments}}
   <div class="comment-box">
-    <p>{{username}} says:</p>
     <p class='comment-text'>{{comment}}</p>
     <div class="comment-footer">
-      <p class="comment-name">COMMENTER NAME</p>
+      <p class="comment-name">{{username}}</p>
       <p>{{created_at}}</p>
     </div>
   </div>
