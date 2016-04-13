@@ -6,6 +6,8 @@ $(function () {
   var located = false;
   var markerLocal = [];
   var bounds;
+  var parce = 0;
+
 
   function initAutocomplete() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -200,7 +202,6 @@ $(function () {
           distanceFromCenter(miles)
         };
       });
-      var parce = 0;
       $('.nextarrow').on('click', function () {
 
         if ($(this).attr('id') === 'next') {
@@ -221,7 +222,7 @@ $(function () {
         if (located) {
           distanceFromCenter(miles, add, id)
         } else {
-          socket.emit('notlocated', {add: add, id: id, parce: parce})
+          socket.emit('notlocated', {add: add, id: id, parce: parce * 2})
         }
       })
     };
