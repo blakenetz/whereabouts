@@ -6,8 +6,11 @@ exports.up = function(knex, Promise) {
     table.string('email').unique();
     table.string('username').unique();
     table.string('password');
+    table.integer('salt');
     table.string('avatar');
     table.boolean('admin').defaultTo(false);
+    table.string('auth_id');
+    table.string('auth_strategy');
   })
   .createTable('posts', function ( table ){
     table.increments();
