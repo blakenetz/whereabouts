@@ -44,7 +44,6 @@ router.get('/:id', function(req, res, next) {
   .innerJoin('users', 'posts.user_id', 'users.id')
 
   .then(function(post){
-    console.log('>>>>>>>>>>>>>>>>>>>', post);
     knex('comments')
     .where('comments.post_id', req.params.id)
     .innerJoin('users', 'users.id', 'comments.user_id')
@@ -78,31 +77,6 @@ router.post('/comments/add/:post_id', function(req, res, next){
     })
   }
 
-})
-
-
-router.get('/:id/edit', function(req, res, next){
-  knex('posts').where({id: req.params.id}).first()
-  .then(function(post){
-    console.log(post);
-    res.render('postEdit', {title: 'Post Edit!',
-    id: req.params.id,
-    post: post});
-  })
-})
-
-router.post('/:id/edit', function(req, res, next){
-  knex('posts').where({id: req.params.id})
-  .update({title: req.body.title,
-    lat: req.body.lat,
-    lng: req.body.lng,
-    img_link: req.body.img_link,
-    description: req.body.description
-  })
-  .returning('id')
-  .then(function(id){
-    res.redirect('/posts/'+id)
-  })
 })
 
 router.post('/:id/upvote', function(req, res, next){
