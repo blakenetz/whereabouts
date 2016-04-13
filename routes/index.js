@@ -5,7 +5,7 @@ var unirest = require('unirest');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('index');
+    res.render('index', {user: req.session.user_id, admin: req.session.admin});
 });
 
 router.get('/login', function(req, res, next) {
@@ -21,9 +21,10 @@ router.get('/signup', function (req, res, next){
 })
 
 router.get('/logout', function(req, res, next){
-  console.log('before', req.session);
+
   req.session = null;
-  console.log('after', req.session);
+
+
   res.redirect('/');
 })
 
