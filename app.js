@@ -17,7 +17,7 @@ var auth = require('./routes/auth');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var posts = require('./routes/posts');
-var comments = require('./routes/comments');
+// var comments = require('./routes/comments');
 
 var app = express();
 
@@ -75,8 +75,7 @@ passport.use(new LocalStrategy(
       return cb(null, false);
     }
   });
-}
-))
+}))
 
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
@@ -93,13 +92,13 @@ passport.use(new GitHubStrategy({
       }
 
       if (!user) {
-        knex('users').insert({auth_id: profile.id,
-                              auth_strategy: 'github',
-                              username: profile.username,
-                              email: profile._json.email,
-                              avatar: profile._json.avatar_url
-                            })
-                              .returning('*')
+        knex('users').insert({
+          auth_id: profile.id,
+          auth_strategy: 'github',
+          username: profile.username,
+          email: profile._json.email,
+          avatar: profile._json.avatar_url
+        }).returning('*')
           .then(function(user){
             return cb(null, {user_id: user.id, admin: user.admin});
           })
@@ -131,7 +130,7 @@ app.use('/auth', auth);
 app.use('/', routes);
 app.use('/users', users);
 app.use('/posts', posts);
-app.use('/comments', comments);
+// app.use('/comments', comments);
 
 
 // catch 404 and forward to error handler

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var knex = require('knex')(require('../knexfile')[process.env.DB_ENV]);
 
+var errorArray = [];
 /* GET home page. */
 router.get('/add', function(req, res, next){
   res.render('postCreate.hbs')
@@ -28,7 +29,7 @@ router.post('/add', function(req, res, next){
       title: req.body.title,
       lat: req.body.lat,
       lng: req.body.lng,
-      imgLink: req.body.img_link,
+      img_link: req.body.img_link,
       description: req.body.description,
     })
     .then(function(){
@@ -38,22 +39,47 @@ router.post('/add', function(req, res, next){
 })
 
 router.get('/:id', function(req, res, next) {
-  knex('posts').where({id: req.params.id}).first()
+  knex('posts')
+  .where('posts.id', req.params.id).first()
+  .innerJoin('users', 'posts.user_id', 'users.id')
+
   .then(function(post){
+    console.log('>>>>>>>>>>>>>>>>>>>', post);
     knex('comments')
     .where('comments.post_id', req.params.id)
-    // .innerJoin('users', 'users.id', 'comments.user_id')
+    .innerJoin('users', 'users.id', 'comments.user_id')
     .then(function(comments){
-      console.log(comments);
       res.render('postDetails', {
         title: 'Post Details!',
+        errors: errorArray,
         id: req.params.id,
         post: post,
         comments: comments,
       });
+      errorArray = [];
     })
   })
 });
+
+router.post('/comments/add/:post_id', function(req, res, next){
+
+  if(!req.session.passport) {
+    errorArray.push('You Must Be Logged In To Leave a Comment!');
+    res.redirect('/posts/'+req.params.post_id)
+  } else {
+    knex('comments')
+    .insert({
+      comment: req.body.comment,
+      post_id: req.params.post_id,
+      user_id: req.session.passport.user.user_id
+    }).return('post_id')
+    .then(function(post_id){
+      res.redirect('/posts/'+req.params.post_id)
+    })
+  }
+
+})
+
 
 router.get('/:id/edit', function(req, res, next){
   knex('posts').where({id: req.params.id}).first()
