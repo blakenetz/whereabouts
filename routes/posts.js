@@ -66,17 +66,35 @@ router.get('/:id/edit', function(req, res, next){
 })
 
 router.post('/:id/edit', function(req, res, next){
-  knex('posts').where({id: req.params.id})
-  .update({title: req.body.title,
-    lat: req.body.lat,
-    lng: req.body.lng,
-    img_link: req.body.img_link,
-    description: req.body.description
-  })
-  .returning('id')
-  .then(function(id){
-    res.redirect('/posts/'+id)
-  })
+  if ( req.body.title.length < 1 ){
+    res.render('postEdit', {
+      erra : "Title can't be blank",
+      post: req.body
+    })
+  } if ( req.body.img_link.length < 1 ){
+    res.render('postEdit', {
+      errb : "Please insert an image link",
+      post: req.body
+    })
+  } if ( req.body.description.length < 1 ){
+    res.render('postEdit', {
+      errc : "Description can't be blank",
+      post: req.body
+    })
+  } else {
+    knex('posts').where({id: req.params.id})
+    .update({
+      title: req.body.title,
+      lat: req.body.lat,
+      lng: req.body.lng,
+      img_link: req.body.img_link,
+      description: req.body.description
+    })
+    .returning('id')
+    .then(function(id){
+      res.redirect('/posts/'+id)
+    })
+  }
 })
 
 router.post('/:id/upvote', function(req, res, next){
