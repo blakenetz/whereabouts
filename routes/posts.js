@@ -52,7 +52,6 @@ router.get('/:id', function(req, res, next) {
         errors: errorArray,
         post: post,
         comments: comments,
-        post_id: req.params.id
       });
       errorArray = [];
     })
@@ -82,7 +81,6 @@ router.post('/comments/add/:post_id', function(req, res, next){
 router.get('/:id/edit', function(req, res, next){
   knex('posts').where({id: req.params.id}).first()
   .then(function(post){
-    console.log(post);
     res.render('postEdit', {title: 'Post Edit!',
     id: req.params.id,
     post: post});
