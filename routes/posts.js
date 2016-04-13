@@ -21,13 +21,20 @@ router.post('/add', function(req, res, next){
 })
 
 router.get('/:id', function(req, res, next) {
-  knex('posts').where({ id: req.params.id }).first()
-  // .innerJoin('comments', 'posts.id', 'comments.post_id')
-  .then(function ( data ){
-    console.log( data );
-    res.render('postDetails', { posts: data })
+  knex('posts').where({id: req.params.id}).first()
+  .then(function(post){
+    knex('comments').where({post_id: req.params.id})
+    .then(function(comments){
+      res.render('postDetails', { title: 'Post Details!',
+                                  id: req.params.id,
+                                  post: post,
+                                  comments: comments,
+                                }):
+    })
   })
 });
+
+
 
 router.get('/:id/edit', function(req, res, next){
   knex('posts').where({id: req.params.id}).first()
