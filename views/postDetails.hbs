@@ -10,7 +10,7 @@
   {{#post}}
   <div class="post-title">
     <div class="post-title-container">
-      <h1>{{title}}{{id}}</h1>
+      <h1 lat='{{this.lat}}' lng='{{this.lng}}'>{{title}}</h1>
       <a href="/posts/{{id}}/edit">
         <button type="button" class="btn btn-default" name="edit">EDIT</button>
       </a>
@@ -26,10 +26,9 @@
     </div>
   </div>
   <h4>Posted by: {{username}}</h4>
-
-  <div class="post-map-image">
-    <img src="{{img_link}}" alt="" />
-    <div class="post-map" id="map"></div>
+  <div class="" style='display: flex; align-items: column; justify-content: space-between'>
+    <img src="{{img_link}}" alt="" style='height: 300px; width: 49%;'>
+    <div id="map" style='height: 300px; width: 49%;'></div>
   </div>
 
   <p class="post-description">{{description}}</p>
@@ -56,5 +55,6 @@
     </fieldset>
     <input type="submit" class="btn btn-primary btn-lg" value="Comment">
   </form>
-
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCY6IF5KZuqMBt61jyVNQshduxTFUArNZY&libraries=places&callback=initAutocomplete" async defer></script>
+<script type="text/javascript" src='/javascripts/postsjava.js'></script>

@@ -42,7 +42,6 @@ router.get('/:id', function(req, res, next) {
   knex('posts')
   .where('posts.id', req.params.id).first()
   .innerJoin('users', 'posts.user_id', 'users.id')
-
   .then(function(post){
     knex('comments')
     .where('comments.post_id', req.params.id)
@@ -51,9 +50,9 @@ router.get('/:id', function(req, res, next) {
       res.render('postDetails', {
         title: 'Post Details!',
         errors: errorArray,
-        id: req.params.id,
         post: post,
         comments: comments,
+        post_id: req.params.id
       });
       errorArray = [];
     })
