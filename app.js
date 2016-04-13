@@ -75,8 +75,7 @@ passport.use(new LocalStrategy(
       return cb(null, false);
     }
   });
-}
-))
+}))
 
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
@@ -93,13 +92,13 @@ passport.use(new GitHubStrategy({
       }
 
       if (!user) {
-        knex('users').insert({auth_id: profile.id,
-                              auth_strategy: 'github',
-                              username: profile.username,
-                              email: profile._json.email,
-                              avatar: profile._json.avatar_url
-                            })
-                              .returning('*')
+        knex('users').insert({
+          auth_id: profile.id,
+          auth_strategy: 'github',
+          username: profile.username,
+          email: profile._json.email,
+          avatar: profile._json.avatar_url
+        }).returning('*')
           .then(function(user){
             return cb(null, {user_id: user.id, admin: user.admin});
           })
