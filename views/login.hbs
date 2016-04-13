@@ -1,5 +1,9 @@
 <div class="login-container col-md-6 col-md-offset-3 col-xs-12">
 
+  {{#message}}
+  <p class="login-message">{{this}}</p>
+  {{/message}}
+
   <h1>Login</h1>
 
   {{#if user}}

@@ -93,6 +93,11 @@
 .userform .btn:hover {
   background: #20844e; }
 
+.login-message {
+  border: 1px solid red;
+  border-radius: 5px;
+  padding: 15px; }
+
 body {
   padding-top: 70px;
   background: #f1f1f0;

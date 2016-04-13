@@ -6,12 +6,17 @@
     Have an account? <a href="/login">Click Here to Sign In!</a>
   </p>
   <p>
-    Or: <a href="/auth/github">Login With GitHub</a>
+    Or: <a href="/auth/github">Signup With GitHub</a>
   </p>
 
   <form method="POST" action="/auth/signup">
     <fieldset class="form-group">
       <label for="username">Username</label>
+
+      {{#if erre}}
+      <p class="error">{{erre}}</p>
+      {{/if}}
+      
       {{#if erra}}
       <p class="error">{{erra}}</p>
       <input type="text" style="border: 1px solid red" class="form-control" name='username' id="username" autofocus="true">
