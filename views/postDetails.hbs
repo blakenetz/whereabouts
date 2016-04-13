@@ -15,7 +15,11 @@
     </div>
     <div class="post-rating-container">
       <h3 class="rating">{{rating}}</h3>
-      <form method="POST" action="/posts/{{id}}/downvote">
+
+      <form method="POST" action="/posts/{{post_id}}/upvote">
+        <input type="image" src="/images/uparrow-green.png">
+      </form>
+      <form method="POST" action="/posts/{{post_id}}/downvote">
         <input type="image" src="/images/downarrow-red.png">
       </form>
       <form method="POST" action="/posts/{{id}}/upvote">
