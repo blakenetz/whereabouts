@@ -24,15 +24,18 @@ router.get('/:id', function(req, res, next) {
   .then(function(post){
     knex('comments').where({post_id: req.params.id})
     .then(function(comments){
+      console.log("hi");
       console.log(comments);
       res.render('postDetails', { title: 'Post Details!',
                                   id: req.params.id,
                                   post: post,
                                   comments: comments,
-                                });
+                                }):
     })
   })
 });
+
+
 
 router.get('/:id/edit', function(req, res, next){
   knex('posts').where({id: req.params.id}).first()
