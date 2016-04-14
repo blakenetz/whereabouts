@@ -257,6 +257,8 @@ body {
   border: none;
   background: none;
   color: #215977;
-  font-size: 65px;
+  font-size: 60px;
   text-align: center;
-  text-decoration: underline; }
+  text-decoration: underline;
+  width: auto;
+  justify-content: center; }
