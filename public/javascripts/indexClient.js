@@ -88,9 +88,9 @@ $(function () {
         radius: 1609.344 * miles
       });
       if (add) {
-        socket.emit('rating', { bounds: radius.getBounds(), parce: parce * 2, add: add, id: id})
+        socket.emit('rating', { bounds: radius.getBounds(), parce: parce * 10, add: add, id: id})
       }else{
-        socket.emit('located', {bounds: radius.getBounds(), parce: parce * 2})
+        socket.emit('located', {bounds: radius.getBounds(), parce: parce * 10})
       }
       map.fitBounds(radius.getBounds());
     }
@@ -213,7 +213,7 @@ $(function () {
         if (located) {
           distanceFromCenter(miles)
         }else{
-          socket.emit('world', parce * 2);
+          socket.emit('world', parce * 10);
         }
       })
       $(document).on('click', '.votearrow', function () {
