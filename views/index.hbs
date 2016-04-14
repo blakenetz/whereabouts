@@ -2,15 +2,13 @@
 
   <div class="map col-md-5 col-xs-12">
     <div class="thumbnail" value='{{session.user_id}}'>
-      <div  id="map" style='height: 400px; width: 100%;' role="map"></div>
-      <input id="pac-input" class="controls" type="text" placeholder="Search Map">
-      <div class="caption">
-        <div class="map-details">
-          <input type="button" class="btn btn-default" id='geo' value="Locate you">
-          <div class="radius-container">
-            <label class="col-lg-3 control-label">Mile radius: </label>
-            <input type="number" class="radius-form form-control" id='radius' name="dis" value='10' >
-          </div>
+      <div  id="map" style='height: 410px; width: 100%;' role="map"></div>
+      <div class="map-details">
+        <input id="pac-input" class="controls" type="text" placeholder="Search Map">
+        <input type="button" class="btn btn-default" id='geo' value="Locate you">
+        <div class="radius-container">
+          <label class="col-lg-3 control-label">Set radius:</label>
+          <input type="number" class="radius-form form-control" id='radius' name="dis" value='10' >
         </div>
       </div>
     </div>
@@ -19,7 +17,7 @@
   <div class="col-arrow-left col-xs-1">
     <input class="nextarrow" id='back' type="image" src="/images/leftarrow.png">
   </div>
-  <div class="posts col-md-5 col-xs-10" role="list of content">
+  <div class="posts index-posts col-md-5 col-xs-10" role="list of content">
   </div>
   <div class="col-arrow-right col-xs-1">
     <input class="nextarrow" id='next' type="image" src="/images/rightarrow.png">
@@ -28,9 +26,9 @@
 </div>
 
 <div class="contribute row">
-  <div class="contribute-button col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-2">
+  <div class="contribute-button col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-2 col-xs-offset-1">
     <a href="/posts/add">
-      <input class="post-button" type="button" value="Add a post!"/>
+      <input class="post-button" type="button" value="Add a post"/>
     </a>
   </div>
 </div>

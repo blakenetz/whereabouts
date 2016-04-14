@@ -3,6 +3,10 @@
   border-radius: 10px;
   background: white; }
 
+.post-details {
+  box-shadow: 0 -5px #575757;
+  margin-bottom: 30px; }
+
 .postform .btn {
   background: #5db485; }
 
@@ -32,6 +36,10 @@
 .post-rating-container input {
   max-height: 15px;
   width: auto; }
+
+.post-rating-container input:focus {
+  outline: none;
+  transform: scale(1.5, 1.5); }
 
 .post-rating-container form {
   max-height: 15px; }
@@ -155,7 +163,9 @@ body {
   padding: 15px;
   border-radius: 10px;
   background: white;
-  margin: 0px;
+  margin: 0px; }
+
+.index-posts {
   box-shadow: 0 5px #575757; }
 
 .media-data {
@@ -191,7 +201,9 @@ body {
 
 .votearrow {
   width: 15px;
-  height: 15px; }
+  height: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px; }
 
 .votearrow-box {
   display: flex;
@@ -202,6 +214,12 @@ body {
   height: auto;
   padding: 0px;
   margin: 0px; }
+
+.nextarrow:active, .votearrow:active {
+  transform: scale(1.5, 1.5); }
+
+.nextarrow:focus, .votearrow:focus {
+  outline: none; }
 
 .col-arrow-left {
   display: flex;
@@ -229,7 +247,16 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  height: 50px; }
+  height: 50px;
+  align-items: flex-end;
+  margin-top: 20px; }
+
+.map-details input {
+  height: 30px; }
+
+.control-label {
+  margin: 0px;
+  padding: 0px; }
 
 .media-right {
   display: flex;
@@ -255,6 +282,12 @@ body {
   border: none;
   background: none;
   color: #215977;
-  font-size: 65px;
+  font-size: 60px;
   text-align: center;
-  text-decoration: underline; }
+  text-decoration: underline;
+  width: auto;
+  justify-content: center; }
+
+.post-button:active, .post-button:focus {
+  outline: none;
+  color: #5B89A1; }
