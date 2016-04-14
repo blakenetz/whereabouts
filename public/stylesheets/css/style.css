@@ -119,15 +119,16 @@
 
 body {
   padding-top: 70px;
-  background: #f1f1f0;
-  font-family: roboto;
+  background: #BCD6E4;
+  font-family: caviar dreams;
   padding-right: 30px;
   padding-left: 30px; }
 
 #globeicon {
   height: 30px;
   width: auto;
-  margin-top: -5px; }
+  margin-top: -5px;
+  float: left; }
 
 .navbar {
   background: white; }
@@ -143,9 +144,12 @@ body {
   height: 70px;
   width: 70px; }
 
-.posts h4 {
+.post-title {
   font-weight: 900;
-  color: #5db485; }
+  color: #5DB485; }
+
+.post-author {
+  color: #FFC683; }
 
 .posts a {
   text-decoration: none; }
@@ -198,3 +202,17 @@ body {
 
 .contribute-button {
   width: 100%; }
+
+.app-name {
+  margin: 0;
+  float: left;
+  font-family: basic title font; }
+
+.post-button {
+  font-family: basic title font;
+  border: none;
+  background: none;
+  color: #215977;
+  font-size: 65px;
+  text-align: center;
+  text-decoration: underline; }
