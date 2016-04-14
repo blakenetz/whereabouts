@@ -33,6 +33,10 @@
   max-height: 15px;
   width: auto; }
 
+.post-rating-container input:focus {
+  outline: none;
+  transform: scale(1.5, 1.5); }
+
 .post-rating-container form {
   max-height: 15px; }
 

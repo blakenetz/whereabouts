@@ -5,14 +5,14 @@
   {{/errors}}
 </ul>
 <div class="post-details col-md-8 col-md-offset-2 col-xs-12">
-{{/if}}
+  {{/if}}
 
 
-{{#session}}
-{{#if admin}}
-<button class="postDelete btn btn-danger btn-block" data-post-id="{{../../post_id}}" type="button" name="delete">Delete This Post</button>
-{{/if}}
-{{/session}}
+  {{#session}}
+  {{#if admin}}
+  <button class="postDelete btn btn-danger btn-block" data-post-id="{{../../post_id}}" type="button" name="delete">Delete This Post</button>
+  {{/if}}
+  {{/session}}
 
   {{#post}}
   <div class="post-title">
@@ -31,9 +31,9 @@
     </div>
   </div>
   <h4><a href='/users/{{user_id}}'>Posted by: {{username}}</a></h4>
-  <div class="post-map-image">
-    <img src="{{img_link}}" alt="" >
-    <div style='max-height: 400px; width:49%' id="map" role="map"></div>
+  <div class="post-map-image col-md-12">
+      <img src="{{img_link}}" alt="" >
+      <div style='max-height: 400px; width:49%' id="map" role="map"></div>
   </div>
 
   <p class="post-description">{{description}}</p>
