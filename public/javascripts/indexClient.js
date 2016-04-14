@@ -96,6 +96,7 @@ $(function () {
     }
 
     $('#geo').on('click', function () {
+      $('#gif').css('display', 'block')
       parce = 0;
       if (navigator.geolocation) {
         located = true;
@@ -116,6 +117,7 @@ $(function () {
               strokeColor: 'red',
             },
           });
+          $('#gif').css('display', 'none')
           markerLocal.push(marker)
           distanceFromCenter(miles)
           markeEventHandler(marker, 'you!')
