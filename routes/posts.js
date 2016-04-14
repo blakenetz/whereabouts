@@ -44,7 +44,6 @@ router.post('/add', function(req, res, next){
     })
     .returning('post_id')
     .then(function(post_id){
-      console.log(post_id);
       res.redirect('/posts/'+post_id)
     })
   }
@@ -54,21 +53,25 @@ router.get('/:id', function(req, res, next) {
   knex('posts')
   .where('posts.post_id', req.params.id).first()
   .innerJoin('users', 'posts.user_fk', 'users.user_id')
-
   .then(function(post){
-    knex('comments')
-    .where('comments.post_fk', req.params.id)
-    .innerJoin('users', 'users.user_id', 'comments.user_fk')
-    .then(function(comments){
-      res.render('postDetails', {
-        title: 'Post Details!',
-        errors: errorArray,
-        post_id: req.params.id,
-        post: post,
-        comments: comments,
-      });
-      errorArray = [];
-    })
+    if (post) {
+
+      knex('comments')
+      .where('comments.post_fk', req.params.id)
+      .innerJoin('users', 'users.user_id', 'comments.user_fk')
+      .then(function(comments){
+        res.render('postDetails', {
+          title: 'Post Details!',
+          errors: errorArray,
+          post_id: req.params.id,
+          post: post,
+          comments: comments,
+        });
+        errorArray = [];
+      })
+    } else {
+      res.redirect('/')
+    }
   })
 });
 
