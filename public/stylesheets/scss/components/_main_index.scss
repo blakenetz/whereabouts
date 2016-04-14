@@ -52,6 +52,11 @@ body {
   background: white;
   height: 100px;
   margin: 0px;
+  box-shadow: 0 5px rgb(87, 87, 87);
+}
+
+.thumbnail {
+  box-shadow: 0 5px rgb(87, 87, 87);
 }
 
 .posts img {
@@ -72,7 +77,7 @@ body {
   text-decoration: none;
 }
 
-.index .posts, .index .map {
+.index .posts, .index .thumbnail {
   height: 75vh;
   overflow: scroll;
   margin-bottom: 15px;

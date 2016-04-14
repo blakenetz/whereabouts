@@ -7,22 +7,19 @@
 {{/if}}
 
 <div class="post-details col-md-8 col-md-offset-2 col-xs-12">
-<button class="postDelete" data-post-id="{{post_id}}" type="button" name="delete">Delete</button>
+  <button class="postDelete" data-post-id="{{post_id}}" type="button" name="delete">Delete</button>
   {{#post}}
   <div class="post-title">
-    <div class="post-title-container">
-      <h1>{{title}}</h1>
-    </div>
+    <h1>{{title}}</h1>
+
     <div class="post-rating-container">
-      <h3 class="rating">{{rating}}</h3>
-      <div class="post-arrow-container">
       <form method="POST" action="/posts/{{post_id}}/upvote">
         <input type="image" src="/images/uparrow-green.png">
       </form>
+      <h3 class="rating">{{rating}}</h3>
       <form method="POST" action="/posts/{{post_id}}/downvote">
         <input type="image" src="/images/downarrow-red.png">
       </form>
-    </div>
 
     </div>
   </div>
@@ -65,33 +62,33 @@
 
 <script type="text/javascript">
 $('.postDelete').on('click', function(){
- var post_id = $(this).data('post-id');
+  var post_id = $(this).data('post-id');
 
- $.ajax({
-   url: "/posts/" + post_id,
-   type: 'DELETE',
-   success: function(result) {
-     if (result) {
-       window.location='/';
-     }
-   }
- });
+  $.ajax({
+    url: "/posts/" + post_id,
+    type: 'DELETE',
+    success: function(result) {
+      if (result) {
+        window.location='/';
+      }
+    }
+  });
 
 });
 $('.commentDelete').on('click', function(){
- var comment_id = $(this).data('comment-id');
+  var comment_id = $(this).data('comment-id');
   var comment_box = $(this).parent();
   console.log('comment_id: ', comment_id);
 
- $.ajax({
-   url: "/comments/" + comment_id,
-   type: 'DELETE',
-   success: function(result) {
-     if (result) {
-       $(comment_box).slideUp();
-     }
-   }
- });
+  $.ajax({
+    url: "/comments/" + comment_id,
+    type: 'DELETE',
+    success: function(result) {
+      if (result) {
+        $(comment_box).slideUp();
+      }
+    }
+  });
 
 });
 </script>

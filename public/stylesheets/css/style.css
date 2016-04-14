@@ -20,30 +20,28 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: baseline; }
-
-.post-title-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center; }
 
 .post-rating-container {
   display: flex;
-  flex-direction: row-reverse;
-  align-items: center; }
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px; }
 
 .post-rating-container input {
   max-height: 15px;
   width: auto; }
 
+.post-rating-container form {
+  max-height: 15px; }
+
 .rating {
   border: 1px solid black;
   padding: 5px;
   border-radius: 5px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-left: 8px; }
+  margin-top: 5px;
+  margin-bottom: 5px; }
 
 .post-map-image {
   display: flex;
@@ -100,11 +98,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between; }
-
-.post-arrow-container {
-  margin-top: 5px;
-  display: flex;
-  flex-direction: column; }
 
 .userform, .userdelete {
   padding: 15px;
@@ -167,7 +160,11 @@ body {
   border-radius: 10px;
   background: white;
   height: 100px;
-  margin: 0px; }
+  margin: 0px;
+  box-shadow: 0 5px #575757; }
+
+.thumbnail {
+  box-shadow: 0 5px #575757; }
 
 .posts img {
   height: 70px;
@@ -183,7 +180,7 @@ body {
 .posts a {
   text-decoration: none; }
 
-.index .posts, .index .map {
+.index .posts, .index .thumbnail {
   height: 75vh;
   overflow: scroll;
   margin-bottom: 15px; }
