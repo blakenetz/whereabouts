@@ -4,6 +4,11 @@
   background: white;
 }
 
+.post-details {
+  box-shadow: 0 -5px rgb(87, 87, 87);
+  margin-bottom: 30px;
+}
+
 .postform .btn {
   background: #5db485;
 }
@@ -40,6 +45,11 @@
 .post-rating-container input {
   max-height: 15px;
   width: auto;
+}
+
+.post-rating-container input:focus {
+  outline: none;
+  transform: scale(1.5, 1.5);
 }
 
 .post-rating-container form {

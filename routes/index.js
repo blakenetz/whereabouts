@@ -10,6 +10,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
+  if (req.app.locals.session.user_id > 0){
+    res.redirect('/')
+  }
   res.render('login');
 });
 

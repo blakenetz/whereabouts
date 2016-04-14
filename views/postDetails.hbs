@@ -1,13 +1,11 @@
 {{#if errors}}
 <ul>
   {{#errors}}
-  <li class='error'>{{this}}</li>
+  <p class='login-message error'>{{this}}</p>
   {{/errors}}
 </ul>
-<div class="post-details col-md-8 col-md-offset-2 col-xs-12">
 {{/if}}
-
-
+<div class="post-details col-md-10 col-md-offset-1 col-xs-12">
 
 {{#if session.admin}}
 <button class="postDelete btn btn-danger btn-block" data-post-id="{{../post_id}}" type="button" name="delete">Delete This Post</button>
@@ -16,7 +14,6 @@
 <button class="postDelete btn btn-danger btn-block" data-post-id="{{../post_id}}" type="button" name="delete">Delete Your Post</button>
 {{/if}}
 {{/if}}
-
 
   {{#post}}
   <div class="post-title">
@@ -34,8 +31,8 @@
 
     </div>
   </div>
-  <h4><a href='/users/{{user_id}}'>Posted by: {{username}}</a></h4>
-  <div class="post-map-image">
+  <h4>Posted by: <a href='/users/{{user_id}}'>{{username}}</a></h4>
+  <div class="post-map-image col-md-12">
     <img src="{{img_link}}" alt="" >
     <div style='max-height: 400px; width:49%' id="map" role="map"></div>
   </div>
@@ -56,7 +53,7 @@
     <button class="commentDelete btn btn-danger" data-comment-id="{{comment_id}}" type="button" name="delete">Delete This Comment</button>
     {{/if}}
     <div class="comment-footer">
-      <p class="comment-name">{{username}}</p>
+      <p class="comment-name"><a href='/users/{{user_id}}'>{{username}}</a></p>
       <p>{{created_at}}</p>
     </div>
   </div>
