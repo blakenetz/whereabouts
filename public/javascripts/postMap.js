@@ -4,6 +4,7 @@ function initAutocomplete() {
     center: {lat: 20, lng: 10},
     zoom: 2
   });
+  var iconBase = '/images/flag.';
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
   var markers = [];

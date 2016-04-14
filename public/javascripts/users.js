@@ -17,6 +17,7 @@ $(function () {
         var marker = new google.maps.Marker({
           position: {lat: +info.lat, lng: +info.lng},
           map: map,
+          icon: '/images/flag2.png'
         })
         markers.push(marker);
         markeEventHandler(marker, info.title, info.post_id)
@@ -67,7 +68,7 @@ $(function () {
         var id = +$(this).val()
         socket.emit('userRat', {add: add, id: id, userId: userId})
       } else {
-        window.location = "/login/"
+        window.location = "/login/invalid"
       }
     })
   };

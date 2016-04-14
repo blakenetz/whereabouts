@@ -27,6 +27,12 @@
   font-style: italic;
 }
 
+@media (max-width: 300px) {
+  .app-name {
+    display: none;
+  }
+}
+
 body {
   padding-top: 70px;
   background: #BCD6E4;

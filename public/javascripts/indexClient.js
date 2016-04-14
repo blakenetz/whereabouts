@@ -160,6 +160,7 @@ $(function () {
           var marker = new google.maps.Marker({
             position: {lat: +info.lat, lng: +info.lng},
             map: map,
+            icon: '/images/flag2.png'
           });
           markers.push(marker);
           markeEventHandler(marker, info.title, info.post_id);
@@ -236,7 +237,7 @@ $(function () {
             socket.emit('notlocated', {add: add, id: id, parce: parce * offset})
           }
         } else {
-          window.location = "/login/"
+          window.location = "/login/invalid"
         }
       })
     };

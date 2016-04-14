@@ -20,6 +20,10 @@ router.get('/login/error', function(req, res, next) {
   res.render('login-error');
 });
 
+router.get('/login/invalid', function(req, res, next) {
+  res.render('login-invalid');
+});
+
 router.get('/signup', function (req, res, next){
   res.render('signUp');
 })
