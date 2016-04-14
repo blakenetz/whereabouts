@@ -10,7 +10,7 @@ function isLoggedIn (req, res, next) {
   if (req.app.locals.session.user_id) {
     next();
   } else {
-    res.redirect('/login')
+    res.redirect('/signup')
   }
 }
 
@@ -54,7 +54,6 @@ router.post('/add', function(req, res, next){
     })
     .returning('post_id')
     .then(function(post_id){
-      console.log(post_id);
       res.redirect('/posts/'+post_id)
     })
   }
@@ -64,7 +63,6 @@ router.get('/:id', function(req, res, next) {
   knex('posts')
   .where('posts.post_id', req.params.id).first()
   .innerJoin('users', 'posts.user_fk', 'users.user_id')
-
   .then(function(post){
     knex('comments')
     .where('comments.post_fk', req.params.id)
@@ -81,6 +79,7 @@ router.get('/:id', function(req, res, next) {
       });
       errorArray = [];
     })
+
   })
 });
 
@@ -112,7 +111,7 @@ router.post('/comments/add/:post_id', function(req, res, next){
   }
 })
 
-router.post('/:id/upvote', function(req, res, next){
+router.post('/:id/upvote', isLoggedIn, function(req, res, next){
   knex('posts').where({post_id: req.params.id})
   .increment('rating', 10)
   .returning('post_id')
@@ -121,7 +120,7 @@ router.post('/:id/upvote', function(req, res, next){
   })
 })
 
-router.post('/:id/downvote', function(req, res, next){
+router.post('/:id/downvote', isLoggedIn, function(req, res, next){
 
   knex('posts').where({post_id: req.params.id})
   .decrement('rating', 10)

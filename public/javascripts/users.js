@@ -30,9 +30,9 @@ $(function () {
           +"<h4 class='media-heading'><a href='/posts/"+info.post_id+"'>"+info.title+"<a/></h4>"
           +"<h5 class='list-group-item-text'><a href='/users/"+info.user_fk+"'>Author:"+info.username+"</a></h5><br></div>")
         .append("<div class='media-right'>"
-          +"<input class='votearrow' type='image' src='/images/uparrow.png'>"
+          +"<input class='votearrow up' type='image' src='/images/uparrow.png' value='"+info.post_id+"'>"
           +"<h5>"+info.rating+"</h5>"
-          +"<input class='votearrow' type='image' src='/images/downarrow.png'></div>");
+          +"<input class='votearrow down' type='image' src='/images/downarrow.png' value='"+info.post_id+"'></div>");
       }
     })
     function markeEventHandler(marker, message, id) {
@@ -60,6 +60,15 @@ $(function () {
         infowindow.close()
       })
     }
+    $(document).on('click', '.votearrow', function () {
+      if ($('.posts').attr('value') > 0) {
+        var add = $(this).attr('class') == 'votearrow up' ? 10 : -10;
+        var id = +$(this).val()
+        socket.emit('userRat', {add: add, id: id, userId: userId})
+      } else {
+        window.location = "/signup/"
+      }
+    })
   };
 
     window.initAutocomplete = initAutocomplete;
