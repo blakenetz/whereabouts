@@ -6,6 +6,8 @@ $(function () {
   var located = false;
   var markerLocal = [];
   var bounds;
+  var parce = 0;
+
 
   function initAutocomplete() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -86,9 +88,9 @@ $(function () {
         radius: 1609.344 * miles
       });
       if (add) {
-        socket.emit('rating', { bounds: radius.getBounds(), parce: parce * 2, add: add, id: id})
+        socket.emit('rating', { bounds: radius.getBounds(), parce: parce * 10, add: add, id: id})
       }else{
-        socket.emit('located', {bounds: radius.getBounds(), parce: parce * 2})
+        socket.emit('located', {bounds: radius.getBounds(), parce: parce * 10})
       }
       map.fitBounds(radius.getBounds());
     }
@@ -200,7 +202,6 @@ $(function () {
           distanceFromCenter(miles)
         };
       });
-      var parce = 0;
       $('.nextarrow').on('click', function () {
 
         if ($(this).attr('id') === 'next') {
@@ -212,7 +213,7 @@ $(function () {
         if (located) {
           distanceFromCenter(miles)
         }else{
-          socket.emit('world', parce * 2);
+          socket.emit('world', parce * 10);
         }
       })
       $(document).on('click', '.votearrow', function () {
@@ -221,7 +222,7 @@ $(function () {
         if (located) {
           distanceFromCenter(miles, add, id)
         } else {
-          socket.emit('notlocated', {add: add, id: id, parce: parce})
+          socket.emit('notlocated', {add: add, id: id, parce: parce * 2})
         }
       })
     };

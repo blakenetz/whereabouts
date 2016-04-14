@@ -136,16 +136,16 @@ app.use(function(req, res, next) {
   next();
 })
 
-// function isAdmin (req, res, next) {
-//   console.log(req.session);
-//     if (req.session.admin) {
-//       next()
-//     } else {
-//     res.redirect('/')
-//   }
-// }
+function isAdmin (req, res, next) {
+  console.log(req.session);
+    if (req.session.admin) {
+      next()
+    } else {
+    res.redirect('/')
+  }
+}
 
-app.use('/admin', admin);
+app.use('/admin', isAdmin, admin);
 app.use('/auth', auth);
 app.use('/', routes);
 app.use('/users', users);
