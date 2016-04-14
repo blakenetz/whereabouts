@@ -4,7 +4,15 @@ var knex = require('knex')(require('../knexfile')[process.env.DB_ENV]);
 
 var errorArray = [];
 /* GET home page. */
-router.get('/add', function(req, res, next){
+function isLoggedIn (req, res, next) {
+  if (req.app.locals.session.user_id) {
+    next();
+  } else {
+    res.redirect('/login')
+  }
+}
+
+router.get('/add', isLoggedIn, function(req, res, next){
   res.render('postCreate.hbs')
 })
 
