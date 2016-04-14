@@ -25,20 +25,16 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: baseline;
-}
-
-.post-title-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
 }
+
 
 .post-rating-container {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
 .post-rating-container input {
@@ -46,30 +42,29 @@
   width: auto;
 }
 
+.post-rating-container form {
+  max-height: 15px;
+}
+
 .rating {
   border: 1px solid black;
   padding: 5px;
   border-radius: 5px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-left: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .post-map-image {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  height: 400px;
 }
 
-.post-map {
-  background: purple;
-  width: 45%;
-  max-height: 200px;
-}
 
 .post-map-image img {
-  width: 45%;
-  max-height: 200px;
+  width: 49%;
+  max-height: 400px;
 }
 
 .post-vote {
@@ -121,10 +116,4 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-.post-arrow-container {
-  margin-top: 5px;
-  display: flex;
-  flex-direction: column;
 }

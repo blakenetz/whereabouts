@@ -51,18 +51,15 @@ router.post('/add', function(req, res, next){
 })
 
 router.get('/:id', function(req, res, next) {
-  console.log('params: ', req.params.id);
   knex('posts')
   .where('posts.post_id', req.params.id).first()
   .innerJoin('users', 'posts.user_fk', 'users.user_id')
 
   .then(function(post){
-    console.log('post: ', post);
     knex('comments')
     .where('comments.post_fk', req.params.id)
     .innerJoin('users', 'users.user_id', 'comments.user_fk')
     .then(function(comments){
-      console.log('POST: ', post);
       res.render('postDetails', {
         title: 'Post Details!',
         errors: errorArray,
