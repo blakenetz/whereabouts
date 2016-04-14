@@ -34,7 +34,7 @@
   align-items: center; }
 
 .post-rating-container input {
-  max-height: 30px;
+  max-height: 15px;
   width: auto; }
 
 .rating {
@@ -101,6 +101,11 @@
   flex-direction: row;
   justify-content: space-between; }
 
+.post-arrow-container {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column; }
+
 .userform, .userdelete {
   padding: 15px;
   border-radius: 10px;
@@ -119,8 +124,8 @@
 
 body {
   padding-top: 70px;
-  background: #f1f1f0;
-  font-family: roboto;
+  background: #BCD6E4;
+  font-family: caviar dreams;
   padding-right: 30px;
   padding-left: 30px; }
 
@@ -128,12 +133,7 @@ body {
   height: 30px;
   width: auto;
   margin-top: -5px;
-  display:inline;}
-
-.app-name {
-margin: 0;
-float: left
-}
+  float: left; }
 
 .navbar {
   background: white; }
@@ -149,9 +149,12 @@ float: left
   height: 70px;
   width: 70px; }
 
-.posts h4 {
+.post-title {
   font-weight: 900;
-  color: #5db485; }
+  color: #5DB485; }
+
+.post-author {
+  color: #FFC683; }
 
 .posts a {
   text-decoration: none; }
@@ -204,3 +207,17 @@ float: left
 
 .contribute-button {
   width: 100%; }
+
+.app-name {
+  margin: 0;
+  float: left;
+  font-family: basic title font; }
+
+.post-button {
+  font-family: basic title font;
+  border: none;
+  background: none;
+  color: #215977;
+  font-size: 65px;
+  text-align: center;
+  text-decoration: underline; }
