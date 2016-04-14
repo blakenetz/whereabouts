@@ -7,7 +7,7 @@ $(function () {
   var markerLocal = [];
   var bounds;
   var parce = 0;
-  var offset = 2;
+  var offset = 10;
 
 
   function initAutocomplete() {
