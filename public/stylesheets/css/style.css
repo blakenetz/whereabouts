@@ -46,16 +46,12 @@
 .post-map-image {
   display: flex;
   flex-direction: row;
-  justify-content: space-around; }
-
-.post-map {
-  background: purple;
-  width: 45%;
-  max-height: 200px; }
+  justify-content: space-around;
+  height: 400px; }
 
 .post-map-image img {
-  width: 45%;
-  max-height: 200px; }
+  width: 49%;
+  max-height: 400px; }
 
 .post-vote {
   display: flex;

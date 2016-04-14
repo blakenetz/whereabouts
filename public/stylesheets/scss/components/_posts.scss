@@ -58,17 +58,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  height: 400px;
 }
 
-.post-map {
-  background: purple;
-  width: 45%;
-  max-height: 200px;
-}
 
 .post-map-image img {
-  width: 45%;
-  max-height: 200px;
+  width: 49%;
+  max-height: 400px;
 }
 
 .post-vote {
