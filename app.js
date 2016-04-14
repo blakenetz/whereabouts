@@ -145,6 +145,7 @@ function isAdmin (req, res, next) {
   }
 }
 
+
 app.use('/admin', isAdmin, admin);
 app.use('/auth', auth);
 app.use('/', routes);
