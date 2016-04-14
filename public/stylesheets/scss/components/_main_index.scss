@@ -153,6 +153,17 @@ body {
   flex-direction: row;
   justify-content: space-around;
   height: 50px;
+  align-items: flex-end;
+  margin-top: 20px;
+}
+
+.map-details input {
+  height: 30px;
+}
+
+.control-label {
+  margin: 0px;
+  padding: 0px;
 }
 
 .media-right {
