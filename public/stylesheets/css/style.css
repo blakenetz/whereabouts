@@ -196,7 +196,6 @@ body {
 
 .index .posts, .index .thumbnail {
   height: 75vh;
-  overflow: scroll;
   margin-bottom: 15px; }
 
 .votearrow {
