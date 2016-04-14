@@ -1,14 +1,24 @@
 var express = require('express');
 var router = express.Router();
 var knex = require('knex')(require('../knexfile')[process.env.DB_ENV]);
-
 var errorArray = [];
+var postAuthorAccess
+
+
 /* GET home page. */
 function isLoggedIn (req, res, next) {
   if (req.app.locals.session.user_id) {
     next();
   } else {
     res.redirect('/login/')
+  }
+}
+
+function isPostAuthor (currentUser, authorID) {
+  if (currentUser === authorID) {
+    postAuthorAccess = true;
+  } else {
+    postAuthorAccess = false;
   }
 }
 
@@ -54,24 +64,22 @@ router.get('/:id', function(req, res, next) {
   .where('posts.post_id', req.params.id).first()
   .innerJoin('users', 'posts.user_fk', 'users.user_id')
   .then(function(post){
-    if (post) {
+    knex('comments')
+    .where('comments.post_fk', req.params.id)
+    .innerJoin('users', 'users.user_id', 'comments.user_fk')
+    .then(function(comments){
+      isPostAuthor(req.app.locals.session.user_id, post.user_fk);
+      res.render('postDetails', {
+        title: 'Post Details!',
+        errors: errorArray,
+        post_id: req.params.id,
+        post: post,
+        comments: comments,
+        postAuthor: postAuthorAccess
+      });
+      errorArray = [];
+    })
 
-      knex('comments')
-      .where('comments.post_fk', req.params.id)
-      .innerJoin('users', 'users.user_id', 'comments.user_fk')
-      .then(function(comments){
-        res.render('postDetails', {
-          title: 'Post Details!',
-          errors: errorArray,
-          post_id: req.params.id,
-          post: post,
-          comments: comments,
-        });
-        errorArray = [];
-      })
-    } else {
-      res.redirect('/')
-    }
   })
 });
 

@@ -8,11 +8,15 @@
 {{/if}}
 
 
-{{#session}}
-{{#if admin}}
-<button class="postDelete btn btn-danger btn-block" data-post-id="{{../../post_id}}" type="button" name="delete">Delete This Post</button>
+
+{{#if session.admin}}
+<button class="postDelete btn btn-danger btn-block" data-post-id="{{../post_id}}" type="button" name="delete">Delete This Post</button>
+{{else}}
+{{#if postAuthor}}
+<button class="postDelete btn btn-danger btn-block" data-post-id="{{../post_id}}" type="button" name="delete">Delete Your Post</button>
 {{/if}}
-{{/session}}
+{{/if}}
+
 
   {{#post}}
   <div class="post-title">
