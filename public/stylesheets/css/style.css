@@ -3,6 +3,10 @@
   border-radius: 10px;
   background: white; }
 
+.post-details {
+  box-shadow: 0 -5px #575757;
+  margin-bottom: 30px; }
+
 .postform .btn {
   background: #5db485; }
 
@@ -159,7 +163,9 @@ body {
   padding: 15px;
   border-radius: 10px;
   background: white;
-  margin: 0px;
+  margin: 0px; }
+
+.index-posts {
   box-shadow: 0 5px #575757; }
 
 .media-data {
