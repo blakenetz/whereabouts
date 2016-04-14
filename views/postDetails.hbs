@@ -41,7 +41,7 @@
   <hr>
   {{#comments}}
   <div class="comment-box">
-    <button class="commentDelete" data-comment-id="{{id}}" type="button" name="delete">Delete</button>
+    <button class="commentDelete" data-comment-id="{{comment_id}}" type="button" name="delete">Delete</button>
     <p class='comment-text'>{{comment}}</p>
     <div class="comment-footer">
       <p class="comment-name">{{username}}</p>
@@ -82,6 +82,7 @@ $('.postDelete').on('click', function(){
 $('.commentDelete').on('click', function(){
  var comment_id = $(this).data('comment-id');
   var comment_box = $(this).parent();
+  console.log('comment_id: ', comment_id);
 
  $.ajax({
    url: "/comments/" + comment_id,
