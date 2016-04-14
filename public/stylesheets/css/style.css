@@ -119,6 +119,9 @@
   border-radius: 5px;
   padding: 15px; }
 
+.login-container {
+  box-shadow: 0 5px #575757; }
+
 @font-face {
   font-family: "basic title font";
   src: url("/fonts/basictitlefont.ttf"); }

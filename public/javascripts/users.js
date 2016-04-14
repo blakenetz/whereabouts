@@ -66,7 +66,7 @@ $(function () {
         var id = +$(this).val()
         socket.emit('userRat', {add: add, id: id, userId: userId})
       } else {
-        window.location = "/login/"
+        window.location = "/login/invalid"
       }
     })
   };
