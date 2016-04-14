@@ -111,11 +111,7 @@ $(function () {
           var marker = new google.maps.Marker({
             position: pos,
             map: map,
-            icon: {
-              path: google.maps.SymbolPath.CIRCLE,
-              scale: 5,
-              strokeColor: 'red',
-            },
+            icon: '/images/flag2.png',
           });
           $('#gif').css('display', 'none')
           markerLocal.push(marker)

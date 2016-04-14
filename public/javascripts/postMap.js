@@ -4,6 +4,7 @@ function initAutocomplete() {
     center: {lat: 20, lng: 10},
     zoom: 2
   });
+  var iconBase = '/images/flag.';
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
   var markers = [];
@@ -28,11 +29,7 @@ function initAutocomplete() {
         var marker = new google.maps.Marker({
           position: pos,
           map: map,
-          icon: {
-            path: google.maps.SymbolPath.CIRCLE,
-            scale: 5,
-            strokeColor: 'red',
-          },
+          icon: '/images/flag2.png'
         });
         markers.push(marker);
         $('#gif').css('display', 'none')

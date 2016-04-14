@@ -10,5 +10,6 @@ function initAutocomplete() {
   var marker = new google.maps.Marker({
     position: pos,
     map: map,
+    icon: '/images/flag.png'
   });
 }
