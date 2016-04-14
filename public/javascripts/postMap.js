@@ -29,7 +29,11 @@ function initAutocomplete() {
         var marker = new google.maps.Marker({
           position: pos,
           map: map,
-          icon: '/images/flag2.png'
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 5,
+            strokeColor: 'red',
+          },
         });
         markers.push(marker);
         $('#gif').css('display', 'none')
