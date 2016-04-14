@@ -157,7 +157,7 @@ body {
   float: left; }
 
 .navbar {
-  background: white; }
+  background: white;}
 
 .posts {
   padding: 15px;
@@ -265,6 +265,15 @@ body {
 
 .media-right h5 {
   margin-right: 5px; }
+
+#post-thumb {
+  float: left;
+  margin: 10px;
+}
+.post-rate {
+  float: left;
+  margin: 10px;
+}
 
 .list-group-item-text {
   margin: 0px; }

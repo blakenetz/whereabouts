@@ -21,7 +21,7 @@ router.get('/login/error', function(req, res, next) {
 });
 
 router.get('/signup', function (req, res, next){
-  res.render('signup');
+  res.render('signUp');
 })
 
 router.get('/logout', function(req, res, next){
