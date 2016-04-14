@@ -49,6 +49,8 @@ function initAutocomplete() {
       });
     } else {
       // Browser doesn't support Geolocation
+      $('#gif').css('display', 'none')
+      $('#map').css('display', 'block')
       handleLocationError(false, infoWindow, map.getCenter());
     }
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
