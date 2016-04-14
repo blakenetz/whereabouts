@@ -12,13 +12,14 @@ var bcrypt = require('bcrypt');
 var GitHubStrategy = require('passport-github2').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 var passport = require('passport');
+var Handlebars = require('handlebars');
 
 var admin = require('./routes/admin');
 var auth = require('./routes/auth');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var posts = require('./routes/posts');
-// var comments = require('./routes/comments');
+var comments = require('./routes/comments');
 
 var app = express();
 
@@ -130,20 +131,26 @@ app.use(function (req, res, next) {
   next();
 })
 
-function isAdmin (req, res, next) {
-  console.log(req.session);
-    if (req.session.admin) {
-      next()
-    } else {
-    res.redirect('/')
-  }
-}
+app.use(function(req, res, next) {
+  app.locals.session = req.session;
+  next();
+})
 
-app.use('/admin', isAdmin, admin);
+// function isAdmin (req, res, next) {
+//   console.log(req.session);
+//     if (req.session.admin) {
+//       next()
+//     } else {
+//     res.redirect('/')
+//   }
+// }
+
+app.use('/admin', admin);
 app.use('/auth', auth);
 app.use('/', routes);
 app.use('/users', users);
 app.use('/posts', posts);
+app.use('/comments', comments);
 // app.use('/comments', comments);
 
 
