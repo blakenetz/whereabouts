@@ -12,13 +12,14 @@ var bcrypt = require('bcrypt');
 var GitHubStrategy = require('passport-github2').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 var passport = require('passport');
+var Handlebars = require('handlebars');
 
 var admin = require('./routes/admin');
 var auth = require('./routes/auth');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var posts = require('./routes/posts');
-// var comments = require('./routes/comments');
+var comments = require('./routes/comments');
 
 var app = express();
 
@@ -71,7 +72,7 @@ passport.use(new LocalStrategy(
   .then(function (user) {
     if (!user) { return cb( null, false ); }
     else if ( user && bcrypt.compareSync(password + user.salt, user.password) ) {
-      return cb(null, {user_id: user.user_id, admin: user.admin});
+      return cb(null, {user_id: user.user_id, username: user.username, admin: user.admin});
     } else {
       return cb(null, false);
     }
@@ -89,7 +90,7 @@ passport.use(new GitHubStrategy({
     knex('users').where({auth_strategy: "github", auth_id: profile.id}).first()
     .then(function(user){
       if (user) {
-        return cb(null, {user_id: user.user_id, admin: user.admin});
+        return cb(null, {user_id: user.user_id, username: user.username, admin: user.admin});
       }
       if (!user) {
         knex('users').insert({
@@ -100,7 +101,7 @@ passport.use(new GitHubStrategy({
           avatar: profile._json.avatar_url
         }).returning('*')
           .then(function(user){
-            return cb(null, {user_id: user.user_id, admin: user.admin});
+            return cb(null, {user_id: user.user_id, username: user.username, admin: user.admin});
           })
         }
       })
@@ -130,20 +131,26 @@ app.use(function (req, res, next) {
   next();
 })
 
-function isAdmin (req, res, next) {
-  console.log(req.session);
-    if (req.session.admin) {
-      next()
-    } else {
-    res.redirect('/')
-  }
-}
+app.use(function(req, res, next) {
+  app.locals.session = req.session;
+  next();
+})
 
-app.use('/admin', isAdmin, admin);
+// function isAdmin (req, res, next) {
+//   console.log(req.session);
+//     if (req.session.admin) {
+//       next()
+//     } else {
+//     res.redirect('/')
+//   }
+// }
+
+app.use('/admin', admin);
 app.use('/auth', auth);
 app.use('/', routes);
 app.use('/users', users);
 app.use('/posts', posts);
+app.use('/comments', comments);
 // app.use('/comments', comments);
 
 
