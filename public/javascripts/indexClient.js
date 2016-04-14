@@ -7,6 +7,7 @@ $(function () {
   var markerLocal = [];
   var bounds;
   var parce = 0;
+  var offset = 2;
 
 
   function initAutocomplete() {
@@ -88,15 +89,16 @@ $(function () {
         radius: 1609.344 * miles
       });
       if (add) {
-        socket.emit('rating', { bounds: radius.getBounds(), parce: parce * 10, add: add, id: id})
+        socket.emit('rating', { bounds: radius.getBounds(), parce: parce * offset, add: add, id: id})
       }else{
-        socket.emit('located', {bounds: radius.getBounds(), parce: parce * 10})
+        socket.emit('located', {bounds: radius.getBounds(), parce: parce * offset})
       }
       map.fitBounds(radius.getBounds());
     }
 
     $('#geo').on('click', function () {
       $('#gif').css('display', 'block')
+      $('.dis').css('display', 'none')
       parce = 0;
       if (navigator.geolocation) {
         located = true;
@@ -118,6 +120,7 @@ $(function () {
             },
           });
           $('#gif').css('display', 'none')
+          $('.dis').css('display', 'block')
           markerLocal.push(marker)
           distanceFromCenter(miles)
           markeEventHandler(marker, 'you!')
@@ -143,6 +146,10 @@ $(function () {
       }
       var markers = [];
       socket.on('self', function (data) {
+        if (data.limit) {
+          data = data.post;
+          parce = 0;
+        }
         for (var i = 0; i < markers.length; i++) {
           markers[i].setMap(null);
         }
@@ -216,7 +223,7 @@ $(function () {
         if (located) {
           distanceFromCenter(miles)
         }else{
-          socket.emit('world', parce * 10);
+          socket.emit('world', parce * offset);
         }
       })
       $(document).on('click', '.votearrow', function () {
@@ -226,7 +233,7 @@ $(function () {
           if (located) {
             distanceFromCenter(miles, add, id)
           } else {
-            socket.emit('notlocated', {add: add, id: id, parce: parce * 2})
+            socket.emit('notlocated', {add: add, id: id, parce: parce * offset})
           }
         } else {
           window.location = "/login/"
