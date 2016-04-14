@@ -9,13 +9,8 @@
     Don't have an account? <a href="/signup">Click Here to signup!</a>
   <p>
 
-  {{#if user}}
-  <p>
-    Hello {{user.username}}
-    |
-    <!-- <a href="/auth/logout">Logout</a> -->
-  </p>
-  {{else}}
+  <p>All fields are <strong>Case Sensitive!</strong></p>
+
   <p>
     <a href="/auth/github">Login With GitHub</a>
   </p>
@@ -32,6 +27,6 @@
 
     <input type="submit" class="btn btn-primary btn-lg" value="Login">
   </form>
-  {{/if}}
+
 
 </div>

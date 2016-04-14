@@ -7,6 +7,7 @@
   <p>
     Or: <a href="/auth/github">Signup With GitHub</a>
   </p>
+  <p>All fields are <strong>Case Sensitive!</strong></p>
 
   <form method="POST" action="/auth/signup">
     <fieldset class="form-group">
@@ -45,7 +46,7 @@
     </fieldset>
 
     <fieldset class="form-group">
-      <label for="avatar">Avatar URL</label>
+      <label for="avatar">Avatar URL <small>Image should be square</small></label>
       {{#if errd}}
       <p class="error">{{errd}}</p>
       <input type="text" style="border: 1px solid red" class="form-control" name='avatar' id="avatar">
