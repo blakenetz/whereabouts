@@ -195,7 +195,9 @@ body {
 
 .votearrow {
   width: 15px;
-  height: 15px; }
+  height: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px; }
 
 .votearrow-box {
   display: flex;
