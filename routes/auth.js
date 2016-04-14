@@ -42,7 +42,7 @@ router.post('/signup', function(req, res, next){
           avatar: req.body.avatar,
           auth_strategy: 'local'
         }).then(function(){
-          res.redirect('/');
+          res.render('login', {username: req.body.username});
         }).catch(function(err){
           res.render('signup', {
             erre : "Username already exists",

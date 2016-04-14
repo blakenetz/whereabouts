@@ -7,12 +7,13 @@
 {{/if}}
 <div class="post-details col-md-10 col-md-offset-1 col-xs-12">
 
-
-  {{#session}}
-  {{#if admin}}
-  <button class="postDelete btn btn-danger btn-block" data-post-id="{{../../post_id}}" type="button" name="delete">Delete This Post</button>
-  {{/if}}
-  {{/session}}
+{{#if session.admin}}
+<button class="postDelete btn btn-danger btn-block" data-post-id="{{../post_id}}" type="button" name="delete">Delete This Post</button>
+{{else}}
+{{#if postAuthor}}
+<button class="postDelete btn btn-danger btn-block" data-post-id="{{../post_id}}" type="button" name="delete">Delete Your Post</button>
+{{/if}}
+{{/if}}
 
   {{#post}}
   <div class="post-title">
@@ -37,6 +38,10 @@
   </div>
 
   <p class="post-description">{{description}}</p>
+  <form action="http://maps.google.com/maps" method="get" target="_blank">
+    <input type="hidden" name="daddr" value='{{lat}}, {{lng}}' />
+    <input class='col-lg-12 btn-primary' type="submit" value="GO THERE" />
+  </form>
   {{/post}}
 
   <h2>Comments</h2>

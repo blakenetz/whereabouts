@@ -5,7 +5,7 @@ function initAutocomplete() {
   console.log(pos);
   map = new google.maps.Map(document.getElementById('map'), {
     center: pos,
-    zoom: 15
+    zoom: 9
   });
   var marker = new google.maps.Marker({
     position: pos,

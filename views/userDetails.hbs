@@ -8,7 +8,7 @@
   <h2>{{this.username}}'s Posts</h2>
 
 {{/user}}
-  <div class="posts" style='overflow: scroll; height: 300px;'>
+  <div class="posts" style='overflow: scroll; height: 300px;' value='{{session.user_id}}'>
   </div>
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCY6IF5KZuqMBt61jyVNQshduxTFUArNZY&libraries=places&callback=initAutocomplete" async defer></script>
