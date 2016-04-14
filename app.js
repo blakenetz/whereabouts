@@ -146,9 +146,10 @@ function isAdmin (req, res, next) {
 }
 
 
+
+app.use('/', routes);
 app.use('/admin', isAdmin, admin);
 app.use('/auth', auth);
-app.use('/', routes);
 app.use('/users', users);
 app.use('/posts', posts);
 app.use('/comments', comments);
