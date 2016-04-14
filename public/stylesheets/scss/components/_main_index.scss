@@ -114,6 +114,14 @@ body {
   margin: 0px;
 }
 
+.nextarrow:active, .votearrow:active {
+  transform: scale(1.5, 1.5);
+}
+
+.nextarrow:focus, .votearrow:focus {
+  outline: none;
+}
+
 .col-arrow-left {
   display: flex;
   flex-direction: column;
@@ -181,4 +189,9 @@ body {
   text-decoration: underline;
   width: auto;
   justify-content: center;
+}
+
+.post-button:active, .post-button:focus {
+  outline: none;
+  color: #5B89A1
 }
