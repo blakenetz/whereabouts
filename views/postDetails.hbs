@@ -16,7 +16,7 @@
       <form method="POST" action="/posts/{{post_id}}/upvote">
         <input type="image" src="/images/uparrow-green.png">
       </form>
-      <h3 class="rating">{{rating}}</h3>
+      <h4 class="rating">{{rating}}</h4>
       <form method="POST" action="/posts/{{post_id}}/downvote">
         <input type="image" src="/images/downarrow-red.png">
       </form>
@@ -27,7 +27,7 @@
 
   <div class="post-map-image">
     <img src="{{img_link}}" alt="" />
-    <div class="post-map" id="map" role="map"></div>
+    <div class="post-map" id="map" role="map" style= ></div>
   </div>
 
   <p class="post-description">{{description}}</p>

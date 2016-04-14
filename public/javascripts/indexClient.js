@@ -155,7 +155,7 @@ $(function () {
           markers.push(marker);
           markeEventHandler(marker, info.title, info.post_id);
           $('.posts')
-          .append("<div class='media data' id='"+info.post_id+"' title='"+info.title+"'></div>");
+          .append("<div class='media-data' id='"+info.post_id+"' title='"+info.title+"'></div>");
           $('#'+ info.post_id )
           .append("<div class='media-left'>"
             +"<a href='/posts/"+info.post_id+"'>"
@@ -164,9 +164,10 @@ $(function () {
             +"<h4 class='media-heading'><a class='post-title' href='/posts/"+info.post_id+"'>"+info.title+"<a/></h4>"
             +"<h5 class='list-group-item-text'><a class='post-author' href='/users/"+info.user_fk+"'>Posted by: "+info.username+"</a></h5><br></div>")
           .append("<div class='media-right'>"
-            +"<input class='votearrow up' value='"+info.post_id+"'type='image' src='/images/uparrow.png'>"
             +"<h5>"+info.rating+"</h5>"
-            +"<input class='votearrow down' value='"+info.post_id+"'type='image' src='/images/downarrow.png'></div>");
+            +"<div class='votearrow-box'>"
+            +"<input class='votearrow up' value='"+info.post_id+"'type='image' src='/images/uparrow.png'>"
+            +"<input class='votearrow down' value='"+info.post_id+"'type='image' src='/images/downarrow.png'></div></div>");
         }
       });
 
