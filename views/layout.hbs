@@ -33,13 +33,13 @@
           <h3 class='app-name'>WhereAbouts</h3>
         </a>
       </div>
-
+      {{#session}}
 
       <div class="collapse navbar-collapse" id="collapse">
         <ul class="nav navbar-nav">
           {{#if user_id}}
           <li class="active"><a href="/posts/add">Post</a></li>
-          <li class="active"><a href="/users/">My Profile</a></li>
+          <li class="active"><a href="/users/{{user_id}}">My Profile</a></li>
           <li class="active"><a href="/logout">Logout {{username}}</a></li>
           {{else}}
           <li class="active"><a href="/login">Post</a></li>
@@ -49,12 +49,10 @@
 
             {{#if admin}}
               <li class="active"><a href="/users">Admin Panel</a></li>
-            {{else}}
-              <li class="active"><a href="/users">MONKEY</a></li>
             {{/if}}
         </ul>
       </div>
-
+      {{/session}}
     </div>
   </nav>
 

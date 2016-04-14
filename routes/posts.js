@@ -31,6 +31,8 @@ router.post('/add', function(req, res, next){
       lng: req.body.lng,
       img_link: req.body.img_link,
       description: req.body.description,
+      rating: 500,
+      user_fk: req.app.locals.session.user_id
     })
     .then(function(){
       res.redirect('/')

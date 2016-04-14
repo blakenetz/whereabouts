@@ -6,7 +6,7 @@ var unirest = require('unirest');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   console.log(req.session);
-    res.render('index', req.session);
+    res.render('index');
 });
 
 router.get('/login', function(req, res, next) {
