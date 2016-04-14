@@ -8,7 +8,7 @@ function isLoggedIn (req, res, next) {
   if (req.app.locals.session.user_id) {
     next();
   } else {
-    res.redirect('/signup')
+    res.redirect('/login/')
   }
 }
 

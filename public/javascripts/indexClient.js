@@ -227,7 +227,7 @@ $(function () {
             socket.emit('notlocated', {add: add, id: id, parce: parce * 2})
           }
         } else {
-          window.location = "/signup/"
+          window.location = "/login/"
         }
       })
     };
