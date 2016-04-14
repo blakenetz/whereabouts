@@ -8,7 +8,7 @@ function isLoggedIn (req, res, next) {
   if (req.app.locals.session.user_id) {
     next();
   } else {
-    res.redirect('/login')
+    res.redirect('/signup')
   }
 }
 
@@ -100,7 +100,7 @@ router.post('/comments/add/:post_id', function(req, res, next){
   }
 })
 
-router.post('/:id/upvote', function(req, res, next){
+router.post('/:id/upvote', isLoggedIn, function(req, res, next){
   knex('posts').where({post_id: req.params.id})
   .increment('rating', 10)
   .returning('post_id')
@@ -109,7 +109,7 @@ router.post('/:id/upvote', function(req, res, next){
   })
 })
 
-router.post('/:id/downvote', function(req, res, next){
+router.post('/:id/downvote', isLoggedIn, function(req, res, next){
 
   knex('posts').where({post_id: req.params.id})
   .decrement('rating', 10)

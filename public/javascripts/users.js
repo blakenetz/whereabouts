@@ -61,9 +61,13 @@ $(function () {
       })
     }
     $(document).on('click', '.votearrow', function () {
-      var add = $(this).attr('class') == 'votearrow up' ? 10 : -10;
-      var id = +$(this).val()
-      socket.emit('userRat', {add: add, id: id, userId: userId})
+      if ($('.posts').attr('value') > 0) {
+        var add = $(this).attr('class') == 'votearrow up' ? 10 : -10;
+        var id = +$(this).val()
+        socket.emit('userRat', {add: add, id: id, userId: userId})
+      } else {
+        window.location = "/signup/"
+      }
     })
   };
 

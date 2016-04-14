@@ -218,12 +218,16 @@ $(function () {
         }
       })
       $(document).on('click', '.votearrow', function () {
-        var add = $(this).attr('class') == 'votearrow up' ? 10 : -10;
-        var id = +$(this).val()
-        if (located) {
-          distanceFromCenter(miles, add, id)
+        if ($('.thumbnail').attr('value') > 0) {
+          var add = $(this).attr('class') == 'votearrow up' ? 10 : -10;
+          var id = +$(this).val()
+          if (located) {
+            distanceFromCenter(miles, add, id)
+          } else {
+            socket.emit('notlocated', {add: add, id: id, parce: parce * 2})
+          }
         } else {
-          socket.emit('notlocated', {add: add, id: id, parce: parce * 2})
+          window.location = "/signup/"
         }
       })
     };
