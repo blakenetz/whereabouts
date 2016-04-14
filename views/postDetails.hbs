@@ -4,10 +4,15 @@
   <li class='error'>{{this}}</li>
   {{/errors}}
 </ul>
+<div class="post-details col-md-8 col-md-offset-2 col-xs-12">
 {{/if}}
 
-<div class="post-details col-md-8 col-md-offset-2 col-xs-12">
-<button class="postDelete" data-post-id="{{post_id}}" type="button" name="delete">Delete</button>
+{{#session}}
+{{#if admin}}
+<button class="postDelete" data-post-id="{{../../post_id}}" type="button" name="delete">Delete {{../../post_id}}</button>
+{{/if}}
+{{/session}}
+
   {{#post}}
   <div class="post-title">
     <div class="post-title-container">

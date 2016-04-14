@@ -52,7 +52,7 @@ router.get('/:id', function(req, res, next) {
     .where('comments.post_fk', req.params.id)
     .innerJoin('users', 'users.user_id', 'comments.user_fk')
     .then(function(comments){
-      console.log('comments: ', comments);
+      console.log('POST: ', post);
       res.render('postDetails', {
         title: 'Post Details!',
         errors: errorArray,
