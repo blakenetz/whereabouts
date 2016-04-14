@@ -7,29 +7,32 @@
 {{/if}}
 
 <div class="post-details col-md-8 col-md-offset-2 col-xs-12">
-<button class="postDelete" data-post-id="{{post_id}}" type="button" name="delete">Delete</button>
+  <button class="postDelete" data-post-id="{{post_id}}" type="button" name="delete">Delete</button>
   {{#post}}
   <div class="post-title">
     <div class="post-title-container">
       <h1 lat='{{lat}}' lng='{{lng}}'>{{title}}</h1>
     </div>
     <div class="post-rating-container">
-      <h3 class="rating">{{rating}}</h3>
-      <div class="post-arrow-container">
       <form method="POST" action="/posts/{{post_id}}/upvote">
         <input type="image" src="/images/uparrow-green.png">
       </form>
+      <h4 class="rating">{{rating}}</h4>
       <form method="POST" action="/posts/{{post_id}}/downvote">
         <input type="image" src="/images/downarrow-red.png">
       </form>
-    </div>
 
     </div>
   </div>
   <h4><a href='/users/{{user_id}}'>Posted by: {{username}}</a></h4>
   <div class="post-map-image">
+<<<<<<< HEAD
     <img src="{{img_link}}" alt="" >
     <div style='max-height: 400px; width:49%' id="map" role="map"></div>
+=======
+    <img src="{{img_link}}" alt="" />
+    <div class="post-map" id="map" role="map" style= ></div>
+>>>>>>> 1b4816d29dd17cb4bc202f8ccf9ff2b36b5e1271
   </div>
 
   <p class="post-description">{{description}}</p>
@@ -64,33 +67,33 @@
 
 <!-- <script type="text/javascript">
 $('.postDelete').on('click', function(){
- var post_id = $(this).data('post-id');
+  var post_id = $(this).data('post-id');
 
- $.ajax({
-   url: "/posts/" + post_id,
-   type: 'DELETE',
-   success: function(result) {
-     if (result) {
-       window.location='/';
-     }
-   }
- });
+  $.ajax({
+    url: "/posts/" + post_id,
+    type: 'DELETE',
+    success: function(result) {
+      if (result) {
+        window.location='/';
+      }
+    }
+  });
 
 });
 $('.commentDelete').on('click', function(){
- var comment_id = $(this).data('comment-id');
+  var comment_id = $(this).data('comment-id');
   var comment_box = $(this).parent();
   console.log('comment_id: ', comment_id);
 
- $.ajax({
-   url: "/comments/" + comment_id,
-   type: 'DELETE',
-   success: function(result) {
-     if (result) {
-       $(comment_box).slideUp();
-     }
-   }
- });
+  $.ajax({
+    url: "/comments/" + comment_id,
+    type: 'DELETE',
+    success: function(result) {
+      if (result) {
+        $(comment_box).slideUp();
+      }
+    }
+  });
 
 });
 </script> -->
