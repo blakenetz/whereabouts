@@ -60,7 +60,6 @@ router.get('/:id', function(req, res, next) {
     .where('comments.post_fk', req.params.id)
     .innerJoin('users', 'users.user_id', 'comments.user_fk')
     .then(function(comments){
-      console.log('comments: ', post);
       res.render('postDetails', {
         title: 'Post Details!',
         errors: errorArray,
@@ -93,7 +92,7 @@ router.post('/comments/add/:post_id', function(req, res, next){
     .insert({
       comment: req.body.comment,
       post_fk: req.params.post_id,
-      user_fk: req.session.passport.user.user_id
+      user_fk: req.app.locals.session.user_id
     }).return('post_fk')
     .then(function(post_fk){
       res.redirect('/posts/'+req.params.post_id)
