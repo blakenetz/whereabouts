@@ -9,7 +9,7 @@
 
 {{#session}}
 {{#if admin}}
-<button class="postDelete" data-post-id="{{../../post_id}}" type="button" name="delete">Delete {{../../post_id}}</button>
+<button class="postDelete btn btn-danger btn-block" data-post-id="{{../../post_id}}" type="button" name="delete">Delete This Post</button>
 {{/if}}
 {{/session}}
 
@@ -45,8 +45,10 @@
   <hr>
   {{#comments}}
   <div class="comment-box" role="post's comments">
-    <button class="commentDelete" data-comment-id="{{comment_id}}" type="button" name="delete">Delete</button>
     <p class='comment-text'>{{comment}}</p>
+    {{#if ../session.admin}}
+    <button class="commentDelete btn btn-danger" data-comment-id="{{comment_id}}" type="button" name="delete">Delete This Comment</button>
+    {{/if}}
     <div class="comment-footer">
       <p class="comment-name">{{username}}</p>
       <p>{{created_at}}</p>
@@ -64,9 +66,9 @@
     <input type="submit" class="btn btn-primary btn-lg" value="Comment">
   </form>
 </div>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCY6IF5KZuqMBt61jyVNQshduxTFUArNZY&libraries=places&callback=initAutocomplete" async defer></script>
 <script type="text/javascript" src='/javascripts/postsjava.js'></script>
-
 
 <script type="text/javascript">
 $('.postDelete').on('click', function(){

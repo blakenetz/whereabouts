@@ -4,7 +4,15 @@ var knex = require('knex')(require('../knexfile')[process.env.DB_ENV]);
 
 var errorArray = [];
 /* GET home page. */
-router.get('/add', function(req, res, next){
+function isLoggedIn (req, res, next) {
+  if (req.app.locals.session.user_id) {
+    next();
+  } else {
+    res.redirect('/login')
+  }
+}
+
+router.get('/add', isLoggedIn, function(req, res, next){
   res.render('postCreate.hbs')
 })
 
@@ -34,8 +42,10 @@ router.post('/add', function(req, res, next){
       rating: 500,
       user_fk: req.app.locals.session.user_id
     })
-    .then(function(){
-      res.redirect('/')
+    .returning('post_id')
+    .then(function(post_id){
+      console.log(post_id);
+      res.redirect('/posts/'+post_id)
     })
   }
 })
@@ -85,7 +95,7 @@ router.post('/comments/add/:post_id', function(req, res, next){
     .insert({
       comment: req.body.comment,
       post_fk: req.params.post_id,
-      user_fk: req.session.passport.user.user_id
+      user_fk: req.app.locals.session.user_id
     }).return('post_fk')
     .then(function(post_fk){
       res.redirect('/posts/'+req.params.post_id)
