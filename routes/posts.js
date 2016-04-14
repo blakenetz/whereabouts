@@ -34,8 +34,10 @@ router.post('/add', function(req, res, next){
       rating: 500,
       user_fk: req.app.locals.session.user_id
     })
-    .then(function(){
-      res.redirect('/')
+    .returning('post_id')
+    .then(function(post_id){
+      console.log(post_id);
+      res.redirect('/posts/'+post_id)
     })
   }
 })
