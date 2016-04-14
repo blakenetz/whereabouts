@@ -4,33 +4,36 @@
   <li class='error'>{{this}}</li>
   {{/errors}}
 </ul>
+<div class="post-details col-md-8 col-md-offset-2 col-xs-12">
 {{/if}}
 
-<div class="post-details col-md-8 col-md-offset-2 col-xs-12">
-<button class="postDelete" data-post-id="{{post_id}}" type="button" name="delete">Delete</button>
+
+{{#session}}
+{{#if admin}}
+<button class="postDelete btn btn-danger btn-block" data-post-id="{{../../post_id}}" type="button" name="delete">Delete This Post</button>
+{{/if}}
+{{/session}}
+
   {{#post}}
   <div class="post-title">
     <div class="post-title-container">
-      <h1>{{title}}</h1>
+      <h1 lat='{{lat}}' lng='{{lng}}'>{{title}}</h1>
     </div>
     <div class="post-rating-container">
-      <h3 class="rating">{{rating}}</h3>
-      <div class="post-arrow-container">
       <form method="POST" action="/posts/{{post_id}}/upvote">
         <input type="image" src="/images/uparrow-green.png">
       </form>
+      <h4 class="rating">{{rating}}</h4>
       <form method="POST" action="/posts/{{post_id}}/downvote">
         <input type="image" src="/images/downarrow-red.png">
       </form>
-    </div>
 
     </div>
   </div>
-  <h4>Posted by: {{username}}</h4>
-
+  <h4><a href='/users/{{user_id}}'>Posted by: {{username}}</a></h4>
   <div class="post-map-image">
-    <img src="{{img_link}}" alt="" />
-    <div class="post-map" id="map" role="map"></div>
+    <img src="{{img_link}}" alt="" >
+    <div style='max-height: 400px; width:49%' id="map" role="map"></div>
   </div>
 
   <p class="post-description">{{description}}</p>
@@ -40,8 +43,10 @@
   <hr>
   {{#comments}}
   <div class="comment-box" role="post's comments">
-    <button class="commentDelete" data-comment-id="{{comment_id}}" type="button" name="delete">Delete</button>
     <p class='comment-text'>{{comment}}</p>
+    {{#if ../session.admin}}
+    <button class="commentDelete btn btn-danger" data-comment-id="{{comment_id}}" type="button" name="delete">Delete This Comment</button>
+    {{/if}}
     <div class="comment-footer">
       <p class="comment-name">{{username}}</p>
       <p>{{created_at}}</p>
@@ -59,39 +64,39 @@
     <input type="submit" class="btn btn-primary btn-lg" value="Comment">
   </form>
 </div>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCY6IF5KZuqMBt61jyVNQshduxTFUArNZY&libraries=places&callback=initAutocomplete" async defer></script>
 <script type="text/javascript" src='/javascripts/postsjava.js'></script>
 
-
 <script type="text/javascript">
 $('.postDelete').on('click', function(){
- var post_id = $(this).data('post-id');
+  var post_id = $(this).data('post-id');
 
- $.ajax({
-   url: "/posts/" + post_id,
-   type: 'DELETE',
-   success: function(result) {
-     if (result) {
-       window.location='/';
-     }
-   }
- });
+  $.ajax({
+    url: "/posts/" + post_id,
+    type: 'DELETE',
+    success: function(result) {
+      if (result) {
+        window.location='/';
+      }
+    }
+  });
 
 });
 $('.commentDelete').on('click', function(){
- var comment_id = $(this).data('comment-id');
+  var comment_id = $(this).data('comment-id');
   var comment_box = $(this).parent();
   console.log('comment_id: ', comment_id);
 
- $.ajax({
-   url: "/comments/" + comment_id,
-   type: 'DELETE',
-   success: function(result) {
-     if (result) {
-       $(comment_box).slideUp();
-     }
-   }
- });
+  $.ajax({
+    url: "/comments/" + comment_id,
+    type: 'DELETE',
+    success: function(result) {
+      if (result) {
+        $(comment_box).slideUp();
+      }
+    }
+  });
 
 });
 </script>

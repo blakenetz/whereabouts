@@ -6,6 +6,8 @@ $(function () {
   var located = false;
   var markerLocal = [];
   var bounds;
+  var parce = 0;
+
 
   function initAutocomplete() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -86,9 +88,9 @@ $(function () {
         radius: 1609.344 * miles
       });
       if (add) {
-        socket.emit('rating', { bounds: radius.getBounds(), parce: parce * 2, add: add, id: id})
+        socket.emit('rating', { bounds: radius.getBounds(), parce: parce * 10, add: add, id: id})
       }else{
-        socket.emit('located', {bounds: radius.getBounds(), parce: parce * 2})
+        socket.emit('located', {bounds: radius.getBounds(), parce: parce * 10})
       }
       map.fitBounds(radius.getBounds());
     }
@@ -153,7 +155,7 @@ $(function () {
           markers.push(marker);
           markeEventHandler(marker, info.title, info.post_id);
           $('.posts')
-          .append("<div class='media data' id='"+info.post_id+"' title='"+info.title+"'></div>");
+          .append("<div class='media-data' id='"+info.post_id+"' title='"+info.title+"'></div>");
           $('#'+ info.post_id )
           .append("<div class='media-left'>"
             +"<a href='/posts/"+info.post_id+"'>"
@@ -162,9 +164,10 @@ $(function () {
             +"<h4 class='media-heading'><a class='post-title' href='/posts/"+info.post_id+"'>"+info.title+"<a/></h4>"
             +"<h5 class='list-group-item-text'><a class='post-author' href='/users/"+info.user_fk+"'>Posted by: "+info.username+"</a></h5><br></div>")
           .append("<div class='media-right'>"
-            +"<input class='votearrow up' value='"+info.post_id+"'type='image' src='/images/uparrow.png'>"
             +"<h5>"+info.rating+"</h5>"
-            +"<input class='votearrow down' value='"+info.post_id+"'type='image' src='/images/downarrow.png'></div>");
+            +"<div class='votearrow-box'>"
+            +"<input class='votearrow up' value='"+info.post_id+"'type='image' src='/images/uparrow.png'>"
+            +"<input class='votearrow down' value='"+info.post_id+"'type='image' src='/images/downarrow.png'></div></div>");
         }
       });
 
@@ -200,7 +203,6 @@ $(function () {
           distanceFromCenter(miles)
         };
       });
-      var parce = 0;
       $('.nextarrow').on('click', function () {
 
         if ($(this).attr('id') === 'next') {
@@ -212,7 +214,7 @@ $(function () {
         if (located) {
           distanceFromCenter(miles)
         }else{
-          socket.emit('world', parce * 2);
+          socket.emit('world', parce * 10);
         }
       })
       $(document).on('click', '.votearrow', function () {
@@ -221,7 +223,7 @@ $(function () {
         if (located) {
           distanceFromCenter(miles, add, id)
         } else {
-          socket.emit('notlocated', {add: add, id: id, parce: parce})
+          socket.emit('notlocated', {add: add, id: id, parce: parce * 2})
         }
       })
     };
