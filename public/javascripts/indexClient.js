@@ -162,7 +162,7 @@ $(function () {
             +"<img class='media-object' src='"+info.img_link+"'></a></div>")
           .append("<div class='media-body'>"
             +"<h4 class='media-heading'><a class='post-title' href='/posts/"+info.post_id+"'>"+info.title+"<a/></h4>"
-            +"<h5 class='list-group-item-text'><a class='post-author' href='/users/"+info.user_fk+"'>Posted by: "+info.username+"</a></h5><br></div>")
+            +"<h5 class='list-group-item-text'><p>Posted by: <a class='post-author' href='/users/"+info.user_fk+"'>"+info.username+"</a></p></h5><br></div>")
           .append("<div class='media-right'>"
             +"<h5>"+info.rating+"</h5>"
             +"<div class='votearrow-box'>"

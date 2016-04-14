@@ -1,11 +1,11 @@
 {{#if errors}}
 <ul>
   {{#errors}}
-  <li class='error'>{{this}}</li>
+  <p class='login-message error'>{{this}}</p>
   {{/errors}}
 </ul>
-<div class="post-details col-md-8 col-md-offset-2 col-xs-12">
-  {{/if}}
+{{/if}}
+<div class="post-details col-md-10 col-md-offset-1 col-xs-12">
 
 
   {{#session}}
@@ -30,39 +30,39 @@
 
     </div>
   </div>
-  <h4><a href='/users/{{user_id}}'>Posted by: {{username}}</a></h4>
+  <h4>Posted by: <a href='/users/{{user_id}}'>{{username}}</a></h4>
   <div class="post-map-image col-md-12">
-      <img src="{{img_link}}" alt="" >
-      <div style='max-height: 400px; width:49%' id="map" role="map"></div>
+  <img src="{{img_link}}" alt="" >
+  <div style='max-height: 400px; width:49%' id="map" role="map"></div>
+</div>
+
+<p class="post-description">{{description}}</p>
+{{/post}}
+
+<h2>Comments</h2>
+<hr>
+{{#comments}}
+<div class="comment-box" role="post's comments">
+  <p class='comment-text'>{{comment}}</p>
+  {{#if ../session.admin}}
+  <button class="commentDelete btn btn-danger" data-comment-id="{{comment_id}}" type="button" name="delete">Delete This Comment</button>
+  {{/if}}
+  <div class="comment-footer">
+    <p class="comment-name"><a href='/users/{{user_id}}'>{{username}}</a></p>
+    <p>{{created_at}}</p>
   </div>
+</div>
+<hr>
+{{/comments}}
 
-  <p class="post-description">{{description}}</p>
-  {{/post}}
-
-  <h2>Comments</h2>
-  <hr>
-  {{#comments}}
-  <div class="comment-box" role="post's comments">
-    <p class='comment-text'>{{comment}}</p>
-    {{#if ../session.admin}}
-    <button class="commentDelete btn btn-danger" data-comment-id="{{comment_id}}" type="button" name="delete">Delete This Comment</button>
-    {{/if}}
-    <div class="comment-footer">
-      <p class="comment-name">{{username}}</p>
-      <p>{{created_at}}</p>
-    </div>
-  </div>
-  <hr>
-  {{/comments}}
-
-  <h2>Leave a Comment!</h2>
-  <form method="POST" action="/posts/comments/add/{{post_id}}">
-    <fieldset class="form-group">
-      <label for="comment">Comment</label>
-      <textarea class="form-control" name='comment' id="comment" placeholder="Type Your Comment Here!"></textarea>
-    </fieldset>
-    <input type="submit" class="btn btn-primary btn-lg" value="Comment">
-  </form>
+<h2>Leave a Comment!</h2>
+<form method="POST" action="/posts/comments/add/{{post_id}}">
+  <fieldset class="form-group">
+    <label for="comment">Comment</label>
+    <textarea class="form-control" name='comment' id="comment" placeholder="Type Your Comment Here!"></textarea>
+  </fieldset>
+  <input type="submit" class="btn btn-primary btn-lg" value="Comment">
+</form>
 </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCY6IF5KZuqMBt61jyVNQshduxTFUArNZY&libraries=places&callback=initAutocomplete" async defer></script>
