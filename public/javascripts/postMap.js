@@ -14,6 +14,8 @@ function initAutocomplete() {
     markers.length=0;
   }
   $('#geo').on('click', function () {
+    $('#gif').css('display', 'block')
+    $('#map').css('display', 'none')
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
         pos = {
@@ -33,6 +35,8 @@ function initAutocomplete() {
           },
         });
         markers.push(marker);
+        $('#gif').css('display', 'none')
+        $('#map').css('display', 'block')
         $('#lat').val(markers[0].position.lat())
         $('#lng').val(markers[0].position.lng())
         var ew = markers[0].position.lat() > 0 ? 'N' : 'S';
