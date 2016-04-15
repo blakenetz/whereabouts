@@ -15,9 +15,6 @@ $(function () {
       center: {lat: 40.315, lng: -105.270},
       zoom: 1
     });
-    if(!map){
-      $('#map').css('text-align', 'center').append('<h1>We Appologize, the map is taking longer then normal to load, please refresh the page</h1>')
-    }
     function clearMarker () {
       markerLocal.forEach(function(marker) {
         marker.setMap(null);

@@ -336,3 +336,7 @@ body {
 .post-button:active, .post-button:focus {
   outline: none;
   color: #5B89A1; }
+
+  .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {  
+      color: rgb(245,	153,	126);
+  }
