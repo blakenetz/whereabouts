@@ -2,12 +2,12 @@
 
   <div class="map col-md-5 col-xs-12">
     <div class="thumbnail" value='{{session.user_id}}'>
-      <img id='gif' src="/images/loading.gif" style='display:none;'>      
+      <img id='gif' src="/images/loading.gif" style='display:none; height:100%; width:100%;'>
       <div  id="map" class='dis'style='height: 400px; width: 100%;' role="map"></div>
       <div class="map-details">
         <input id="pac-input" class="controls dis" type="text" placeholder="Search Map">
-        <input type="button" class="btn btn-default" id='geo' value="Locate you">
-        <div class="radius-container">
+        <input type="button" class="btn btn-default dis" id='geo' value="Locate you">
+        <div class="radius-container dis">
           <label class="col-lg-3 control-label">Mile radius: </label>
           <input type="number" class="radius-form form-control" id='radius' name="dis" value='10' >
 
