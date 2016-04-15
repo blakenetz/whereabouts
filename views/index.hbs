@@ -1,15 +1,23 @@
-<div class="index row">
-
-  <div class="map col-md-5 col-xs-12">
+<div class="row">
+  <div class="map col-md-5 col-xs-10">
     <div class="thumbnail" value='{{session.user_id}}'>
+    <div class='map-search-bar'>
+    <input id="pac-input" class="controls dis form-control" type="text" placeholder="Search for Places or Posts...">
+    </div>
       <img id='gif' src="/images/loading.gif" style='display:none; height:100%; width:100%;'>
       <div  id="map" class='dis'style='height: 400px; width: 100%;' role="map"></div>
       <div class="map-details">
-        <input id="pac-input" class="controls dis" type="text" placeholder="Search Map">
-        <input type="button" class="btn btn-default dis" id='geo' value="Locate you">
-        <div class="radius-container dis">
-          <label class="col-lg-3 control-label">Mile radius: </label>
-          <input type="number" class="radius-form form-control" id='radius' name="dis" value='10' >
+
+        <div class='find-my-location'>
+        <input type="button" class="btn btn-info btn-block dis" id='geo' value="Find My Location">
+      </div>
+
+        <div class="radius-container dis form-inline">
+          <div class='form-group'>
+          <label class="control-label">Show me posts </label>
+          <input type="number" class="radius-form" id='radius' name="dis" value='10' >
+          <label class="control-label">miles from me! </label>
+        </div>
 
         </div>
       </div>
