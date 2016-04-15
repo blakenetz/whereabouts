@@ -26,7 +26,7 @@ $(function () {
         $('#'+ info.post_id )
         .append("<div class='media-left'>"
           +"<a href='/posts/"+info.post_id+"'>"
-          +"<img class='media-object' src='"+info.img_link+"'></a></div>")
+          +"<img class='media-object' alt='"+info.title+"' src='"+info.img_link+"'></a></div>")
         .append("<div class='media-body'>"
           +"<h4 class='media-heading'><a class='post-title' href='/posts/"+info.post_id+"'>"+info.title+"<a/></h4>"
           +"<h5 class='list-group-item-text'><p>Posted by: <a class='post-author' href='/users/"+info.user_fk+"'>"+info.username+"</a></p></h5><br></div>")
