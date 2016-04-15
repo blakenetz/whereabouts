@@ -6,9 +6,6 @@ function initAutocomplete() {
     center: pos,
     zoom: 9
   });
-  if(!map){
-    $('#map').css('text-align', 'center').append('<h1>We Appologize, the map is taking longer then normal to load, please refresh the page</h1>')
-  }
   var marker = new google.maps.Marker({
     position: pos,
     map: map,
