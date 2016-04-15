@@ -93,11 +93,8 @@ router.get('/:id', checkNum, function(req, res, next) {
 });
 
 router.delete('/:post_id', function(req, res, next) {
-  console.log('got herez');
-  console.log(req.params.post_id);
   knex('posts').where({'post_id': req.params.post_id}).del()
   .then(function() {
-    console.log('here too');
     res.status(200).json('success');
   })
 });
