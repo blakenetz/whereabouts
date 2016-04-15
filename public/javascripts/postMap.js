@@ -4,6 +4,9 @@ function initAutocomplete() {
     center: {lat: 20, lng: 10},
     zoom: 2
   });
+  if(!map){
+    $('#map').css('text-align', 'center').append('<h1>We Appologize, the map is taking longer then normal to load, please refresh the page</h1>')
+  }
   var iconBase = '/images/flag.';
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
@@ -43,7 +46,6 @@ function initAutocomplete() {
         var ew = markers[0].position.lat() > 0 ? 'N' : 'S';
         var nw = markers[0].position.lng() > 0 ? 'E' : 'W';
         $('#pac-input').val(Math.abs(markers[0].position.lat()) + ew + ', ' + Math.abs(markers[0].position.lng()) + nw)
-        markeEventHandler(marker, 'you!')
       }, function() {
         handleLocationError(true, infoWindow, map.getCenter());
       });
@@ -123,6 +125,5 @@ function initAutocomplete() {
     var ew = markers[0].position.lat() > 0 ? 'N' : 'S';
     var nw = markers[0].position.lng() > 0 ? 'E' : 'W';
     $('#pac-input').val(Math.abs(markers[0].position.lat()) + ew + ', ' + Math.abs(markers[0].position.lng()) + nw)
-
   }
 }
