@@ -30,7 +30,7 @@ function isPostAuthor (currentUser, authorID) {
 }
 
 router.get('/add', isLoggedIn, function(req, res, next){
-  res.render('postCreate.hbs')
+  res.render('postCreate.hbs', {postCreate: true})
 })
 
 router.post('/add', function(req, res, next){

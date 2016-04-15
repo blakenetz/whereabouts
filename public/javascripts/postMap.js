@@ -4,9 +4,6 @@ function initAutocomplete() {
     center: {lat: 20, lng: 10},
     zoom: 2
   });
-  if(!map){
-    $('#map').css('text-align', 'center').append('<h1>We Appologize, the map is taking longer then normal to load, please refresh the page</h1>')
-  }
   var iconBase = '/images/flag.';
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);

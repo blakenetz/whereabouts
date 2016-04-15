@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head profile="http://www.w3.org/2005/10/profile">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{title}}</title>
+
+<link rel="icon"
+      type="image/png"
+      href="/images/favicon.png">
+  <title>Whereabouts</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
   <!-- Latest compiled and minified CSS -->
@@ -39,22 +43,23 @@
       </div>
       {{#session}}
 
-      <div class="collapse navbar-collapse" id="collapse">
-        <ul class="nav navbar-nav">
+      <div class=" collapse navbar-collapse" id="collapse">
+        <ul class="nav navbar-nav ">
+          
           {{#if user_id}}
-          <li class="active"><a href="/about">About</a></li>
-          <li class="active"><a href="/posts/add">Add A Post</a></li>
-          <li class="active"><a href="/users/{{user_id}}">My Profile</a></li>
-          <li class="active"><a href="/logout">Logout {{username}}</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/posts/add">Add A Post</a></li>
+          <li><a href="/users/{{user_id}}">My Profile</a></li>
+          <li><a href="/logout">Logout {{username}}</a></li>
           {{else}}
-          <li class="active"><a href="/about">About</a></li>
-          <li class="active"><a href="/login/invalid">Add A Post</a></li>
-          <li class="active"><a href="/signup">Sign Up</a></li>
-          <li class="active"><a href="/login">Login</a></li>
+          <li><a href="/about">About</a></li>
+          <li ><a href="/login/invalid">Add A Post</a></li>
+          <li ><a href="/signup">Sign Up</a></li>
+          <li ><a href="/login">Login</a></li>
           {{/if}}
 
           {{#if admin}}
-          <li class="active"><a href="/admin">Admin Panel</a></li>
+          <li><a href="/admin">Admin Panel</a></li>
           {{/if}}
         </ul>
       </div>
