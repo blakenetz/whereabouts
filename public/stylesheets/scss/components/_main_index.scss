@@ -32,31 +32,41 @@
     display: none;
   }
 }
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
 body {
   padding-top: 70px;
   background: #BCD6E4;
   font-family: caviar dreams;
-  padding-right: 30px;
-  padding-left: 30px;
-}
+  padding-right: 70px;
+  padding-left: 70px;
 
+}
+@media only screen and (max-width: 700px) {
+  body {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
 #globeicon {
   height: 30px;
   width: auto;
   margin-top: -5px;
   float: left;
 }
-
 .navbar {
   background: white;
 }
 
-.posts {
+.postsCon {
   padding: 15px;
   border-radius: 10px;
   background: white;
   margin: 0px;
+  float: right;
 }
 
 .index-posts {
@@ -69,7 +79,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   border-bottom: 1px solid black;
-  margin-bottom: 5px;
+  // margin-bottom: 5px;
 }
 
 .media-body {
