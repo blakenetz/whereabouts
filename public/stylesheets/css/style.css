@@ -203,14 +203,22 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: 1px solid black; }
+  border-bottom: 1px solid black;
+  align-items: flex-start;
+  overflow-y: hidden;
+}
+
+.media-body {
+  width: 100%;
+}
 
 .thumbnail {
   box-shadow: 0 5px #575757; }
 
 .posts img {
   height: 32px;
-  width: 32px; }
+  width: 32px;
+}
 
 .post-title {
   font-weight: 900;
@@ -290,7 +298,9 @@ body {
 .media-right {
   display: flex;
   flex-direction: row;
-  align-items: center; }
+  align-items: center;
+}
+
 
 .media-right h5 {
   margin-right: 5px; }
