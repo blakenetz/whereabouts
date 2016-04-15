@@ -5,6 +5,13 @@ var errorArray = [];
 var postAuthorAccess
 
 
+function checkNum (req, res, next) {
+  if (+req.params.id > 0) {
+    next();
+  } else {
+    res.redirect('/')
+  }
+}
 /* GET home page. */
 function isLoggedIn (req, res, next) {
   if (req.app.locals.session.user_id) {
@@ -59,11 +66,14 @@ router.post('/add', function(req, res, next){
   }
 })
 
-router.get('/:id', function(req, res, next) {
+router.get('/:id', checkNum, function(req, res, next) {
   knex('posts')
   .where('posts.post_id', req.params.id).first()
   .innerJoin('users', 'posts.user_fk', 'users.user_id')
   .then(function(post){
+    if(post === undefined){
+      res.redirect('/');
+    };
     knex('comments')
     .where('comments.post_fk', req.params.id)
     .innerJoin('users', 'users.user_id', 'comments.user_fk')
@@ -83,11 +93,8 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.delete('/:post_id', function(req, res, next) {
-  console.log('got herez');
-  console.log(req.params.post_id);
   knex('posts').where({'post_id': req.params.post_id}).del()
   .then(function() {
-    console.log('here too');
     res.status(200).json('success');
   })
 });

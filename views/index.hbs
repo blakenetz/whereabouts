@@ -1,15 +1,24 @@
-<div class="index row">
 
-  <div class="map col-md-5 col-xs-12">
+<div class="row">
+  <div class="map col-xs-12 col-lg-6">
     <div class="thumbnail" value='{{session.user_id}}'>
-      <img id='gif' src="/images/loading.gif" style='display:none;'>      
+    <div class='map-search-bar'>
+    <input id="pac-input" class="controls dis form-control" type="text" placeholder="Search for Places or Posts...">
+    </div>
+      <img id='gif' src="/images/loading.gif" style='display:none; height:100%; width:100%;'>
       <div  id="map" class='dis'style='height: 400px; width: 100%;' role="map"></div>
       <div class="map-details">
-        <input id="pac-input" class="controls dis" type="text" placeholder="Search Map">
-        <input type="button" class="btn btn-default" id='geo' value="Locate you">
-        <div class="radius-container">
-          <label class="col-lg-3 control-label">Mile radius: </label>
-          <input type="number" class="radius-form form-control" id='radius' name="dis" value='10' >
+
+        <div class='find-my-location'>
+        <input type="button" class="btn btn-info btn-block dis" id='geo' value="Find My Location">
+      </div>
+
+        <div class="radius-container dis form-inline">
+          <div class='form-group'>
+          <label class="control-label">Show me posts </label>
+          <input type="number" class="radius-form" id='radius' name="dis" value='10' >
+          <label class="control-label">miles from me! </label>
+        </div>
 
         </div>
       </div>
@@ -18,16 +27,18 @@
 
 
 
-  <div class="col-arrow-left col-xs-1">
-    <input class="nextarrow" id='back' type="image" src="/images/leftarrow.png">
-  </div>
-  <div class="posts index-posts col-md-5 col-xs-10" role="list of content">
-  </div>
-  <div class="col-arrow-right col-xs-1">
-    <input class="nextarrow" id='next' type="image" src="/images/rightarrow.png">
+
+  <div class="index-posts postsCon col-lg-6 col-xs-12" role="list of content">
+    <input class="nextarrow" id='back' type="image" style='float:left;' src="/images/leftarrow.png">
+    <input class="nextarrow" id='next' type="image" style='float:right;' src="/images/rightarrow.png">
+    <br>
+    <br>
+    <div class="posts">
+    </div>
   </div>
 
-</div>
+
+
 
 <div class="contribute row">
   <div class="contribute-button col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-2 col-xs-offset-1">

@@ -9,16 +9,13 @@
     Don't have an account? <a href="/signup">Click Here to signup!</a>
   <p>
 
-  {{#if user}}
+  <p>All fields are <strong>Case Sensitive!</strong></p>
+
   <p>
-    Hello {{user.username}}
-    |
-    <!-- <a href="/auth/logout">Logout</a> -->
-  </p>
-  {{else}}
-  <p>
-    <a href="/auth/github">Login With GitHub</a>
-  </p>
+    <a href="/auth/github" class="btn btn-lrg btn-social btn-github">
+  <span class="fa fa-github"></span> Login with GutHub</a>
+</p>
+<p>-OR-</p>
 
   <form method="POST" action="/auth/login">
     <fieldset class="form-group">
@@ -32,6 +29,6 @@
 
     <input type="submit" class="btn btn-primary btn-lg" value="Login">
   </form>
-  {{/if}}
+
 
 </div>
