@@ -137,7 +137,6 @@ app.use(function(req, res, next) {
 })
 
 function isAdmin (req, res, next) {
-  console.log(req.session);
     if (req.session.admin) {
       next()
     } else {
