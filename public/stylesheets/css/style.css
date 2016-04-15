@@ -269,18 +269,19 @@ body {
   background: white; }
 
 .radius-form {
-  width: 100px; }
+  width: 50px; }
+
+.radius-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
 .map-details {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  height: 50px;
-  align-items: flex-end;
   margin-top: 20px; }
 
-.map-details input {
-  height: 30px; }
+.find-my-location{
+  margin-bottom: 20px;
+}
 
 .control-label {
   margin: 0px;
