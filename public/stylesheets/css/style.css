@@ -274,7 +274,10 @@ body {
 .login-container {
   padding: 15px;
   border-radius: 10px;
-  background: white; }
+  background: white;
+  box-shadow: 0 5px #575757;
+  margin-bottom: 30px;
+}
 
 .radius-form {
   width: 50px; }
