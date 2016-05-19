@@ -45,11 +45,14 @@
 
       <div class=" collapse navbar-collapse" id="collapse">
         <ul class="nav navbar-nav ">
+          
           {{#if user_id}}
+          <li><a href="/about">About</a></li>
           <li><a href="/posts/add">Add A Post</a></li>
           <li><a href="/users/{{user_id}}">My Profile</a></li>
           <li><a href="/logout">Logout {{username}}</a></li>
           {{else}}
+          <li><a href="/about">About</a></li>
           <li ><a href="/login/invalid">Add A Post</a></li>
           <li ><a href="/signup">Sign Up</a></li>
           <li ><a href="/login">Login</a></li>
