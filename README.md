@@ -1,8 +1,7 @@
-[Deployed Here](https://pure-meadow-14363.herokuapp.com/posts/add)
+_Whereabouts!_
 
-Local resources:
+Whereabouts is a community-powered map for overlooked points-of-interests. It captures hidden gems that only a true local would know, giving the user a more authentic experience then what other travel-sites can offer.
 
-spreadsheet:
-https://docs.google.com/spreadsheets/d/1dU3hovV1Ub8ZzNeEh25xumDTDXlVxmbUQ79P_e5xgQM/edit#gid=0
+Whereabouts was built using Socket.io, Google Maps API, Node.js, Express, PostreSQL (specifically Knex.js), and Passport.
 
-workbook article:
+[Deployed Here](https://where-a-bouts.herokuapp.com/)
